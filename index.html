@@ -24,7 +24,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 a{color:var(--accent)}
 
 /* ── LOGIN ── */
-#login-screen{display:none!important}
+#login-screen{position:fixed;inset:0;background:var(--brand);display:flex;align-items:center;justify-content:center;z-index:9999}
 #login-screen.hidden{display:none}
 .login-card{background:#fff;border-radius:14px;padding:36px 40px 32px;width:380px;box-shadow:0 24px 64px rgba(0,0,0,.28)}
 .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
@@ -50,7 +50,7 @@ a{color:var(--accent)}
 
 /* ── SHELL ── */
 .shell{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
-#app{display:grid}
+#app{display:none}
 #app.visible{display:grid}
 
 /* ── SIDEBAR ── */
@@ -407,7 +407,7 @@ input[type=range]:disabled{cursor:default;opacity:.6}
 <script>
 /* ════════════════════
    DASHBOARD HTML BLOBS
-   (dashboards loaded as separate HTML files via direct iframe src)
+   (stored as strings; loaded into iframes via createObjectURL)
    ════════════════════ */
 const DASH_URLS = {
   ejecutivo: './ejecutivo.html',
@@ -429,7 +429,7 @@ function loadDash(name) {
    AUTH
    ════════ */
 const CREDS = {admin:'admin2026', viewer:'view2026'};
-let currentRole = 'admin', selectedRole = 'admin';
+let currentRole = null, selectedRole = 'admin';
 function selectRole(r){selectedRole=r;document.getElementById('rc-admin').classList.toggle('selected',r==='admin');document.getElementById('rc-viewer').classList.toggle('selected',r==='viewer');}
 function doLogin(){
   const pwd=document.getElementById('login-pwd').value, err=document.getElementById('login-err');
@@ -642,7 +642,7 @@ async function exportZIP(){
   const zip=new JSZip();
   zip.file('proyectos-auditoria-2026.csv','\uFEFF'+csvContent());
   zip.file('Portal Auditoria 2026.html', document.documentElement.outerHTML);
-  // Dashboards se acceden desde el mismo dominio como archivos separados
+  // Dashboards disponibles como archivos separados en el mismo sitio
   zip.file('LEAME.txt','Portal Auditoría 2026\nPlataforma Unificada · Fase 2 + Fase 3\n\nContenido:\n- Portal Auditoria 2026.html (este archivo)\n- Dashboard Ejecutivo.html\n- Reporte Novedades 2026.html\n- Dashboard Rutas 2026.html\n- Dashboard CEDIS 2026.html\n- proyectos-auditoria-2026.csv\n\nGenerado: '+new Date().toLocaleDateString('es-CO')+'\n');
   const blob=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:6}});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='portal-auditoria-2026.zip';a.click();toast('ZIP listo · descargando…');
@@ -657,13 +657,6 @@ function renderExportPage(){
     {name:'proyectos-auditoria-2026.csv',type:'csv',size:'< 5 KB',note:'Exportado desde Gestión de Proyectos'},
   ].map(f=>`<li><span class="ftype ${f.type}">${f.type.toUpperCase()}</span><span class="fname">${f.name}</span><span class="fsize">${f.size}</span><span style="color:var(--ink-3);font-size:11px;margin-left:auto">${f.note}</span></li>`).join('');
 }
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  // Auto-login as admin — no credentials required
-  initApp();
-});
 </script>
 </body>
 </html>
