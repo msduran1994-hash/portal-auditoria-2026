@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Dashboard · Acompañamiento de Rutas 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+window.RUTAS = [{"fecha":"2026-01-15","mes":"Enero","auditor":"Michael Duran","vehiculo":"WFT659","ruta":"CENTRO","cliente":"C.P. SUPREMO SAS","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"NO TIENE PRODUCTO DEVUELTO","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"Prestamo de tinas","riesgo":"RIESGO FINANCIERO","observaciones":"Se presta al Cliente 36 tinas (Cliente autorizado), cliente devuelve 20 tinas que tenia en el almacen, sin embargo el cliente confirma que la persona encargada de generar las remesas de prestamo y devoluciones no se encontraba por ende no se genero recido de prestamo y devolucion, generaron un borrador con firma confirmando la novedad manifestando que se habia hecho anteriormente."},{"fecha":"2025-01-15","mes":"Enero","auditor":"Michael Duran","vehiculo":"WFT659","ruta":"CENTRO","cliente":"FORERO AVELLA BLANCA CONSUELO","vendedor":"MELLIZO ACERO CLAUDIA PATRICIA","productoDevuelto":"SAVIPOLLO KGS","cantidad":1,"kilos":1.27,"valorDevuelto":11440,"motivo":"Pesaje por Rango","riesgo":"RIESGO LEGAL","observaciones":"Se devolvio 1 unidad de (Savipollo) ya que se encontraba por debajo del promedio del Rango"},{"fecha":"2025-01-15","mes":"Enero","auditor":"Michael Duran","vehiculo":"WFT659","ruta":"CENTRO","cliente":"ASADERO LA DELICIA DEL POLLO","vendedor":"CORDOBA HERNANDEZ OSCAR ALEJANDRO","productoDevuelto":"SAVIPOLLO KGS","cantidad":7,"kilos":9.5,"valorDevuelto":372780,"motivo":"Pesaje por Rango","riesgo":"RIESGO OPERATIVO","observaciones":"Se devolvio 6 unidades de (Savipollo) por pesaje del rango inferior al promedio establecido y 1 unidad de (Savipollo) por moretones en las patas."},{"fecha":"2025-01-15","mes":"Enero","auditor":"Michael Duran","vehiculo":"WFT659","ruta":"CENTRO","cliente":"MUELLE","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"Estado de las tinas","riesgo":"RIESGO REPUTACIONAL","observaciones":"Varios clientes presentan quejas por el estado en la llegada de las tinas, con deterioro, que afecta la calidad del producto , especialmente la que viene en empaque o bandejas."},{"fecha":"2025-01-15","mes":"Enero","auditor":"Jaider Gonzalez","vehiculo":"ERL430","ruta":"EXPRESO","cliente":"CENCOSUD COLOMBIA S.A.","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"","observaciones":"El conductor informo dos (2) novedades asi: 1. Demoras en la entrega en la recepción del producto en los almacenes de cadena y 2. Tardanza \" incumplimiento\" en la central de despachos, al momento de cargar el vehiculo."},{"fecha":"2025-01-15","mes":"Enero","auditor":"Jaider Gonzalez","vehiculo":"ERL430","ruta":"EXPRESO","cliente":"COLOMBIANA DE COMERCIO S.A.","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"","observaciones":"El conductor informo dos (2) novedades asi: 1. Demoras en la entrega en la recepción del producto en los almacenes de cadena y 2. Tardanza \" incumplimiento\" en la central de despachos, al momento de cargar el vehiculo."},{"fecha":"2026-01-21","mes":"Enero","auditor":"","vehiculo":"UFT105","ruta":"","cliente":"FRISBY","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"","observaciones":"Se realizó el conteo y pesaje de cada pedido, junto con un muestreo aleatorio y una revisión general, sin evidenciarse diferencias significativas."},{"fecha":"2026-01-27","mes":"Enero","auditor":"Kerling Hernandez","vehiculo":"UFT105","ruta":"L BOSA","cliente":"CHACON GARAVITO WILLIAM","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"SAVIPOLLO KGS","cantidad":176,"kilos":229.8,"valorDevuelto":1647230,"motivo":"Pesaje por Rango","riesgo":"RIESGO FINANCIERO","observaciones":"Se realiza devolucion de 176 pollos ya que estaban muy por debajo del rango solicitado"},{"fecha":"2026-01-27","mes":"Enero","auditor":"Kerling Hernandez","vehiculo":"UFT105","ruta":"L BOSA","cliente":"CHACON GARAVITO WILLIAM","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"SAVIPOLLO KGS","cantidad":40,"kilos":59,"valorDevuelto":374370,"motivo":"Fallas Cumplimiento Sanitario","riesgo":"RIESGO OPERATIVO","observaciones":"Se realiza devolucion de 40 pollos por mal olor"},{"fecha":"2026-01-28","mes":"Enero","auditor":"","vehiculo":"EQQ991","ruta":"TABIO","cliente":"RESTAURANTE LA AVENIDA 3","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"NO TIENE PRODUCTO DEVUELTO","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"","observaciones":"No hay Devolucion de Productos"},{"fecha":"2026-01-28","mes":"Enero","auditor":"","vehiculo":"EQQ991","ruta":"TENJO","cliente":"RESTAURANTE EL SABROSON","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"NO TIENE PRODUCTO DEVUELTO","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"","observaciones":"No hay Devolucion de Productos"},{"fecha":"2026-02-19","mes":"Febrero","auditor":"Michael Duran","vehiculo":"WCR096","ruta":"CHAPINERO","cliente":"POLLO BROASTER EMANUEL S.A.S","vendedor":"SUAREZ OSORIO OMAR","productoDevuelto":"SAVIPOLLO KGS","cantidad":11,"kilos":20,"valorDevuelto":174000,"motivo":"Pesaje por Rango","riesgo":"RIESGO REPUTACIONAL","observaciones":"Devolucion por sobrepeso del producto cliente solo acepta rango 4 y habia llegado producto Rango 6"},{"fecha":"2026-02-19","mes":"Febrero","auditor":"Michael Duran","vehiculo":"WCR096","ruta":"CHAPINERO","cliente":"RESTAURANTE A PURO SAZÓN","vendedor":"PEREZ GARCIA ANDRES","productoDevuelto":"NO TIENE PRODUCTO DEVUELTO","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"Cliente molesto por Incumplimiento en Horario","riesgo":"RIESGO OPERATIVO","observaciones":"Cliente se molesto por llegaba tarde para la entrega de los productos fuera de las horas estipuladas en la recepcion de productos"},{"fecha":"2026-02-19","mes":"Febrero","auditor":"Michael Duran","vehiculo":"WCR096","ruta":"CHAPINERO","cliente":"MUELLE","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"NO TIENE PRODUCTO DEVUELTO","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"Error en Facturacion","riesgo":"RIESGO OPERATIVO","observaciones":"Hubo fallas en el sistema para la impresion de la facturacion en la cual genero retrasos en la operacion por ende atraso entregas a los clientes de casi 2 horas desde la salida del muelle."},{"fecha":"2026-02-27","mes":"Febrero","auditor":"Hilary Basto","vehiculo":"UFT105","ruta":"CANDELARIA","cliente":"DCB DISTRIBUCIONES ALIMENTICIAS SAS","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"POLLO SIN VISCERA KGS","cantidad":15,"kilos":20,"valorDevuelto":180000,"motivo":"Pesaje por Rango","riesgo":"RIESGO REPUTACIONAL","observaciones":""},{"fecha":"2026-02-27","mes":"Febrero","auditor":"Hilary Basto","vehiculo":"UFT105","ruta":"CANDELARIA","cliente":"HERNANDEZ RODRIGUEZ MAURICIO","vendedor":"CHACON TORRES MABEL YANIRA","productoDevuelto":"POLLO SIN VISCERA KGS","cantidad":2,"kilos":7.5,"valorDevuelto":67500,"motivo":"Pesaje por Rango","riesgo":"RIESGO REPUTACIONAL","observaciones":""},{"fecha":"2026-03-26","mes":"Marzo","auditor":"Jaider Gonzalez","vehiculo":"SPU803","ruta":"CENTRO","cliente":"ALBERTO SANCHEZ CAÑON","vendedor":"MELLIZO ACERO CLAUDIA PATRICIA","productoDevuelto":"SAVIPOLLO KGS","cantidad":20,"kilos":28,"valorDevuelto":178000,"motivo":"Pesaje por Rango","riesgo":"RIESGO REPUTACIONAL","observaciones":"pollos con falta de presas y algunos con pesaje de diferencia"},{"fecha":"2026-03-26","mes":"Marzo","auditor":"Jaider Gonzalez","vehiculo":"SPU803","ruta":"CENTRO","cliente":"FORERO AVELLA BLANCA CONSUELO","vendedor":"MELLIZO ACERO CLAUDIA PATRICIA","productoDevuelto":"SAVIPOLLO KGS","cantidad":7,"kilos":46152,"valorDevuelto":105000,"motivo":"Pesaje por Rango","riesgo":"RIESGO DE CONTAGIO","observaciones":"diferencia en los pesos que pidio el cliente"},{"fecha":"2026-04-14","mes":"Abril","auditor":"Hilary Basto","vehiculo":"SPU803","ruta":"L FONTIBON","cliente":"FRISBY","vendedor":"POLLOS SAVICOL CENTRAL DESPACHOS","productoDevuelto":"POLLO SIN DESPRESADO KGS","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"RIESGO OPERATIVO","observaciones":"no se tuvo devolucion de ningun producto, sin embargo se realiza recogida de tinas en las intalaciones del cliente, por error se recogio una tina la cual no pertenecia a savicol, por lo que solo se realizo ingreso de 71 tinas y no de 72 como se diligencio en el formato de recogida, sin embargo el conductor consulta con luis charry para que se haga la entrega de la tina y la corrección del documento y realizar la devolucion de la tina a frisby"},{"fecha":"2026-04-16","mes":"Abril","auditor":"Michael Duran","vehiculo":"SOO212","ruta":"RICARUTE","cliente":"ASADERO DE POLLOS","vendedor":"CHACON TORRES MABEL YANIRA","productoDevuelto":"SAVIPOLLO KGS","cantidad":11,"kilos":16.22,"valorDevuelto":137060,"motivo":"Pesaje por Rango","riesgo":"RIESGO FINANCIERO","observaciones":"Hubo devolucion de 11 unidades de Savipollo, ultimo cliente de la ruta de Ricaurte correspondiente a que no cumple con las especificaciones por Rango."},{"fecha":"2026-05-04","mes":"Mayo","auditor":"Kerling Hernandez","vehiculo":"UFT340","ruta":"BOSA 1","cliente":"","vendedor":"","productoDevuelto":"SAVIPOLLO KGS","cantidad":40,"kilos":55,"valorDevuelto":478500,"motivo":"Error en Facturacion","riesgo":"RIESGO REPUTACIONAL","observaciones":"Cliente manifiesta que en principio había solicitado 40 pollos; sin embargo, en el transcurso del día le informó al vendedor que mejor le enviara 20 pollos, a lo cual al día siguiente el vendedor no corrigió dicha información se le llevaron 40 pollos, por lo cual el cliente realizó la devolución total porque no fué lo que pidió y no tenia almacenamiento disponible."},{"fecha":"2026-05-07","mes":"Mayo","auditor":"Michael Duran","vehiculo":"WGQ500","ruta":"EXPRESO","cliente":"PPC S. A.","vendedor":"CHACON TORRES MABEL YANIRA","productoDevuelto":"POLLO SIN VISCERA KGS","cantidad":8,"kilos":11.4,"valorDevuelto":143400,"motivo":"Pesaje por Rango","riesgo":"RIESGO REPUTACIONAL","observaciones":"Se presenta varios factores en la devolución (primero descuadre en el conteo de las unidades, ya que faltaron 2 unidades de Pollo sin Viscera en la clasificación, segunda novedad relacionaron 2 pollos espurgo, lo que genera mala clasificación en la selección, devolución de 6 pollos por peso por Rango es inferior al 1,3 Kg , lo que no se esta haciendo una clasificación adecuada del pollo y cuarta novedad el estado de las tinas se encuentran en estado deplorable con mal aspecto de presentación en casi el 30% de la operacion de entrega en el pedido."},{"fecha":"2026-05-07","mes":"Mayo","auditor":"Michael Duran","vehiculo":"WGQ500","ruta":"EXPRESO","cliente":"GRUPO CBC S A S","vendedor":"POLLOS SAVICOL S.A.S.","productoDevuelto":"POLLO SIN VISCERA KGS","cantidad":200,"kilos":276.5,"valorDevuelto":2765000,"motivo":"Pesaje por Rango","riesgo":"RIESGO FINANCIERO","observaciones":"Genero la devolucion correspondiente al 22% del total solicitado por el cliente correspondiente al pesaje por Rango es menor al solicitado del 1,4kg, Cliente realizo la solicitud de pedido de 900 Pollos y solo recibieron 700 Pollos generando un ponderado en la devolución del 22% generando una lerta fuerte en devoluciones ya que afecta el proceso operativo de la compañia generando un Riesgo financiero y Reputacional."},{"fecha":"2026-05-04","mes":"Mayo","auditor":"Hilary Basto","vehiculo":"SMY795","ruta":"TUNJA","cliente":"MUELLE","vendedor":"","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"Cliente molesto por Incumplimiento en Horario","riesgo":"RIESGO REPUTACIONAL","observaciones":"Durante la visita realizada al cedi de tunja los dias 4,5,6 de mayo se realizo acompañamiento de ruta, en lo que se encuestaron a 4 clientes en la ruta tunja, en los que todos expresaron su inconformismo con respecto a la calidad con la que se esta entregando el pollo, debido a que se han entregado pollo en canal con partes faltantes, con moretones, con plumas, con visceras internas sin retirar,desgarrados, con exceso de marinado, por lo cual los clientes expresan que estan asumiendo una merma muy alta por la mala operación logistica de la compañia, adicional tambien expresaron inconformismo, por la hora de entrega, ya que los dias que llega vehiculo de bogota se entrega despues del medio dia y es un horario dificil para realizar la recepción del producto, por estos motivos muchos clientes desistieron de la compra o compran con menos frecuencia y menos volumen."},{"fecha":"2026-05-15","mes":"Mayo","auditor":"Hilary Basto","vehiculo":"JTY140","ruta":"COUNTRY","cliente":"MUELLE","vendedor":"","productoDevuelto":"","cantidad":0,"kilos":0,"valorDevuelto":0,"motivo":"No hay Novedades Presentadas","riesgo":"RIESGO REPUTACIONAL","observaciones":"Se realiza acompañamiento del ruta, en la que se evidencio el retraso en el despacho de la ruta, teniendo en cuenta que el vehículo fue programado a la 1 de la mañana y se pasó a muelle a las 5: 40 de la mañana, retrasando de esta manera la ruta, adicional se evidencia que debido a la recepción de la mula de cumaral, se demoro el desprese del pollo el cual estaba en alistamiento según lo informado por el coordinador, motivo por el cual salio de muelle con una temperatura que no cumplia con los requerimientos del cliente, lo que implicó tener el termo más tiempo encendido, incumplimiento del horario de entrega al cliente jumbo atrioy espera prolongada en jumbo altos del country"}];
+
+</script>
+<link rel="stylesheet" href="novedades.css">
+<style>
+  .kpis{grid-template-columns:repeat(4,1fr)}
+  .filters{grid-template-columns:repeat(7,1fr) auto}
+  .impact-matrix .hn{padding-left:4px}
+  .impact-matrix .hcell:has(.crit-chip){background:transparent;padding:4px 0}
+  /* Ranking list */
+  .rank{display:flex;flex-direction:column;gap:8px;padding:4px 0 0}
+  .rank-row{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;font-size:12.5px}
+  .rank-pos{font-weight:700;color:#6B7793;font-family:'JetBrains Mono',monospace;font-size:11px;text-align:right}
+  .rank-bar{position:relative;height:20px;background:#F4F6FA;border-radius:5px;overflow:hidden}
+  .rank-fill{position:absolute;inset:0;border-radius:5px;background:linear-gradient(90deg,#0E7C86,#0FB5AE);transition:width .6s ease}
+  .rank-fill.amber{background:linear-gradient(90deg,#E08A1A,#f0aa55)}
+  .rank-fill.brand{background:linear-gradient(90deg,#0F1E3D,#1B2E54)}
+  .rank-fill.purple{background:linear-gradient(90deg,#7A3FD4,#9d6eea)}
+  .rank-label{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-weight:600;color:#0B1320;font-size:11.5px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 80px)}
+  .rank-val{font-weight:700;color:#0B1320;font-family:'JetBrains Mono',monospace;text-align:right;min-width:80px;font-size:11.5px}
+  .rank-val .pct{color:#6B7793;font-weight:500;margin-left:4px;font-size:10.5px}
+
+  /* Heatmap */
+  .heat{display:grid;gap:3px;margin-top:6px;font-size:11px}
+  .heat .hcell{padding:8px 4px;border-radius:5px;text-align:center;color:#0B1320;font-weight:600;font-family:'JetBrains Mono',monospace}
+  .heat .hh{color:#6B7793;text-transform:uppercase;letter-spacing:.1em;font-size:9.5px;background:transparent;font-weight:600;padding-bottom:2px;font-family:'Manrope',sans-serif}
+  .heat .hn{text-align:left;color:#0B1320;font-weight:600;padding-left:6px;font-family:'Manrope',sans-serif;font-size:11.5px;display:flex;align-items:center}
+  .heat .ht{background:#0F1E3D;color:#fff}
+  .heat .hzero{background:#F4F6FA;color:#94A3B8}
+
+  /* Insight strip */
+  .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="nav">
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <div>
+        <div class="brand-name">Rutas 2026</div>
+        <div class="brand-sub">Acompañamiento · BI Ejecutivo</div>
+      </div>
+    </div>
+    <div>
+      <div class="nav-section">Vistas</div>
+      <div class="nav-item active"><span class="dot"></span> Dashboard Dinámico</div>
+      <div class="nav-item"><span class="dot"></span> Visitas por Mes</div>
+      <div class="nav-item"><span class="dot"></span> Ranking de Rutas</div>
+      <div class="nav-item"><span class="dot"></span> Vehículos</div>
+      <div class="nav-item"><span class="dot"></span> Clientes Impactados</div>
+      <div class="nav-item"><span class="dot"></span> Trazabilidad</div>
+    </div>
+    <div>
+      <div class="nav-section">Reportes</div>
+      <div class="nav-item"><span class="dot"></span> Devoluciones por Riesgo</div>
+      <div class="nav-item"><span class="dot"></span> Cobertura Operacional</div>
+      <div class="nav-item"><span class="dot"></span> Exportar PDF / XLSX</div>
+    </div>
+    <div class="nav-foot">
+      Fuente · <code class="mono">Reporte Acompañamiento a Rutas 2026.xlsx</code><br>
+      Hoja: <strong style="color:#cdd5e6">Consolidado Acompañamiento</strong>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <div>
+        <div class="crumb">Consolidado Acompañamiento / Dashboard Dinámico</div>
+        <h1>Acompañamiento a Rutas · 2026</h1>
+        <div class="sub">BI ejecutivo sobre 25 acompañamientos operacionales · datos derivados 1:1 del XLSX fuente.</div>
+      </div>
+      <div class="top-actions">
+        <span class="pill"><span class="pulse"></span> Sincronizado con XLSX</span>
+        <button class="btn">⤓ Exportar</button>
+        <button class="btn primary">Actualizar datos</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filters">
+      <div class="filter"><label>Mes</label><select id="f-mes"><option value="">Todos los meses</option></select></div>
+      <div class="filter"><label>Ruta</label><select id="f-ruta"><option value="">Todas las rutas</option></select></div>
+      <div class="filter"><label>Vehículo</label><select id="f-veh"><option value="">Todos los vehículos</option></select></div>
+      <div class="filter"><label>Cliente</label><select id="f-cli"><option value="">Todos los clientes</option></select></div>
+      <div class="filter"><label>Auditor</label><select id="f-aud"><option value="">Todos los auditores</option></select></div>
+      <div class="filter"><label>Motivo</label><select id="f-motivo"><option value="">Todos los motivos</option></select></div>
+      <div class="filter"><label>Criticidad</label><select id="f-crit">
+        <option value="">Todas</option>
+        <option value="Crítico">Crítico</option>
+        <option value="Alto">Alto</option>
+        <option value="Medio">Medio</option>
+        <option value="Bajo">Bajo</option>
+      </select></div>
+      <div class="filter reset-wrap"><button class="reset" id="f-reset">Limpiar</button></div>
+    </div>
+    <div class="active-filters" id="active-filters"></div>
+
+    <!-- KPIs -->
+    <div class="kpis" id="kpis"></div>
+
+    <!-- Row 1: Mes line + Top rutas -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Visitas a rutas por mes</div>
+            <div class="panel-sub">Cantidad · % participación · línea de tendencia mensual</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px"><canvas id="ch-mes"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Ranking de rutas</div>
+            <div class="panel-sub">Cantidad de acompañamientos por ruta · % de participación</div>
+          </div>
+        </div>
+        <div id="rank-rutas" class="rank" style="margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: Vehiculos donut + Clientes bar -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Vehículos · participación</div>
+            <div class="panel-sub">Acompañamientos por vehículo + % del total</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="ch-veh"></canvas></div>
+        <div class="legend" id="legend-veh"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Clientes impactados · ranking</div>
+            <div class="panel-sub">Clasificación comparativa por cantidad de visitas</div>
+          </div>
+        </div>
+        <div id="rank-cli" class="rank" style="margin-top:6px;max-height:280px;overflow:auto;padding-right:4px"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Riesgos pie + auditores bar -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Tipos de riesgo identificados</div>
+            <div class="panel-sub">Distribución porcentual sobre el total de acompañamientos</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="ch-riesgo"></canvas></div>
+        <div class="legend" id="legend-riesgo"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Acompañamientos por auditor</div>
+            <div class="panel-sub">Cobertura por responsable · indicador de desempeño</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="ch-aud"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="grid-1">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Heatmap · cobertura por ruta y mes</div>
+            <div class="panel-sub">Intensidad = cantidad de acompañamientos · Enero – Mayo 2026</div>
+          </div>
+        </div>
+        <div id="heatmap"></div>
+      </div>
+    </div>
+
+    <!-- Motivos row: bar + criticidad donut -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Motivos de devolución · distribución dinámica</div>
+            <div class="panel-sub">Cantidad, % y nivel de criticidad por motivo</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px"><canvas id="ch-motivos-bar"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Nivel de criticidad operacional</div>
+            <div class="panel-sub">Clasificación automática por impacto: Bajo · Medio · Alto · Crítico</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="ch-crit"></canvas></div>
+        <div class="legend" id="legend-crit"></div>
+      </div>
+    </div>
+
+    <!-- Motivos trend + ranking -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Tendencia mensual de motivos</div>
+            <div class="panel-sub">Top 5 motivos · evolución por mes (Ene – May)</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="ch-motivos-trend"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Ranking de motivos más recurrentes</div>
+            <div class="panel-sub">Cantidad, % y criticidad asociada</div>
+          </div>
+        </div>
+        <div id="rank-motivos" class="rank" style="margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- Matrix -->
+    <div class="grid-1">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Matriz de criticidad e impacto operacional</div>
+            <div class="panel-sub">Motivos ordenados por nivel de criticidad × evolución mensual · intensidad según ocurrencias</div>
+          </div>
+        </div>
+        <div id="matriz"></div>
+      </div>
+    </div>
+
+    <!-- Insights -->
+    <div class="grid-1">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Análisis ejecutivo · interpretación automática</div>
+            <div class="panel-sub">Insights generados sobre los datos fuente</div>
+          </div>
+        </div>
+        <div id="insights"></div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="grid-1">
+      <div class="panel" style="padding-bottom:0">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Trazabilidad · detalle de acompañamientos</div>
+            <div class="panel-sub">Tabla viva sobre la selección actual · ordenable, paginada y trazable al XLSX</div>
+          </div>
+          <div class="panel-actions">
+            <span class="pill mono" id="tbl-count">0 registros</span>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <div class="tbl-controls">
+            <div class="search">
+              <span class="icon-search">🔍</span>
+              <input id="tbl-search" placeholder="Buscar por cliente, ruta, motivo…">
+            </div>
+            <div class="mono" id="tbl-sub">—</div>
+          </div>
+          <div style="max-height:480px;overflow:auto">
+            <table class="tbl" id="tbl">
+              <thead>
+                <tr>
+                  <th data-k="fecha">Fecha<span class="sortdir"></span></th>
+                  <th data-k="auditor">Auditor<span class="sortdir"></span></th>
+                  <th data-k="vehiculo">Vehículo<span class="sortdir"></span></th>
+                  <th data-k="ruta">Ruta<span class="sortdir"></span></th>
+                  <th data-k="cliente" style="min-width:200px">Cliente<span class="sortdir"></span></th>
+                  <th data-k="motivo">Motivo<span class="sortdir"></span></th>
+                  <th data-k="riesgo">Riesgo<span class="sortdir"></span></th>
+                  <th data-k="valorDevuelto">Valor devuelto<span class="sortdir"></span></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="pager" id="pager"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source-note">
+      Datos cargados desde <code>Reporte Acompañamiento a Rutas 2026.xlsx</code> · hoja <code>Consolidado Acompañamiento</code> · 25 acompañamientos · trazabilidad 1:1 con el archivo fuente.
+    </div>
+  </main>
+</div>
+
+<script>
+/* ===========================================================
+   Dashboard · Acompañamiento de Rutas 2026
+   window.RUTAS (25 acompañamientos) cargado desde rutas-data.js,
+   derivado 1:1 de la hoja "Consolidado Acompañamiento".
+   =========================================================== */
+
+const RUTAS_RAW = window.RUTAS || [];
+const MONTH_ORDER = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const MONTH_SHORT = {Enero:'Ene',Febrero:'Feb',Marzo:'Mar',Abril:'Abr',Mayo:'May',Junio:'Jun',Julio:'Jul',Agosto:'Ago',Septiembre:'Sep',Octubre:'Oct',Noviembre:'Nov',Diciembre:'Dic'};
+
+/* === Mapping motivo → criticidad operacional (derivado del dominio del negocio) ===
+   - Crítico: motivos sanitarios o legales que comprometen la operación / la marca
+   - Alto:    motivos con pérdida material o financiera directa
+   - Medio:   motivos de servicio / experiencia del cliente con impacto reputacional
+   - Bajo:    motivos administrativos sin pérdida material o sin novedad real */
+const MOTIVO_CRITICIDAD = {
+  'Pesaje por Rango':                                  'Alto',
+  'Fallas Cumplimiento Sanitario':                     'Crítico',
+  'Error en Facturacion':                              'Alto',
+  'Cliente molesto por Incumplimiento en Horario':     'Medio',
+  'Estado de las tinas':                               'Medio',
+  'Prestamo de tinas':                                 'Bajo',
+  'No hay Novedades Presentadas':                      'Bajo'
+};
+function clasifMotivo(m){ return MOTIVO_CRITICIDAD[m] || 'Medio'; }
+
+/* === Enriquecer registros con criticidad === */
+const RUTAS = RUTAS_RAW.map(r => ({
+  ...r,
+  criticidad: r.motivo ? clasifMotivo(r.motivo) : 'Bajo'
+}));
+
+const RISK_COLORS = {
+  'RIESGO OPERATIVO':   '#2A6FDB',
+  'RIESGO LEGAL':       '#E08A1A',
+  'RIESGO FINANCIERO':  '#7A3FD4',
+  'RIESGO REPUTACIONAL':'#C5364B',
+  'RIESGO DE CONTAGIO': '#a82541'
+};
+const CRIT_COLORS = {
+  'Crítico':'#7d1b2a',
+  'Alto':   '#C5364B',
+  'Medio':  '#E08A1A',
+  'Bajo':   '#1F8A4C'
+};
+const CRIT_ORDER = ['Crítico','Alto','Medio','Bajo'];
+const C = {
+  brand:'#0F1E3D', accent:'#0E7C86', accent2:'#0FB5AE',
+  ink:'#0B1320', ink3:'#6B7793', line:'#E5E8EF',
+  green:'#1F8A4C', amber:'#E08A1A', red:'#C5364B', slate:'#8693AC'
+};
+
+Chart.defaults.font.family = "'Manrope', sans-serif";
+Chart.defaults.font.size = 11.5;
+Chart.defaults.color = C.ink3;
+Chart.defaults.borderColor = C.line;
+
+const state = {
+  mes:'', ruta:'', vehiculo:'', cliente:'', auditor:'', motivo:'', criticidad:'',
+  search:'', sortKey:'fecha', sortDir:-1, page:1, pageSize:10
+};
+
+function uniq(arr){return [...new Set(arr)].filter(Boolean).sort();}
+function pct(n,t){return t ? (n/t*100) : 0;}
+function fmtMoney(n){if(!n) return '—';return '$ '+Number(n).toLocaleString('es-CO');}
+
+/* ---------- populate filters ---------- */
+function populateFilters(){
+  // Meses
+  const meses = MONTH_ORDER.filter(m=>RUTAS.some(r=>r.mes===m));
+  const $m = document.getElementById('f-mes');
+  meses.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m+' 2026';$m.appendChild(o);});
+
+  const rutas = uniq(RUTAS.map(r=>r.ruta));
+  const $r = document.getElementById('f-ruta');
+  rutas.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;$r.appendChild(o);});
+
+  const vehs = uniq(RUTAS.map(r=>r.vehiculo));
+  const $v = document.getElementById('f-veh');
+  vehs.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;$v.appendChild(o);});
+
+  const clientes = uniq(RUTAS.map(r=>r.cliente));
+  const $c = document.getElementById('f-cli');
+  clientes.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;$c.appendChild(o);});
+
+  const auditores = uniq(RUTAS.map(r=>r.auditor));
+  const $a = document.getElementById('f-aud');
+  auditores.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;$a.appendChild(o);});
+
+  const motivos = uniq(RUTAS.map(r=>r.motivo));
+  const $mo = document.getElementById('f-motivo');
+  if($mo) motivos.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;$mo.appendChild(o);});
+}
+
+function applyFilters(){
+  return RUTAS.filter(r=>{
+    if(state.mes && r.mes!==state.mes) return false;
+    if(state.ruta && r.ruta!==state.ruta) return false;
+    if(state.vehiculo && r.vehiculo!==state.vehiculo) return false;
+    if(state.cliente && r.cliente!==state.cliente) return false;
+    if(state.auditor && r.auditor!==state.auditor) return false;
+    if(state.motivo && r.motivo!==state.motivo) return false;
+    if(state.criticidad && r.criticidad!==state.criticidad) return false;
+    if(state.search){
+      const q = state.search.toLowerCase();
+      if(!((r.cliente||'').toLowerCase().includes(q) ||
+           (r.ruta||'').toLowerCase().includes(q) ||
+           (r.motivo||'').toLowerCase().includes(q) ||
+           (r.observaciones||'').toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
+}
+
+/* ---------- KPI ---------- */
+function renderKPIs(){
+  const data = applyFilters();
+  const totVisitas = data.length;
+  const totRutas = new Set(data.map(r=>r.ruta).filter(Boolean)).size;
+  const totVeh = new Set(data.map(r=>r.vehiculo).filter(Boolean)).size;
+  const totClientes = new Set(data.map(r=>r.cliente).filter(Boolean)).size;
+  const totAuditores = new Set(data.map(r=>r.auditor).filter(Boolean)).size;
+  // Devoluciones
+  const conDev = data.filter(r=>r.kilos>0).length;
+  const totalKilos = data.reduce((a,b)=>a+(b.kilos||0),0);
+  const totalValor = data.reduce((a,b)=>a+(b.valorDevuelto||0),0);
+
+  // Motivos
+  const motivoMap = {};
+  data.forEach(r=>{ if(r.motivo) motivoMap[r.motivo]=(motivoMap[r.motivo]||0)+1; });
+  const motivoEntries = Object.entries(motivoMap).sort((a,b)=>b[1]-a[1]);
+  const totMotivos = motivoEntries.length;
+  const topMotivo = motivoEntries[0] || ['—',0];
+  const topMotivoPct = totVisitas ? (topMotivo[1]/totVisitas*100) : 0;
+
+  // Criticidad
+  const critMap = {'Crítico':0,'Alto':0,'Medio':0,'Bajo':0};
+  data.forEach(r=>{ critMap[r.criticidad] = (critMap[r.criticidad]||0)+1; });
+  const critsActivos = totVisitas ? (critMap['Crítico']+critMap['Alto']) : 0;
+  const critPct = totVisitas ? (critsActivos/totVisitas*100) : 0;
+
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi hero">
+      <div class="ico">▣</div>
+      <div class="label">Total visitas realizadas</div>
+      <div class="value mono">${totVisitas}</div>
+      <div class="bar"><div style="width:100%;background:#0FB5AE"></div></div>
+      <div class="meta"><span>Acompañamientos en la selección</span><span class="mono">${totAuditores} auditores</span></div>
+    </div>
+    <div class="kpi findings-dom">
+      <div class="ico">≡</div>
+      <div class="label">Rutas auditadas</div>
+      <div class="value mono">${totRutas}</div>
+      <div class="bar"><div style="width:100%;background:#fff"></div></div>
+      <div class="meta"><span>Rutas distintas cubiertas</span><span class="mono">${totVisitas?(totVisitas/totRutas).toFixed(1):0}/ruta</span></div>
+    </div>
+    <div class="kpi visited">
+      <div class="ico">⛟</div>
+      <div class="label">Vehículos registrados</div>
+      <div class="value mono">${totVeh}</div>
+      <div class="bar"><div style="width:100%;background:#fff"></div></div>
+      <div class="meta"><span>Flota involucrada</span><span class="mono">${totVisitas?(totVisitas/totVeh).toFixed(1):0}/vehículo</span></div>
+    </div>
+    <div class="kpi">
+      <div class="ico" style="background:#F1F3F8;color:#0F1E3D">◯</div>
+      <div class="label">Clientes impactados</div>
+      <div class="value mono">${totClientes}</div>
+      <div class="bar"><div style="width:100%;background:#0F1E3D"></div></div>
+      <div class="meta"><span>Devoluciones: ${conDev}</span><span class="mono">${totalKilos.toFixed(0)} kg</span></div>
+    </div>
+
+    <div class="kpi">
+      <div class="ico" style="background:rgba(14,124,134,.12);color:#0E7C86">★</div>
+      <div class="label">Motivos registrados</div>
+      <div class="value mono">${totMotivos}</div>
+      <div class="bar"><div style="width:${totMotivos/7*100}%;background:#0E7C86"></div></div>
+      <div class="meta"><span>Tipologías distintas detectadas</span><span class="mono">${topMotivo[1]}× máx</span></div>
+    </div>
+    <div class="kpi risk-dom">
+      <div class="ico">▲</div>
+      <div class="label">Motivo dominante</div>
+      <div class="value" style="font-size:15px;font-weight:700;letter-spacing:-0.005em;line-height:1.2;margin-top:8px">${topMotivo[0]}</div>
+      <div class="bar"><div style="width:${topMotivoPct}%;background:#fff"></div></div>
+      <div class="meta"><span class="mono">${topMotivo[1]} ocurrencias</span><span class="mono">${topMotivoPct.toFixed(1)}%</span></div>
+    </div>
+    <div class="kpi crit-card">
+      <div class="ico">⚑</div>
+      <div class="label">Criticidad Alta + Crítica</div>
+      <div class="value mono">${critsActivos}<span class="unit">/${totVisitas}</span></div>
+      <div class="bar"><div style="width:${critPct}%;background:#fff"></div></div>
+      <div class="meta"><span>Casos con impacto operacional</span><span class="mono">${critPct.toFixed(1)}%</span></div>
+    </div>
+    <div class="kpi">
+      <div class="ico" style="background:rgba(122,63,212,.12);color:#7A3FD4">$</div>
+      <div class="label">Valor devuelto acumulado</div>
+      <div class="value mono" style="font-size:20px">${totalValor?'$ '+(totalValor/1000).toFixed(0)+'K':'$ 0'}</div>
+      <div class="bar"><div style="width:${conDev/Math.max(1,totVisitas)*100}%;background:#7A3FD4"></div></div>
+      <div class="meta"><span>${conDev} acompañamientos con devolución</span><span class="mono">${totalKilos.toFixed(1)} kg</span></div>
+    </div>
+  `;
+}
+
+/* ---------- Mes (bar + line trend) ---------- */
+let chMes;
+function renderMes(){
+  const data = applyFilters();
+  const meses = MONTH_ORDER.filter(m=>RUTAS.some(r=>r.mes===m));
+  const labels = meses.map(m=>MONTH_SHORT[m]);
+  const counts = meses.map(m=>data.filter(r=>r.mes===m).length);
+  const total = counts.reduce((a,b)=>a+b,0) || 1;
+  const pcts = counts.map(c=>+(c/total*100).toFixed(1));
+
+  // moving average trend (3-month window)
+  const trend = counts.map((_,i,arr)=>{
+    const s = Math.max(0,i-1), e = Math.min(arr.length-1,i+1);
+    let sum=0, n=0;
+    for(let j=s;j<=e;j++){sum+=arr[j];n++;}
+    return n?+(sum/n).toFixed(2):0;
+  });
+
+  const ctx = document.getElementById('ch-mes');
+  if(chMes) chMes.destroy();
+  chMes = new Chart(ctx,{
+    data:{
+      labels,
+      datasets:[
+        {type:'bar',label:'Visitas',data:counts,backgroundColor:'#0F1E3D',borderRadius:5,barPercentage:.55,order:2},
+        {type:'line',label:'Tendencia (media móvil 3m)',data:trend,
+          borderColor:'#0E7C86',backgroundColor:'rgba(14,124,134,.15)',
+          tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#fff',pointBorderWidth:2,fill:true,order:1}
+      ]
+    },
+    options:{
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14}},
+        tooltip:{callbacks:{
+          afterLabel:(it)=>it.datasetIndex===0 ? `${pcts[it.dataIndex]}% del total` : ''
+        }}
+      },
+      scales:{
+        x:{grid:{display:false}},
+        y:{beginAtZero:true,grid:{color:C.line}}
+      }
+    },
+    plugins:[{
+      id:'monthLabels',
+      afterDatasetsDraw(chart){
+        const ds = chart.getDatasetMeta(0).data;
+        const {ctx} = chart;
+        ds.forEach((bar,i)=>{
+          const v = chart.data.datasets[0].data[i];
+          if(!v) return;
+          ctx.save();
+          ctx.fillStyle = C.ink;
+          ctx.font='700 11px "JetBrains Mono"';
+          ctx.textAlign='center';
+          ctx.fillText(v, bar.x, bar.y-14);
+          ctx.fillStyle = C.ink3;
+          ctx.font='500 9px Manrope';
+          ctx.fillText(pcts[i]+'%', bar.x, bar.y-4);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+/* ---------- Rank list helper ---------- */
+function renderRankList(elId, byKey, valueGetter, colorClass){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{
+    const k = valueGetter(r);
+    if(!k) return;
+    map[k] = (map[k]||0)+1;
+  });
+  const total = data.length || 1;
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const top = sorted.slice(0,12);
+  const max = top[0] ? top[0][1] : 1;
+  const html = top.map(([k,v],i)=>`
+    <div class="rank-row">
+      <div class="rank-pos">${String(i+1).padStart(2,'0')}</div>
+      <div class="rank-bar">
+        <div class="rank-fill ${colorClass||''}" style="width:${v/max*100}%"></div>
+        <div class="rank-label">${k}</div>
+      </div>
+      <div class="rank-val">${v}<span class="pct">${(v/total*100).toFixed(1)}%</span></div>
+    </div>
+  `).join('');
+  document.getElementById(elId).innerHTML = html || `<div style="color:#6B7793;font-size:12px;padding:14px;text-align:center">Sin datos para los filtros activos.</div>`;
+}
+
+/* ---------- Vehiculos donut ---------- */
+let chVeh;
+function renderVeh(){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{if(r.vehiculo) map[r.vehiculo]=(map[r.vehiculo]||0)+1;});
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const labels = sorted.map(x=>x[0]);
+  const vals = sorted.map(x=>x[1]);
+  const total = vals.reduce((a,b)=>a+b,0);
+  // Color palette
+  const palette = ['#0F1E3D','#0E7C86','#2A6FDB','#E08A1A','#7A3FD4','#C5364B','#1F8A4C','#a82541','#8693AC','#0FB5AE','#152957'];
+  const colors = labels.map((_,i)=>palette[i%palette.length]);
+
+  const ctx = document.getElementById('ch-veh');
+  if(chVeh) chVeh.destroy();
+  chVeh = new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderWidth:2,borderColor:'#fff',spacing:2}]},
+    options:{
+      cutout:'62%',
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(it)=>`${it.label}: ${it.raw} (${(it.raw/total*100).toFixed(1)}%)`}}
+      }
+    },
+    plugins:[{
+      id:'centerVeh',
+      afterDraw(chart){
+        const {ctx,chartArea:{left,right,top,bottom}} = chart;
+        const cx=(left+right)/2, cy=(top+bottom)/2-8;
+        ctx.save();
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillStyle=C.ink;
+        ctx.font='700 22px "JetBrains Mono"';
+        ctx.fillText(labels.length,cx,cy);
+        ctx.fillStyle=C.ink3;
+        ctx.font='600 9px Manrope';
+        ctx.fillText('VEHÍCULOS',cx,cy+18);
+        ctx.restore();
+      }
+    }]
+  });
+  // Legend
+  document.getElementById('legend-veh').innerHTML = labels.slice(0,8).map((l,i)=>`
+    <span><i style="background:${colors[i]}"></i>${l} · <b class="mono">${vals[i]}</b> · ${(vals[i]/total*100).toFixed(1)}%</span>
+  `).join('');
+}
+
+/* ---------- Riesgos pie ---------- */
+let chRiesgo;
+function renderRiesgo(){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{if(r.riesgo) map[r.riesgo]=(map[r.riesgo]||0)+1;});
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const labels = sorted.map(x=>x[0]);
+  const vals = sorted.map(x=>x[1]);
+  const total = vals.reduce((a,b)=>a+b,0);
+  const colors = labels.map(l=>RISK_COLORS[l]||C.slate);
+
+  const ctx = document.getElementById('ch-riesgo');
+  if(chRiesgo) chRiesgo.destroy();
+  chRiesgo = new Chart(ctx,{
+    type:'pie',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
+    options:{
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(it)=>`${it.label}: ${it.raw} (${(it.raw/total*100).toFixed(1)}%)`}}
+      }
+    }
+  });
+  document.getElementById('legend-riesgo').innerHTML = labels.map((l,i)=>`
+    <span><i style="background:${colors[i]}"></i>${l.replace('RIESGO ','')} · <b class="mono">${vals[i]}</b> · ${(vals[i]/total*100).toFixed(1)}%</span>
+  `).join('') || '<span style="color:#6B7793">Sin riesgos identificados en la selección.</span>';
+}
+
+/* ---------- Auditores ---------- */
+let chAud;
+function renderAud(){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{if(r.auditor) map[r.auditor]=(map[r.auditor]||0)+1;});
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const labels = sorted.map(x=>x[0]);
+  const vals = sorted.map(x=>x[1]);
+  const total = vals.reduce((a,b)=>a+b,0);
+  // Colors per auditor
+  const aColors = {'Michael Duran':'#2A6FDB','Hilary Basto':'#C24A8C','Jaider Gonzalez':'#D97757','Kerling Hernandez':'#7A3FD4','Ivan Bonilla':'#1F8A4C','Alexander Tellez':'#0E7C86'};
+  const colors = labels.map(l=>aColors[l]||C.slate);
+
+  const ctx = document.getElementById('ch-aud');
+  if(chAud) chAud.destroy();
+  chAud = new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[{label:'Acompañamientos',data:vals,backgroundColor:colors,borderRadius:4,barPercentage:.75}]},
+    options:{
+      indexAxis:'y',
+      maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(it)=>`${it.raw} · ${(it.raw/total*100).toFixed(1)}%`}}},
+      scales:{
+        x:{beginAtZero:true,grid:{color:C.line}},
+        y:{grid:{display:false}}
+      }
+    },
+    plugins:[{
+      id:'audLabels',
+      afterDatasetsDraw(chart){
+        const ds = chart.getDatasetMeta(0).data;
+        const {ctx} = chart;
+        ds.forEach((bar,i)=>{
+          const v = chart.data.datasets[0].data[i];
+          ctx.save();
+          ctx.fillStyle = C.ink;
+          ctx.font='700 11px "JetBrains Mono"';
+          ctx.textBaseline='middle';
+          ctx.fillText(`${v}  (${(v/total*100).toFixed(0)}%)`, bar.x+6, bar.y);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+/* ---------- Heatmap ruta × mes ---------- */
+function renderHeatmap(){
+  const data = applyFilters();
+  const meses = MONTH_ORDER.filter(m=>RUTAS.some(r=>r.mes===m));
+  const rutas = uniq(RUTAS.map(r=>r.ruta));
+  // Matrix
+  const matrix = {};
+  rutas.forEach(r=>matrix[r]=Object.fromEntries(meses.map(m=>[m,0])));
+  data.forEach(r=>{
+    if(!matrix[r.ruta] || !meses.includes(r.mes)) return;
+    matrix[r.ruta][r.mes]++;
+  });
+  let max=1;
+  rutas.forEach(r=>meses.forEach(m=>{if(matrix[r][m]>max) max=matrix[r][m];}));
+
+  const wrap = document.getElementById('heatmap');
+  wrap.className = 'heat';
+  wrap.style.gridTemplateColumns = `180px repeat(${meses.length},1fr) 80px`;
+
+  let html = '<div class="hh"></div>';
+  meses.forEach(m=>html += `<div class="hh hcell" style="background:transparent">${MONTH_SHORT[m]}</div>`);
+  html += '<div class="hh hcell" style="background:transparent">Total</div>';
+
+  rutas.forEach(r=>{
+    html += `<div class="hn">${r}</div>`;
+    let total = 0;
+    meses.forEach(m=>{
+      const v = matrix[r][m];
+      total += v;
+      const t = v/max;
+      const bg = v===0 ? '#F4F6FA' : `rgba(14,124,134,${0.12+t*0.8})`;
+      const textColor = t>0.55 ? '#fff' : '#0B1320';
+      html += v===0
+        ? `<div class="hcell hzero">·</div>`
+        : `<div class="hcell" style="background:${bg};color:${textColor}">${v}</div>`;
+    });
+    html += `<div class="hcell ht">${total}</div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+/* ---------- Insights ---------- */
+function renderInsights(){
+  const data = applyFilters();
+  const tot = data.length;
+  const out = [];
+
+  // Mes top
+  const monthMap = {};
+  data.forEach(r=>{if(r.mes) monthMap[r.mes]=(monthMap[r.mes]||0)+1;});
+  const sortedM = Object.entries(monthMap).sort((a,b)=>b[1]-a[1]);
+  if(sortedM.length){
+    const [m,c] = sortedM[0];
+    out.push({type:'info',
+      title:`${m} concentra la mayor cobertura de acompañamientos (${c} visitas · ${(c/tot*100).toFixed(0)}%)`,
+      body:`Es el mes con más actividad de control sobre rutas y vehículos. Validar si responde a un pico estacional o a un refuerzo planificado.`});
+  }
+
+  // Top ruta
+  const rutaMap = {};
+  data.forEach(r=>{if(r.ruta) rutaMap[r.ruta]=(rutaMap[r.ruta]||0)+1;});
+  const sortedR = Object.entries(rutaMap).sort((a,b)=>b[1]-a[1]);
+  if(sortedR.length){
+    const [r,c] = sortedR[0];
+    out.push({type:'good',
+      title:`${r} es la ruta más auditada (${c} acompañamientos · ${(c/tot*100).toFixed(0)}%)`,
+      body:`Concentra el mayor seguimiento operacional. Útil como benchmark para escalar buenas prácticas a rutas con menor cobertura.`});
+  }
+
+  // Vehiculo
+  const vehMap = {};
+  data.forEach(r=>{if(r.vehiculo) vehMap[r.vehiculo]=(vehMap[r.vehiculo]||0)+1;});
+  const sortedV = Object.entries(vehMap).sort((a,b)=>b[1]-a[1]);
+  if(sortedV.length){
+    const [v,c] = sortedV[0];
+    out.push({type:'info',
+      title:`Vehículo ${v} lidera la participación operacional (${c} visitas)`,
+      body:`Es la unidad con más acompañamientos del periodo. Considerar revisión de carga operacional y rotación del recurso.`});
+  }
+
+  // Riesgo dominante
+  const riskMap = {};
+  data.forEach(r=>{if(r.riesgo) riskMap[r.riesgo]=(riskMap[r.riesgo]||0)+1;});
+  const sortedRisk = Object.entries(riskMap).sort((a,b)=>b[1]-a[1]);
+  const totWithRisk = Object.values(riskMap).reduce((a,b)=>a+b,0);
+  if(sortedRisk.length){
+    const [rk,c] = sortedRisk[0];
+    out.push({type:'bad',
+      title:`${rk} es el tipo de riesgo dominante (${c} casos · ${(c/totWithRisk*100).toFixed(0)}% sobre los riesgos identificados)`,
+      body:`Requiere plan de mitigación específico y trazabilidad cliente-vehículo-auditor para reducir su recurrencia.`});
+  }
+
+  // Cliente concentración
+  const cliMap = {};
+  data.forEach(r=>{if(r.cliente) cliMap[r.cliente]=(cliMap[r.cliente]||0)+1;});
+  const sortedC = Object.entries(cliMap).sort((a,b)=>b[1]-a[1]);
+  if(sortedC.length){
+    const [cl,c] = sortedC[0];
+    out.push({type:'info',
+      title:`${cl} es el cliente con mayor cantidad de acompañamientos (${c} visitas)`,
+      body:`Concentra el foco de atención del equipo de auditoría. Validar si responde a relevancia comercial o a un patrón recurrente de incidencias.`});
+  }
+
+  // Valor devuelto
+  const totalVal = data.reduce((a,b)=>a+(b.valorDevuelto||0),0);
+  const totalKilos = data.reduce((a,b)=>a+(b.kilos||0),0);
+  if(totalVal){
+    out.push({type:'warn',
+      title:`Devoluciones acumuladas: ${fmtMoney(totalVal)} · ${totalKilos.toFixed(1)} kg`,
+      body:`Las devoluciones impactan directamente la rentabilidad operacional. Priorizar análisis causal sobre los motivos dominantes.`});
+  }
+
+  // Motivo dominante
+  const motivoMap = {};
+  data.forEach(r=>{ if(r.motivo) motivoMap[r.motivo]=(motivoMap[r.motivo]||0)+1; });
+  const sortedMo = Object.entries(motivoMap).sort((a,b)=>b[1]-a[1]);
+  if(sortedMo.length){
+    const [mo,mc] = sortedMo[0];
+    const crit = clasifMotivo(mo);
+    out.push({type: crit==='Crítico'||crit==='Alto' ? 'bad' : 'info',
+      title:`Motivo dominante: ${mo} (${mc} casos · ${(mc/tot*100).toFixed(0)}% del total)`,
+      body:`Clasificación de criticidad: <strong>${crit}</strong>. ${crit==='Alto'||crit==='Crítico'?'Requiere intervención inmediata con plan correctivo y trazabilidad documental.':'Es un motivo de monitoreo estándar; evaluar si la frecuencia se mantiene estable.'}`});
+  }
+
+  // Criticidad alta+crítica
+  const critCount = data.filter(r=>r.criticidad==='Alto'||r.criticidad==='Crítico').length;
+  const critPct = tot ? critCount/tot*100 : 0;
+  if(critPct >= 40){
+    out.push({type:'bad',
+      title:`${critPct.toFixed(0)}% de los acompañamientos presentan criticidad Alta o Crítica (${critCount} casos)`,
+      body:`La proporción supera el umbral aceptable del 40%. Reforzar controles operacionales preventivos en rutas y vehículos involucrados.`});
+  } else if(critPct > 0){
+    out.push({type:'warn',
+      title:`${critPct.toFixed(0)}% de los acompañamientos tienen criticidad Alta o Crítica (${critCount} casos)`,
+      body:`Mantener vigilancia sobre los motivos detonantes y verificar el seguimiento del plan de acción del auditor.`});
+  }
+
+  // Tendencia devolución (mes con más kilos)
+  const kilosPorMes = {};
+  data.forEach(r=>{ if(r.kilos>0 && r.mes) kilosPorMes[r.mes]=(kilosPorMes[r.mes]||0)+r.kilos; });
+  const sortedK = Object.entries(kilosPorMes).sort((a,b)=>b[1]-a[1]);
+  if(sortedK.length){
+    const [km,kv] = sortedK[0];
+    out.push({type:'warn',
+      title:`${km} concentra el mayor volumen de devolución en kilos (${kv.toFixed(1)} kg)`,
+      body:`Pico de devolución material del periodo. Evaluar causa raíz: pesaje, calidad o procesos de despacho en esa ventana de tiempo.`});
+  }
+
+  // Impacto logístico — motivos críticos por ruta
+  const critRutas = {};
+  data.forEach(r=>{ if((r.criticidad==='Alto'||r.criticidad==='Crítico') && r.ruta) critRutas[r.ruta]=(critRutas[r.ruta]||0)+1; });
+  const sortedCR = Object.entries(critRutas).sort((a,b)=>b[1]-a[1]);
+  if(sortedCR.length){
+    const [cr,cv] = sortedCR[0];
+    out.push({type:'info',
+      title:`Ruta ${cr} concentra ${cv} casos de criticidad Alta/Crítica`,
+      body:`Impacto logístico focalizado. Sugerir auditoría de procesos sobre esta ruta para reducir la recurrencia y proteger la operación.`});
+  }
+
+  const iconMap = {good:'✓',warn:'!',bad:'×',info:'i'};
+  document.getElementById('insights').innerHTML = out.map(i=>`
+    <div class="insight">
+      <div class="ico-i ${i.type}">${iconMap[i.type]}</div>
+      <div><h4>${i.title}</h4><p>${i.body}</p></div>
+    </div>`).join('');
+}
+
+/* ---------- Motivos: bar dynamic + trend ---------- */
+let chMotivosBar, chMotivosTrend;
+function renderMotivosBar(){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{ if(r.motivo) map[r.motivo]=(map[r.motivo]||0)+1; });
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const labels = sorted.map(x=>x[0]);
+  const vals = sorted.map(x=>x[1]);
+  const total = vals.reduce((a,b)=>a+b,0);
+  const colors = labels.map(l => CRIT_COLORS[clasifMotivo(l)] || C.slate);
+
+  const ctx = document.getElementById('ch-motivos-bar');
+  if(chMotivosBar) chMotivosBar.destroy();
+  chMotivosBar = new Chart(ctx,{
+    type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderRadius:5,barPercentage:.75}]},
+    options:{
+      indexAxis:'y',
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          title:(items)=>items[0].label,
+          label:(it)=>`${it.raw} · ${(it.raw/total*100).toFixed(1)}% · Criticidad ${clasifMotivo(it.label)}`
+        }}
+      },
+      scales:{
+        x:{beginAtZero:true,grid:{color:C.line}},
+        y:{grid:{display:false},ticks:{
+          callback:(v)=>{
+            const s = labels[v];
+            return s ? (s.length>34 ? s.slice(0,32)+'…' : s) : '';
+          }
+        }}
+      }
+    },
+    plugins:[{
+      id:'motivoLbl',
+      afterDatasetsDraw(chart){
+        const ds = chart.getDatasetMeta(0).data;
+        const {ctx} = chart;
+        ds.forEach((bar,i)=>{
+          const v = chart.data.datasets[0].data[i];
+          ctx.save();
+          ctx.fillStyle = C.ink;
+          ctx.font='700 11px "JetBrains Mono"';
+          ctx.textBaseline='middle';
+          ctx.fillText(`${v}  (${(v/total*100).toFixed(0)}%)`, bar.x+6, bar.y);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+function renderMotivosTrend(){
+  const data = applyFilters();
+  const meses = MONTH_ORDER.filter(m=>RUTAS.some(r=>r.mes===m));
+  const labels = meses.map(m=>MONTH_SHORT[m]);
+  // Top 5 motivos overall (within selection)
+  const allMap = {};
+  data.forEach(r=>{ if(r.motivo) allMap[r.motivo]=(allMap[r.motivo]||0)+1; });
+  const topMotivos = Object.entries(allMap).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>x[0]);
+
+  const datasets = topMotivos.map(m=>{
+    const col = CRIT_COLORS[clasifMotivo(m)] || C.slate;
+    return {
+      label: m.length>30 ? m.slice(0,28)+'…' : m,
+      data: meses.map(mo => data.filter(r=>r.mes===mo && r.motivo===m).length),
+      borderColor: col, backgroundColor: col,
+      tension:.4, borderWidth:2, pointRadius:3, pointBackgroundColor:'#fff', pointBorderWidth:2, fill:false
+    };
+  });
+
+  const ctx = document.getElementById('ch-motivos-trend');
+  if(chMotivosTrend) chMotivosTrend.destroy();
+  chMotivosTrend = new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets},
+    options:{
+      maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:10,font:{size:10.5}}}},
+      scales:{
+        x:{grid:{display:false}},
+        y:{beginAtZero:true,grid:{color:C.line},ticks:{stepSize:1}}
+      }
+    }
+  });
+}
+
+/* ---------- Criticidad pie + matrix ---------- */
+let chCrit;
+function renderCriticidad(){
+  const data = applyFilters();
+  const buckets = {'Crítico':0,'Alto':0,'Medio':0,'Bajo':0};
+  data.forEach(r => { buckets[r.criticidad] = (buckets[r.criticidad]||0)+1; });
+  const labels = CRIT_ORDER;
+  const vals = labels.map(l=>buckets[l]);
+  const total = vals.reduce((a,b)=>a+b,0);
+  const colors = labels.map(l=>CRIT_COLORS[l]);
+
+  const ctx = document.getElementById('ch-crit');
+  if(chCrit) chCrit.destroy();
+  chCrit = new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderWidth:2,borderColor:'#fff',spacing:2}]},
+    options:{
+      cutout:'62%',
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(it)=>`${it.label}: ${it.raw} (${total?(it.raw/total*100).toFixed(1):0}%)`}}
+      }
+    },
+    plugins:[{
+      id:'centerCrit',
+      afterDraw(chart){
+        const {ctx,chartArea:{left,right,top,bottom}} = chart;
+        const cx=(left+right)/2, cy=(top+bottom)/2-8;
+        ctx.save();
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillStyle=C.ink;
+        ctx.font='700 22px "JetBrains Mono"';
+        const critAlt = buckets['Crítico']+buckets['Alto'];
+        const pct = total ? Math.round(critAlt/total*100) : 0;
+        ctx.fillText(pct+'%',cx,cy);
+        ctx.fillStyle=C.ink3;
+        ctx.font='600 9px Manrope';
+        ctx.fillText('ALTO + CRÍTICO',cx,cy+18);
+        ctx.restore();
+      }
+    }]
+  });
+  // legend
+  document.getElementById('legend-crit').innerHTML = labels.map((l,i)=>`
+    <span><i style="background:${colors[i]}"></i>${l} · <b class="mono">${vals[i]}</b> · ${total?(vals[i]/total*100).toFixed(1):0}%</span>
+  `).join('');
+}
+
+/* ---------- Matriz criticidad × motivos × meses (impacto operacional) ---------- */
+function renderImpactMatrix(){
+  const data = applyFilters();
+  // X = mes, Y = motivo (top 7 distinct)
+  const meses = MONTH_ORDER.filter(m=>RUTAS.some(r=>r.mes===m));
+  const motivos = uniq(RUTAS.map(r=>r.motivo)).sort((a,b)=>{
+    // sort by criticidad rank then by name
+    const rk = c => CRIT_ORDER.indexOf(c);
+    const ca = rk(clasifMotivo(a)), cb = rk(clasifMotivo(b));
+    if(ca!==cb) return ca-cb;
+    return a.localeCompare(b);
+  });
+  const matrix = {};
+  motivos.forEach(m=>matrix[m]=Object.fromEntries(meses.map(mo=>[mo,0])));
+  data.forEach(r=>{ if(matrix[r.motivo]) matrix[r.motivo][r.mes]++; });
+
+  // intensity scale per cell
+  let max=1;
+  motivos.forEach(m=>meses.forEach(mo=>{if(matrix[m][mo]>max) max=matrix[m][mo];}));
+
+  const wrap = document.getElementById('matriz');
+  wrap.className = 'heat impact-matrix';
+  wrap.style.gridTemplateColumns = `260px 56px repeat(${meses.length},1fr) 70px`;
+
+  let html = '<div class="hh"></div><div class="hh hcell" style="background:transparent">Criticidad</div>';
+  meses.forEach(m=>html += `<div class="hh hcell" style="background:transparent">${MONTH_SHORT[m]}</div>`);
+  html += '<div class="hh hcell" style="background:transparent">Total</div>';
+
+  motivos.forEach(m=>{
+    const crit = clasifMotivo(m);
+    const critColor = CRIT_COLORS[crit];
+    html += `<div class="hn" style="font-size:11px;line-height:1.3">${m}</div>`;
+    html += `<div class="hcell"><span class="crit-chip crit-${crit}" style="font-size:9.5px">${crit}</span></div>`;
+    let total = 0;
+    meses.forEach(mo=>{
+      const v = matrix[m][mo];
+      total += v;
+      const t = v/max;
+      // use criticidad color shade for the cell
+      const rgb = critColor.replace('#','').match(/.{2}/g).map(h=>parseInt(h,16));
+      const bg = v===0 ? '#F4F6FA' : `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${0.18+t*0.72})`;
+      const textColor = t>0.55 ? '#fff' : '#0B1320';
+      html += v===0
+        ? `<div class="hcell hzero">·</div>`
+        : `<div class="hcell" style="background:${bg};color:${textColor}">${v}</div>`;
+    });
+    html += `<div class="hcell ht">${total}</div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+/* ---------- Ranking de motivos (most recurrent) ---------- */
+function renderRankMotivos(){
+  const data = applyFilters();
+  const map = {};
+  data.forEach(r=>{ if(r.motivo) map[r.motivo]=(map[r.motivo]||0)+1; });
+  const total = data.length || 1;
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const max = sorted[0] ? sorted[0][1] : 1;
+  const wrap = document.getElementById('rank-motivos');
+  wrap.innerHTML = sorted.map(([k,v],i)=>{
+    const crit = clasifMotivo(k);
+    const color = CRIT_COLORS[crit];
+    return `
+      <div class="rank-row" style="grid-template-columns:24px 1fr auto auto;gap:8px">
+        <div class="rank-pos">${String(i+1).padStart(2,'0')}</div>
+        <div class="rank-bar">
+          <div class="rank-fill" style="width:${v/max*100}%;background:linear-gradient(90deg,${color},${color}AA)"></div>
+          <div class="rank-label">${k}</div>
+        </div>
+        <div><span class="crit-chip crit-${crit}" style="font-size:9.5px">${crit}</span></div>
+        <div class="rank-val">${v}<span class="pct">${(v/total*100).toFixed(1)}%</span></div>
+      </div>
+    `;
+  }).join('') || `<div style="color:#6B7793;font-size:12px;padding:14px;text-align:center">Sin motivos para los filtros activos.</div>`;
+}
+/* ---------- Table ---------- */
+function renderTable(){
+  const data = applyFilters();
+  let sorted = data.slice().sort((a,b)=>{
+    const k=state.sortKey;
+    let A=a[k]||'', B=b[k]||'';
+    if(typeof A==='number' && typeof B==='number') return (A-B)*state.sortDir;
+    return String(A).localeCompare(String(B),'es')*state.sortDir;
+  });
+  const total = sorted.length;
+  document.getElementById('tbl-count').textContent = `${total} registros`;
+  const pages = Math.max(1,Math.ceil(total/state.pageSize));
+  if(state.page>pages) state.page=pages;
+  const start = (state.page-1)*state.pageSize;
+  const slice = sorted.slice(start,start+state.pageSize);
+  document.getElementById('tbl-sub').textContent = `${total} resultados · página ${state.page} de ${pages}`;
+
+  const tbody = document.querySelector('#tbl tbody');
+  const riskClass = (r)=>{
+    if(!r) return '';
+    const map = {'RIESGO LEGAL':'risk-Legal','RIESGO OPERATIVO':'risk-Operativo','RIESGO FINANCIERO':'risk-Financiero','RIESGO REPUTACIONAL':'risk-Reputacional','RIESGO DE CONTAGIO':'risk-Contagio'};
+    return map[r]||'';
+  };
+  tbody.innerHTML = slice.length ? slice.map(r=>`
+    <tr>
+      <td class="mono">${r.fecha||'—'}</td>
+      <td>${r.auditor||'<span style="color:#94A3B8">—</span>'}</td>
+      <td class="mono">${r.vehiculo||'—'}</td>
+      <td><strong>${r.ruta||'—'}</strong></td>
+      <td>${escapeHtml(r.cliente||'—')}</td>
+      <td><span class="cat-tag">${r.motivo||'—'}</span></td>
+      <td>${r.riesgo?`<span class="risk-chip ${riskClass(r.riesgo)}"><i></i>${r.riesgo.replace('RIESGO ','')}</span>`:'<span style="color:#94A3B8">—</span>'}</td>
+      <td class="mono" style="text-align:right">${r.valorDevuelto?fmtMoney(r.valorDevuelto):'—'}</td>
+    </tr>`).join('') : `<tr><td colspan="8" style="text-align:center;padding:30px;color:#6B7793">Sin acompañamientos que coincidan con los filtros activos.</td></tr>`;
+
+  document.querySelectorAll('#tbl th').forEach(th=>{
+    const k=th.dataset.k;
+    th.querySelector('.sortdir').textContent = k===state.sortKey ? (state.sortDir>0?'▲':'▼') : '';
+  });
+
+  // pager
+  const pager = document.getElementById('pager');
+  let html = `<div>Mostrando <span class="mono">${slice.length?start+1:0}–${start+slice.length}</span> de <span class="mono">${total}</span></div><div class="pages">`;
+  html += `<button ${state.page===1?'disabled':''} data-pg="prev">←</button>`;
+  const maxBtns = 6;
+  let s = Math.max(1,state.page-Math.floor(maxBtns/2));
+  let e = Math.min(pages,s+maxBtns-1);
+  if(e-s+1<maxBtns) s=Math.max(1,e-maxBtns+1);
+  for(let p=s;p<=e;p++) html += `<button class="${p===state.page?'curr':''}" data-pg="${p}">${p}</button>`;
+  html += `<button ${state.page===pages?'disabled':''} data-pg="next">→</button></div>`;
+  pager.innerHTML = html;
+  pager.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const v=b.dataset.pg;
+      if(v==='prev') state.page=Math.max(1,state.page-1);
+      else if(v==='next') state.page=Math.min(pages,state.page+1);
+      else state.page=+v;
+      renderTable();
+    });
+  });
+}
+
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ---------- Active chips ---------- */
+function renderActiveChips(){
+  const chips = [];
+  if(state.mes) chips.push({k:'mes',l:`Mes: ${state.mes}`});
+  if(state.ruta) chips.push({k:'ruta',l:`Ruta: ${state.ruta}`});
+  if(state.vehiculo) chips.push({k:'veh',l:`Vehículo: ${state.vehiculo}`,sk:'vehiculo'});
+  if(state.cliente) chips.push({k:'cli',l:`Cliente: ${state.cliente}`,sk:'cliente'});
+  if(state.auditor) chips.push({k:'aud',l:`Auditor: ${state.auditor}`,sk:'auditor'});
+  if(state.motivo) chips.push({k:'motivo',l:`Motivo: ${state.motivo}`});
+  if(state.criticidad) chips.push({k:'crit',l:`Criticidad: ${state.criticidad}`,sk:'criticidad'});
+  if(state.search) chips.push({k:'search',l:`Búsqueda: "${state.search}"`});
+  const wrap = document.getElementById('active-filters');
+  wrap.innerHTML = chips.map(c=>`<span class="active-chip">${c.l}<button data-k="${c.k}" data-sk="${c.sk||c.k}">×</button></span>`).join('');
+  wrap.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const k=b.dataset.k, sk=b.dataset.sk;
+      if(k==='search'){state.search='';document.getElementById('tbl-search').value='';}
+      else {state[sk]='';document.getElementById('f-'+k).value='';}
+      renderAll();
+    });
+  });
+}
+
+/* ---------- Master ---------- */
+function renderAll(){
+  renderActiveChips();
+  renderKPIs();
+  renderMes();
+  renderRankList('rank-rutas', 'ruta', r=>r.ruta, '');
+  renderVeh();
+  renderRankList('rank-cli', 'cliente', r=>r.cliente, 'amber');
+  renderRiesgo();
+  renderAud();
+  renderHeatmap();
+  // motivos & criticidad
+  renderMotivosBar();
+  renderMotivosTrend();
+  renderCriticidad();
+  renderImpactMatrix();
+  renderRankMotivos();
+  renderInsights();
+  renderTable();
+}
+
+/* ---------- Wire ---------- */
+function wire(){
+  populateFilters();
+  document.getElementById('f-mes').addEventListener('change',(e)=>{state.mes=e.target.value;state.page=1;renderAll();});
+  document.getElementById('f-ruta').addEventListener('change',(e)=>{state.ruta=e.target.value;state.page=1;renderAll();});
+  document.getElementById('f-veh').addEventListener('change',(e)=>{state.vehiculo=e.target.value;state.page=1;renderAll();});
+  document.getElementById('f-cli').addEventListener('change',(e)=>{state.cliente=e.target.value;state.page=1;renderAll();});
+  document.getElementById('f-aud').addEventListener('change',(e)=>{state.auditor=e.target.value;state.page=1;renderAll();});
+  const fm = document.getElementById('f-motivo');
+  if(fm) fm.addEventListener('change',(e)=>{state.motivo=e.target.value;state.page=1;renderAll();});
+  const fc = document.getElementById('f-crit');
+  if(fc) fc.addEventListener('change',(e)=>{state.criticidad=e.target.value;state.page=1;renderAll();});
+  document.getElementById('f-reset').addEventListener('click',()=>{
+    Object.assign(state,{mes:'',ruta:'',vehiculo:'',cliente:'',auditor:'',motivo:'',criticidad:'',search:'',page:1});
+    ['mes','ruta','veh','cli','aud','motivo','crit'].forEach(k=>{const el=document.getElementById('f-'+k);if(el) el.value='';});
+    document.getElementById('tbl-search').value='';
+    renderAll();
+  });
+  document.getElementById('tbl-search').addEventListener('input',(e)=>{
+    state.search=e.target.value.trim();state.page=1;renderAll();
+  });
+  document.querySelectorAll('#tbl th').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k=th.dataset.k;
+      if(state.sortKey===k) state.sortDir*=-1;
+      else {state.sortKey=k;state.sortDir=1;}
+      renderTable();
+    });
+  });
+}
+
+wire();
+renderAll();
+
+</script>
+</body>
+</html>
