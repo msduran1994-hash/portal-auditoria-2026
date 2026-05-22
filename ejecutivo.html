@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Dashboard Ejecutivo · Mensual · Auditoría 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+window.TASKS = [{"n":1,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"circularización de proveedores","responsable":"Michael Duran","inicio":"2026-01-05","limite":"2026-01-08","dias":null,"estatus":"Completada","mes":"Enero"},{"n":2,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"cicularización clientes","responsable":"Jaider Gonzales","inicio":"2026-01-05","limite":"2026-01-08","dias":null,"estatus":"Completada","mes":"Enero"},{"n":3,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"inventario producto","responsable":"Auditoría","inicio":"2026-01-29","limite":"2026-01-31","dias":null,"estatus":"Completada","mes":"Enero"},{"n":4,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Ajuste Inventario de producto","responsable":"Michael Duran","inicio":"2026-01-30","limite":"2026-01-31","dias":null,"estatus":"Completada","mes":"Enero"},{"n":5,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Ajuste Inventario de producto","responsable":"Alexander Tellez","inicio":"2026-01-30","limite":"2026-01-31","dias":null,"estatus":"Completada","mes":"Enero"},{"n":6,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita granjas llanos ,huertas, garceras, malagueña","responsable":"Kerling Hernandez","inicio":"2026-01-13","limite":"2026-01-15","dias":null,"estatus":"Completada","mes":"Enero"},{"n":7,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Elaboración de informes visitas granjas , huertas, garceras, malagueña","responsable":"Kerling Hernandez","inicio":"2026-01-16","limite":"2026-01-22","dias":null,"estatus":"Completada","mes":"Enero"},{"n":8,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita granjas llanos, san jose 1y2,juan francisco , villa chela y Maria del Carmen","responsable":"Michael Duran","inicio":"2026-01-19","limite":"2026-01-23","dias":null,"estatus":"Completada","mes":"Enero"},{"n":9,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Elaboración de informes visitas granjas ,san jose 1y2,juan francisco,  villa chela y maria del carmen","responsable":"Michael Duran","inicio":"2026-01-26","limite":"2026-01-30","dias":null,"estatus":"Completada","mes":"Enero"},{"n":10,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Actualización codigo de conducta","responsable":"Ivan Bonilla","inicio":"2026-01-19","limite":"2026-01-23","dias":-118,"estatus":"En curso","mes":"Enero"},{"n":11,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Linea etica empresarial","responsable":"Ivan Bonilla","inicio":"2026-01-05","limite":"2026-01-30","dias":-111,"estatus":"En curso","mes":"Enero"},{"n":12,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Actualización,manual politica de datos","responsable":"Ivan Bonilla","inicio":"2026-01-05","limite":"2026-01-30","dias":-111,"estatus":"En curso","mes":"Enero"},{"n":13,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"retención en la fuente","responsable":"Kerling Hernandez","inicio":"2026-01-29","limite":"2026-01-30","dias":null,"estatus":"Completada","mes":"Enero"},{"n":14,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"retención en la fuente","responsable":"Alexander Tellez","inicio":"2026-01-26","limite":"2026-01-30","dias":null,"estatus":"Completada","mes":"Enero"},{"n":15,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento insumos","responsable":"Auditoría","inicio":"2026-01-05","limite":"2026-01-30","dias":-111,"estatus":"No iniciada","mes":"Enero"},{"n":16,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"informe acompañamiento insumos","responsable":"Auditoría","inicio":"2026-01-06","limite":"2026-02-02","dias":-108,"estatus":"No iniciada","mes":"Enero"},{"n":17,"area":"Producción - Alimento","areaRaw":"producción-alimento","actividad":"capacitación  planeación alimento","responsable":"Auditoría","inicio":"2026-01-26","limite":"2026-01-30","dias":-111,"estatus":"No iniciada","mes":"Enero"},{"n":18,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento Ruta","responsable":"Michael Duran","inicio":"2026-01-15","limite":"2026-01-15","dias":null,"estatus":"Completada","mes":"Enero"},{"n":19,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento Ruta","responsable":"Jaider Gonzales","inicio":"2026-01-15","limite":"2026-01-15","dias":null,"estatus":"Completada","mes":"Enero"},{"n":20,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Generacion Cronograma Actividades por Trimestre","responsable":"Hilary Basto","inicio":"2026-01-05","limite":"2026-01-15","dias":null,"estatus":"Completada","mes":"Enero"},{"n":21,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Realizacion Plantilla Diagnostico Actividades por Trimestre","responsable":"Michael Duran","inicio":"2026-01-13","limite":"2026-01-16","dias":null,"estatus":"Completada","mes":"Enero"},{"n":22,"area":"Auditoría / O. Cumplimiento","areaRaw":"Auditoría /Oficail de Cumplimiento","actividad":"Politica de Regalos - Obsequios y Hospitalidad","responsable":"Ivan Bonilla","inicio":"2026-01-16","limite":"","dias":null,"estatus":"Completada","mes":"Enero"},{"n":23,"area":"Auditoría","areaRaw":"Auditoría","actividad":"Revisión INSPEKTOR","responsable":"Ivan Bonilla","inicio":"2026-01-19","limite":"","dias":null,"estatus":"Completada","mes":"Enero"},{"n":24,"area":"Legal","areaRaw":"Legal","actividad":"Envio reporte PQR SIC  ultimo trimestre 2025","responsable":"Ivan Bonilla","inicio":"2026-01-20","limite":"2026-01-20","dias":null,"estatus":"Completada","mes":"Enero"},{"n":25,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento Ruta","responsable":"Kerling Hernandez","inicio":"2026-01-27","limite":"2026-01-27","dias":null,"estatus":"Completada","mes":"Enero"},{"n":26,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento Ruta","responsable":"Jaider Gonzales","inicio":"2026-01-28","limite":"2026-01-28","dias":null,"estatus":"Completada","mes":"Enero"},{"n":27,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Conciliacion Ajuste Inventario de Tinas","responsable":"Jaider Gonzales","inicio":"2026-01-26","limite":"2026-01-30","dias":null,"estatus":"Completada","mes":"Enero"},{"n":1,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Planeación rutas, tiempos de despacho, alistamiento, facturación y muestreo Linea Linco","responsable":"Kerling Hernandez","inicio":"2026-02-02","limite":"2026-02-06","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":2,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Planeación rutas, tiempos de despacho, alistamiento,  facturación","responsable":"Ivan Bonilla","inicio":"2026-02-02","limite":"2026-02-06","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":3,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Revision Linea Linco y Validacion central de despachos","responsable":"Michael Duran","inicio":"2026-02-02","limite":"2026-02-06","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":4,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Socialización Hallazgos Granjas","responsable":"Auditoría","inicio":"2026-02-02","limite":"2026-02-06","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":5,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Vista Granjas zona   silvania -san antonio","responsable":"Alexander Tellez","inicio":"2026-02-09","limite":"2026-02-13","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":6,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización de informes  granjas  zona silvania y san antonio","responsable":"Alexander Tellez","inicio":"2026-02-16","limite":"2026-02-20","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":7,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita granjas zona   fusagasuga-tena -arbelaez","responsable":"Jaider Gonzales","inicio":"2026-02-09","limite":"2026-02-13","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":8,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización de informes  granjas  fusagasuga-tena -arbelaez","responsable":"Jaider Gonzales","inicio":"2026-02-16","limite":"2026-02-20","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":9,"area":"Producción - Cedis","areaRaw":"Producción-Cedis","actividad":"Visita cedi codabas","responsable":"Jaider Gonzales","inicio":"2026-02-09","limite":"2026-02-12","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":10,"area":"Producción - Cedis","areaRaw":"Producción-Cedis","actividad":"Informe Cedi Codabas","responsable":"Jaider Gonzales","inicio":"2026-02-13","limite":"2026-02-18","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":11,"area":"Producción - Alimento","areaRaw":"Producción -Alimento","actividad":"Programación de alimento","responsable":"Alexander Tellez","inicio":"2026-02-23","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":12,"area":"Producción - Alimento","areaRaw":"Producción -Alimento","actividad":"Programación de alimento","responsable":"Hilary Basto","inicio":"2026-02-23","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":13,"area":"Producción - Pollo en Pie","areaRaw":"Producción Pollo en Pie","actividad":"Diferencias  pollo en pie   y creación drive","responsable":"Jaider Gonzales","inicio":"2026-02-23","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":14,"area":"Producción - Pollo en Pie","areaRaw":"Producción Pollo en Pie","actividad":"Diferencias  pollo en pie   y creación drive","responsable":"Michael Duran","inicio":"2026-02-23","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":15,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Capacitación  PTEE","responsable":"Ivan Bonilla","inicio":"2026-02-02","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":16,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Capacitación  sagrilaft","responsable":"Ivan Bonilla","inicio":"2026-02-02","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":17,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Actualización,manual politica de datos","responsable":"Ivan Bonilla","inicio":"2026-02-02","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":18,"area":"Financiera - Nómina","areaRaw":"financiera-Nomina","actividad":"retención en la fuente","responsable":"Kerling Hernandez","inicio":"2026-02-23","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":19,"area":"Financiera - Nómina","areaRaw":"financiera-Nomina","actividad":"retención en la fuente","responsable":"Alexander Tellez","inicio":"2026-02-23","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":20,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento insumos","responsable":"Auditoría","inicio":"2026-02-02","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":21,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"informe acompañamiento insumos","responsable":"Auditoría","inicio":"2026-02-03","limite":"2026-03-02","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":22,"area":"Operaciones - Pollo en Pie","areaRaw":"operaciones - pollo en pie","actividad":"capacitación pollo en pie","responsable":"Auditoría","inicio":"2026-02-23","limite":"2026-02-27","dias":-83,"estatus":"No iniciada","mes":"Febrero"},{"n":23,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Realizacion Informe estandar Linea Lincon y Diapositivas Proceso central de Despachos","responsable":"Michael Duran","inicio":"2026-02-09","limite":"2026-02-13","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":24,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Realizacion Informe estandar Linea Lincon y Diapositivas Proceso central de Despachos","responsable":"Kerling Hernandez","inicio":"2026-02-09","limite":"2026-02-13","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":25,"area":"Financiera - Nómina","areaRaw":"Financiera-Nomina","actividad":"Revision seguridad social","responsable":"Kerling Hernandez","inicio":"2026-02-06","limite":"2026-02-09","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":28,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Generacion Formato Cuestionario evaluativo Auditoria Inventario de Producto","responsable":"Michael Duran","inicio":"2026-02-09","limite":"2026-02-13","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":29,"area":"Producción - Cedis","areaRaw":"Producción-Cedis","actividad":"Visita cedi codabas","responsable":"Hilary Basto","inicio":"2026-02-09","limite":"2026-02-12","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":30,"area":"Producción - Cedis","areaRaw":"Producción-Cedis","actividad":"Informe Cedi Codabas","responsable":"Hilary Basto","inicio":"2026-02-13","limite":"2026-02-18","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":31,"area":"Operaciones - Logística","areaRaw":"Operaciónes/ logistica","actividad":"acompañamiento rutas","responsable":"Michael Duran","inicio":"2026-02-19","limite":"2026-02-19","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":32,"area":"","areaRaw":"Gerencia - Area","actividad":"Generar diapositivas Objetivos 2026 plan Auditoria","responsable":"Michael Duran","inicio":"2026-02-16","limite":"2026-02-20","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":33,"area":"Operaciones - Logística","areaRaw":"Operaciones/logistica","actividad":"auditoria descargue de vehiculo","responsable":"Hilary Basto","inicio":"2026-02-20","limite":"2026-02-20","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":34,"area":"Operaciones - Logística","areaRaw":"Operaciones/logistica","actividad":"auditoria descargue de vehiculo","responsable":"Jaider Gonzales","inicio":"2026-02-20","limite":"2026-02-20","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":35,"area":"Operaciones - Logística","areaRaw":"Operaciones/logistica","actividad":"Generacion Drive Diagnostico Auditoria Cedis","responsable":"Michael Duran","inicio":"2026-02-20","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":36,"area":"Operaciones - Logística","areaRaw":"Operaciones/logistica","actividad":"Generacion Drive Dignostico Auditoria Procesos Operativos","responsable":"Michael Duran","inicio":"2026-02-20","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":37,"area":"Operaciones - Logística","areaRaw":"Operaciones/logistica","actividad":"Generar Diapositivas Objetivos Oficial de Cumplimiento 2026","responsable":"Michael Duran","inicio":"2026-02-25","limite":"2026-02-27","dias":null,"estatus":"Completada","mes":"Febrero"},{"n":1,"area":"Financiera - Administración","areaRaw":"financiera-administración","actividad":"almacen principal","responsable":"Auditoría","inicio":"2026-03-16","limite":"2026-03-21","dias":-61,"estatus":"No iniciada","mes":"Marzo"},{"n":2,"area":"Operaciones - Mantenimiento","areaRaw":"Operaciones-Mantenimiento","actividad":"Inventario Sub Almacen","responsable":"Auditoría","inicio":"2026-03-02","limite":"2026-03-13","dias":-69,"estatus":"No iniciada","mes":"Marzo"},{"n":3,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita granjas  zona  manta,-sasaima, san pablo, milan,montearrollo 1,2,3 - aurora","responsable":"Hilary Basto","inicio":"2026-03-09","limite":"2026-03-12","dias":null,"estatus":"Completada","mes":"Marzo"},{"n":4,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización de informes  zona manta- sasaima, san pablo, milan, montearrollo1,2,3- aurora","responsable":"Hilary Basto","inicio":"2026-03-13","limite":"2026-03-19","dias":null,"estatus":"Completada","mes":"Marzo"},{"n":5,"area":"Producción","areaRaw":"Producción","actividad":"Revisión Fletes","responsable":"Kerling Hernandez","inicio":"2026-03-16","limite":"2026-03-21","dias":-61,"estatus":"No iniciada","mes":"Marzo"},{"n":6,"area":"Producción - Alimento","areaRaw":"Producción -Alimento","actividad":"Programación de alimento","responsable":"Alexander Tellez","inicio":"2026-03-02","limite":"2026-03-06","dias":-76,"estatus":"No iniciada","mes":"Marzo"},{"n":7,"area":"Producción - Alimento","areaRaw":"Producción -Alimento","actividad":"Programación de alimento","responsable":"Hilary Basto","inicio":"2026-03-02","limite":"2026-03-06","dias":-76,"estatus":"En curso","mes":"Marzo"},{"n":8,"area":"Producción - Pollo en Pie","areaRaw":"Producción Pollo en Pie","actividad":"Diferencias pollo en pie y creación drive","responsable":"Ivan Bonilla","inicio":"2026-03-24","limite":"2026-03-31","dias":-51,"estatus":"No iniciada","mes":"Marzo"},{"n":9,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Actualización Base de datos","responsable":"Ivan Bonilla","inicio":"2026-03-02","limite":"2026-03-31","dias":-51,"estatus":"No iniciada","mes":"Marzo"},{"n":10,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"retención en la fuente","responsable":"Alexander Tellez","inicio":"2026-03-24","limite":"2026-03-31","dias":-51,"estatus":"No iniciada","mes":"Marzo"},{"n":11,"area":"Financiera - Cartera","areaRaw":"financiera-cartera","actividad":"retención en la fuente","responsable":"Kerling Hernandez","inicio":"2026-03-24","limite":"2026-03-31","dias":-51,"estatus":"No iniciada","mes":"Marzo"},{"n":12,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento insumos","responsable":"Auditoría","inicio":"2026-03-02","limite":"2026-03-31","dias":-51,"estatus":"No iniciada","mes":"Marzo"},{"n":13,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"informe acompañamiento insumos","responsable":"Auditoría","inicio":"2026-03-03","limite":"2026-04-01","dias":-50,"estatus":"No iniciada","mes":"Marzo"},{"n":1,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Florida (Reproductora)","responsable":"Michael Duran","inicio":"2026-04-13","limite":"2026-04-13","dias":null,"estatus":"Completada","mes":"Abril"},{"n":2,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Ficha Tecnica Informe Granja Florida","responsable":"Michael Duran","inicio":"2026-04-14","limite":"2026-04-17","dias":null,"estatus":"Completada","mes":"Abril"},{"n":3,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta /Ruta Ricaurte","responsable":"Michael Duran","inicio":"2026-04-16","limite":"2026-04-16","dias":null,"estatus":"Completada","mes":"Abril"},{"n":4,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Santa Isabel (Reproductora)","responsable":"Michael Duran","inicio":"2026-04-13","limite":"2026-04-13","dias":null,"estatus":"Completada","mes":"Abril"},{"n":5,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Ficha Tecnica Informe Granja Santa Isabel","responsable":"Kerling Hernandez","inicio":"2026-04-24","limite":"2026-04-24","dias":null,"estatus":"Completada","mes":"Abril"},{"n":6,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Pradera (Reproductora)","responsable":"Kerling Hernandez","inicio":"2026-04-20","limite":"2026-04-20","dias":null,"estatus":"Completada","mes":"Abril"},{"n":7,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Ficha Tecnica Informe Granja Pradera","responsable":"Kerling Hernandez","inicio":"2026-04-24","limite":"2026-07-24","dias":null,"estatus":"Completada","mes":"Abril"},{"n":8,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja San Gabriel  1 y 2 (Reproductora)","responsable":"Michael Duran","inicio":"2026-04-21","limite":"2026-04-21","dias":null,"estatus":"Completada","mes":"Abril"},{"n":9,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe preliminar Granja San Gabriel 1 y 2","responsable":"Michael Duran","inicio":"2026-04-22","limite":"2026-04-24","dias":null,"estatus":"Completada","mes":"Abril"},{"n":10,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Bonanza (Reprodictora)","responsable":"Michael Duran","inicio":"2026-04-29","limite":"2026-04-29","dias":null,"estatus":"Completada","mes":"Abril"},{"n":11,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe preliminar Granja Bonanza","responsable":"Michael Duran","inicio":"2026-04-30","limite":"2026-05-04","dias":null,"estatus":"Completada","mes":"Abril"},{"n":12,"area":"Financiera - Contabilidad","areaRaw":"financiera-Contabilidad","actividad":"Revisión y validación P&G , analisis de Variaciones 2025 y 2026","responsable":"Michael Duran","inicio":"2026-04-01","limite":"2026-04-30","dias":-21,"estatus":"En curso","mes":"Abril"},{"n":13,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Santa Sofia (Reproductora)","responsable":"Jaider Gonzales","inicio":"2026-04-16","limite":"2026-04-16","dias":null,"estatus":"Completada","mes":"Abril"},{"n":14,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe preliminar Granja Santa Sofia","responsable":"Jaider Gonzales","inicio":"2026-04-17","limite":"2026-04-20","dias":null,"estatus":"Completada","mes":"Abril"},{"n":15,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja el Retiro (Reproductora)","responsable":"Jaider Gonzales","inicio":"2026-04-23","limite":"2026-04-23","dias":null,"estatus":"Completada","mes":"Abril"},{"n":16,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización informe Ficha Tecnica granja el Retiro","responsable":"Jaider Gonzales","inicio":"2026-04-24","limite":"2026-04-27","dias":null,"estatus":"Completada","mes":"Abril"},{"n":17,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Aurora (Reproductora)","responsable":"Jaider Gonzales","inicio":"2026-04-28","limite":"2026-04-28","dias":null,"estatus":"Completada","mes":"Abril"},{"n":18,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización informe Ficha Tecnica Aurora","responsable":"Jaider Gonzales","inicio":"2026-04-29","limite":"2026-04-30","dias":null,"estatus":"Completada","mes":"Abril"},{"n":19,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Buenos Aires (Reproductora)","responsable":"Hilary Basto","inicio":"2026-04-16","limite":"2026-04-16","dias":null,"estatus":"Completada","mes":"Abril"},{"n":20,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe Ficha tecnica Buenos Aires","responsable":"Hilary Basto","inicio":"2026-04-17","limite":"2026-04-22","dias":null,"estatus":"Completada","mes":"Abril"},{"n":21,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Estrella 1 y Estrella 2 (Reproductora)","responsable":"Hilary Basto","inicio":"2026-04-23","limite":"2026-04-23","dias":null,"estatus":"Completada","mes":"Abril"},{"n":22,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe Ficha Tecnica Granja Estrella 1 y 2","responsable":"Hilary Basto","inicio":"2026-04-24","limite":"2026-04-27","dias":-24,"estatus":"En curso","mes":"Abril"},{"n":23,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento  Ruta / Zona Fontibon","responsable":"Hilary Basto","inicio":"2026-04-14","limite":"2026-04-14","dias":null,"estatus":"Completada","mes":"Abril"},{"n":24,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Descargue y quequeo de Vehiculo","responsable":"Hilary Basto","inicio":"2026-04-21","limite":"2026-04-21","dias":null,"estatus":"Completada","mes":"Abril"},{"n":25,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Descargue y quequeo de Vehiculo","responsable":"Jaider Gonzales","inicio":"2026-04-21","limite":"2026-04-21","dias":null,"estatus":"Completada","mes":"Abril"},{"n":26,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja San Bernardo (Reproductora)","responsable":"Ivan Bonilla","inicio":"2026-04-08","limite":"2026-04-08","dias":null,"estatus":"Completada","mes":"Abril"},{"n":27,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización informe preliminar Granja San Bernardo","responsable":"Ivan Bonilla","inicio":"2026-04-09","limite":"2026-04-14","dias":null,"estatus":"Completada","mes":"Abril"},{"n":28,"area":"O. Cumplimiento - Granjas","areaRaw":"Cumplimiento-Granjas","actividad":"Publicidad avisos de camaras de seguridad Granjas Propias","responsable":"Jaider Gonzales","inicio":"2026-04-06","limite":"2026-04-06","dias":null,"estatus":"Completada","mes":"Abril"},{"n":29,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Evaluación Proceso Inventario de Producto fin de mes","responsable":"Auditoría","inicio":"2026-04-29","limite":"2026-04-30","dias":-21,"estatus":"En curso","mes":"Abril"},{"n":30,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Ajuste Inventarios Fin de mes (Abril)","responsable":"Kerling Hernandez","inicio":"2026-04-30","limite":"2026-05-01","dias":null,"estatus":"Completada","mes":"Abril"},{"n":31,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Ajuste Inventarios Fin de mes (Abril)","responsable":"Ivan Bonilla","inicio":"2026-04-30","limite":"2026-05-01","dias":null,"estatus":"Completada","mes":"Abril"},{"n":32,"area":"Auditoría","areaRaw":"Auditoria","actividad":"Ajuste y actualización Cronograma \"Contro, Evaluativo KPI\"","responsable":"Ivan Bonilla","inicio":"2026-04-29","limite":"2026-04-30","dias":null,"estatus":"Completada","mes":"Abril"},{"n":33,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación Tunja SAGRILAFT y PTEE","responsable":"Ivan Bonilla","inicio":"2026-04-29","limite":"2026-04-30","dias":null,"estatus":"Completada","mes":"Abril"},{"n":34,"area":"O. Cumplimiento","areaRaw":"O. cumplimiento","actividad":"Capacitación  Central de despachos SAGRILAFT y PTEE","responsable":"Ivan Bonilla","inicio":"2026-04-29","limite":"2026-04-30","dias":null,"estatus":"Completada","mes":"Abril"},{"n":35,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitacion CEDI GIRARDOT SAGRILAFT / PTEE","responsable":"Ivan Bonilla","inicio":"2026-04-29","limite":"2026-04-30","dias":-21,"estatus":"No iniciada","mes":"Abril"},{"n":36,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación CEDI CODABAS  SAGRILAFT Y PTEE","responsable":"Ivan Bonilla","inicio":"2026-04-29","limite":"2026-04-30","dias":-21,"estatus":"No iniciada","mes":"Abril"},{"n":37,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Montearroyo 1, 2 y 3 (Reproductora)","responsable":"Kerling Hernandez","inicio":"2026-04-28","limite":"2026-04-28","dias":null,"estatus":"Completada","mes":"Abril"},{"n":38,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización informe preliminar Granja Montearroyo","responsable":"Kerling Hernandez","inicio":"2026-04-29","limite":"2026-04-30","dias":null,"estatus":"Completada","mes":"Abril"},{"n":1,"area":"Gerencia - Auditoría","areaRaw":"Gerencia - Auditoria","actividad":"Presentación Informe Gerencial Granjas (Reproductora y Engorde)","responsable":"Michael Duran","inicio":"2026-04-27","limite":"2026-05-08","dias":-13,"estatus":"En curso","mes":"Mayo"},{"n":2,"area":"Gerencia - Auditoría","areaRaw":"Gerencia - Auditoria","actividad":"Presentación informe Gerencia de Acompañamientos a Ruta","responsable":"Michael Duran","inicio":"2026-05-01","limite":"2026-05-31","dias":10,"estatus":"No iniciada","mes":"Mayo"},{"n":3,"area":"Gerencia - Auditoría","areaRaw":"Gerencia - Auditoria","actividad":"Presentación informe Gerencia de Acompañamientos a Ruta","responsable":"Jaider Gonzales","inicio":"2026-05-01","limite":"2026-05-31","dias":10,"estatus":"No iniciada","mes":"Mayo"},{"n":4,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Jaider Gonzales","inicio":"2026-05-13","limite":"2026-05-13","dias":-8,"estatus":"No iniciada","mes":"Mayo"},{"n":5,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Jaider Gonzales","inicio":"2026-05-20","limite":"2026-05-20","dias":-1,"estatus":"No iniciada","mes":"Mayo"},{"n":6,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Jaider Gonzales","inicio":"2026-05-25","limite":"2026-05-25","dias":4,"estatus":"No iniciada","mes":"Mayo"},{"n":7,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Kerling Hernandez","inicio":"2026-05-04","limite":"2026-05-04","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":8,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Kerling Hernandez","inicio":"2026-05-26","limite":"2026-05-25","dias":4,"estatus":"No iniciada","mes":"Mayo"},{"n":9,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Kerling Hernandez","inicio":"2026-05-28","limite":"2026-05-27","dias":6,"estatus":"No iniciada","mes":"Mayo"},{"n":10,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Hilary Basto","inicio":"2026-05-20","limite":"2026-05-20","dias":-1,"estatus":"No iniciada","mes":"Mayo"},{"n":11,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Hilary Basto","inicio":"2026-05-21","limite":"2026-05-07","dias":-14,"estatus":"No iniciada","mes":"Mayo"},{"n":12,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Hilary Basto","inicio":"2026-05-25","limite":"2026-05-25","dias":4,"estatus":"No iniciada","mes":"Mayo"},{"n":13,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Michael Duran","inicio":"2026-05-07","limite":"2026-05-07","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":14,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Michael Duran","inicio":"2026-05-27","limite":"2026-05-27","dias":6,"estatus":"No iniciada","mes":"Mayo"},{"n":15,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Ivan Bonilla","inicio":"2026-05-09","limite":"2026-05-09","dias":-12,"estatus":"No iniciada","mes":"Mayo"},{"n":16,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Acompañamiento a Ruta","responsable":"Ivan Bonilla","inicio":"2026-05-23","limite":"2026-05-23","dias":2,"estatus":"No iniciada","mes":"Mayo"},{"n":17,"area":"Producción","areaRaw":"Producción","actividad":"Acompañamiento entrega insumos - GRANJAS","responsable":"Jaider Gonzales","inicio":"2026-05-05","limite":"2026-05-07","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":18,"area":"Logística / Comercial","areaRaw":"Logistica/ Comercial","actividad":"Visita Proceso Auditoria Cedi Tunja","responsable":"Hilary Basto","inicio":"2026-05-04","limite":"2026-05-06","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":20,"area":"Logística / Comercial","areaRaw":"Logistica/ Comercial","actividad":"Informe Preliminar Visita Cedi Tunja","responsable":"Hilary Basto","inicio":"2026-05-07","limite":"2026-05-11","dias":-10,"estatus":"En curso","mes":"Mayo"},{"n":21,"area":"Mantenimiento / Operaciones","areaRaw":"Mantenimiento / Operaciones","actividad":"Inventario Sub almacen de Mantenimiento","responsable":"Auditoría","inicio":"2026-05-23","limite":"2026-05-30","dias":9,"estatus":"No iniciada","mes":"Mayo"},{"n":22,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granjas Engorde Salitre, Esperanza, Villa Alejandra y Victoria","responsable":"Michael Duran","inicio":"2026-05-23","limite":"2026-05-15","dias":-6,"estatus":"No iniciada","mes":"Mayo"},{"n":23,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informes preliminares Granjas Salitre, Esperanza, Villa Alejandra y Victoria","responsable":"Michael Duran","inicio":"2026-05-23","limite":"2026-05-22","dias":1,"estatus":"No iniciada","mes":"Mayo"},{"n":24,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granjas Engorde Juliana, Palmas Luisa 1 - 2 y Siberia","responsable":"Kerling Hernandez","inicio":"2026-05-11","limite":"2026-05-15","dias":-6,"estatus":"No iniciada","mes":"Mayo"},{"n":25,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informes preliminares Granja Juliana, Palmas, Luisa 1-2 y Siberia.","responsable":"Kerling Hernandez","inicio":"2026-05-19","limite":"2026-05-22","dias":1,"estatus":"No iniciada","mes":"Mayo"},{"n":26,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Inventario de Tinas","responsable":"Hilary Basto","inicio":"2026-05-23","limite":"2026-05-24","dias":3,"estatus":"No iniciada","mes":"Mayo"},{"n":27,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Inventario de Tinas","responsable":"Ivan Bonilla","inicio":"2026-05-23","limite":"2026-05-24","dias":3,"estatus":"No iniciada","mes":"Mayo"},{"n":28,"area":"O. Cumplimiento","areaRaw":"O.Cumplimiento","actividad":"Capacitación CEDI VILLAVICENCIO  SAGRILAFT y PTEE","responsable":"Ivan Bonilla","inicio":"2026-05-06","limite":"2026-05-06","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":29,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación Linea Etica -  Cartera - Compras - Contabilidad","responsable":"Ivan Bonilla","inicio":"2026-05-11","limite":"2026-05-11","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":30,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación LINEA DE ETICA EMPRESARIAL  Direcciones - Planta","responsable":"Ivan Bonilla","inicio":"2026-05-12","limite":"2026-05-12","dias":-9,"estatus":"No iniciada","mes":"Mayo"},{"n":31,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación SAGRILAFT y PTEE CEDI CODABAS","responsable":"Ivan Bonilla","inicio":"","limite":"2026-05-13","dias":null,"estatus":"No iniciada","mes":"Mayo"},{"n":32,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación LINEA DE ETICA EMPRESARIAL POS PROCESOS","responsable":"Ivan Bonilla","inicio":"2026-05-19","limite":"2026-05-19","dias":-2,"estatus":"No iniciada","mes":"Mayo"},{"n":33,"area":"O. Cumplimiento","areaRaw":"O. Cumplimiento","actividad":"Capacitación Linea Etica - Mercaderistas Grandes Superficies","responsable":"Ivan Bonilla","inicio":"2026-05-19","limite":"2026-05-19","dias":-2,"estatus":"No iniciada","mes":"Mayo"},{"n":34,"area":"Producción","areaRaw":"Producción","actividad":"Acompañamiento entrega insumos - GRANJAS","responsable":"Jaider Gonzales","inicio":"2026-05-07","limite":"2026-05-07","dias":-14,"estatus":"En curso","mes":"Mayo"},{"n":35,"area":"Nómina / Administrativa","areaRaw":"Nomina / Adminsitrativa","actividad":"Revisión seguridad social","responsable":"Kerling Hernandez","inicio":"2026-05-07","limite":"2026-05-07","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":36,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Visita Granja Reproductora Milan","responsable":"Michael Duran","inicio":"2026-05-06","limite":"2026-05-06","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":37,"area":"Producción - Granjas","areaRaw":"Producción-Granjas","actividad":"Realización Informe Ficha Tecnica Granja Reproductora Milan","responsable":"Michael Duran","inicio":"2026-05-08","limite":"2026-05-12","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":38,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Cargue y descargue de Vehiculo, arqueo en Central de Despachos","responsable":"Michael Duran","inicio":"2026-05-14","limite":"2026-05-14","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":37,"area":"Operaciones - Logística","areaRaw":"operaciones -logistica","actividad":"Cargue y descargue de Vehiculo, arqueo en Central de Despachos","responsable":"Jaider Gonzales","inicio":"2026-05-14","limite":"2026-05-14","dias":null,"estatus":"Completada","mes":"Mayo"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Hilary Basto","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Junio"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Junio"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Junio"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Junio"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Junio"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Hilary Basto","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Julio"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Julio"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Auditoría","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Julio"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Julio"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Ivan Bonilla","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Julio"},{"n":6,"area":"","areaRaw":"","actividad":"","responsable":"Hilary Basto","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Julio"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Agosto"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Kerling Hernandez","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Agosto"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Agosto"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Auditoría","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Agosto"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Agosto"},{"n":6,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Agosto"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Septiembre"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Hilary Basto","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Septiembre"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Septiembre"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Septiembre"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Septiembre"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Octubre"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Hilary Basto","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Octubre"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Octubre"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Ivan Bonilla","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Octubre"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Octubre"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Noviembre"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Noviembre"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Noviembre"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Auditoría","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Noviembre"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Auditoría","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Noviembre"},{"n":6,"area":"","areaRaw":"","actividad":"","responsable":"Auditoría","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Noviembre"},{"n":1,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Diciembre"},{"n":2,"area":"","areaRaw":"","actividad":"","responsable":"Alexander Tellez","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Diciembre"},{"n":3,"area":"","areaRaw":"","actividad":"","responsable":"Kerling Hernandez","inicio":"","limite":"","dias":null,"estatus":"En curso","mes":"Diciembre"},{"n":4,"area":"","areaRaw":"","actividad":"","responsable":"Jaider Gonzales","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Diciembre"},{"n":5,"area":"","areaRaw":"","actividad":"","responsable":"Michael Duran","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Diciembre"},{"n":6,"area":"","areaRaw":"","actividad":"","responsable":"Ivan Bonilla","inicio":"","limite":"","dias":null,"estatus":"No iniciada","mes":"Diciembre"},{"n":7,"area":"","areaRaw":"","actividad":"","responsable":"Kerling Hernandez","inicio":"","limite":"","dias":null,"estatus":"Completada","mes":"Diciembre"}];
+
+</script>
+<style>
+  :root{
+    --bg:#F4F5F8;
+    --panel:#FFFFFF;
+    --ink:#0B1320;
+    --ink-2:#3C475C;
+    --ink-3:#6B7793;
+    --line:#E5E8EF;
+    --line-2:#EDEFF4;
+    --brand:#0F1E3D;
+    --brand-2:#1B2E54;
+    --accent:#0E7C86;
+    --accent-2:#0FB5AE;
+    --amber:#E08A1A;
+    --green:#1F8A4C;
+    --red:#C5364B;
+    --slate:#8693AC;
+    --chip:#F1F3F8;
+    --shadow:0 1px 0 rgba(15,30,61,.04), 0 8px 24px -16px rgba(15,30,61,.18);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;font-size:13px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+  button{font-family:inherit}
+  /* ---------- shell ---------- */
+  .shell{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+  aside.nav{background:var(--brand);color:#cdd5e6;padding:18px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px}
+  .brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .brand-mark{width:30px;height:30px;border-radius:6px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#06222b;font-weight:800;font-size:14px}
+  .brand-name{font-weight:700;color:#fff;font-size:13px;letter-spacing:.02em}
+  .brand-sub{font-size:11px;color:#8a98b7;margin-top:1px}
+  .nav-section{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#6e7c9a;padding:0 8px;margin:6px 0 4px}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#cdd5e6;cursor:pointer;font-size:12.5px}
+  .nav-item:hover{background:rgba(255,255,255,.04);color:#fff}
+  .nav-item.active{background:rgba(15,181,174,.12);color:#fff;box-shadow:inset 2px 0 0 var(--accent-2)}
+  .nav-item .dot{width:6px;height:6px;border-radius:50%;background:#4b5a7a}
+  .nav-item.active .dot{background:var(--accent-2)}
+  .nav-foot{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;color:#8a98b7;font-size:11px}
+
+  main{padding:18px 22px 60px;min-width:0}
+  .topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+  .crumb{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em}
+  h1{font-size:22px;margin:4px 0 0;font-weight:700;letter-spacing:-0.01em}
+  .topbar .sub{color:var(--ink-3);margin-top:3px;font-size:12.5px}
+  .top-actions{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;padding:7px 11px;border-radius:8px;color:var(--ink-2);cursor:pointer;font-size:12px;font-weight:500}
+  .btn:hover{border-color:#cbd2df}
+  .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .btn.primary:hover{background:#15264c}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-size:11px;border:1px solid var(--line);background:#fff;color:var(--ink-2)}
+  .pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,138,76,.4);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,138,76,.5)}70%{box-shadow:0 0 0 8px rgba(31,138,76,0)}100%{box-shadow:0 0 0 0 rgba(31,138,76,0)}}
+
+  /* ---------- filters ---------- */
+  .filters{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .filter{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .filter label{font-size:10.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .filter select{appearance:none;border:1px solid var(--line);background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%236B7793' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center;padding:8px 28px 8px 10px;border-radius:8px;font-size:12.5px;color:var(--ink);font-family:inherit;cursor:pointer}
+  .filter select:focus{outline:none;border-color:var(--accent)}
+  .filter .reset-wrap{display:flex;align-items:flex-end}
+  .filters .reset{margin-top:auto;align-self:flex-end;padding:8px 12px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--ink-2);cursor:pointer;font-size:12px}
+  .filters .reset:hover{color:var(--red);border-color:#f1c5cd}
+  .active-filters{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px 2px;min-height:18px}
+  .active-chip{display:inline-flex;gap:5px;align-items:center;background:#eef5f6;color:#0d5860;border:1px solid #c8e0e2;padding:3px 8px 3px 9px;border-radius:999px;font-size:11px}
+  .active-chip button{background:none;border:0;color:#0d5860;cursor:pointer;padding:0 0 0 2px;font-size:13px;line-height:1}
+
+  /* ---------- KPI ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);font-weight:600}
+  .kpi .value{font-size:30px;font-weight:700;letter-spacing:-0.02em;margin-top:6px;line-height:1}
+  .kpi .value .unit{font-size:14px;color:var(--ink-3);margin-left:3px;font-weight:500}
+  .kpi .meta{margin-top:8px;display:flex;justify-content:space-between;align-items:center;color:var(--ink-3);font-size:11.5px}
+  .kpi .bar{margin-top:10px;height:5px;background:var(--line-2);border-radius:3px;overflow:hidden}
+  .kpi .bar > div{height:100%;border-radius:3px}
+  .kpi.total .bar > div{background:var(--brand)}
+  .kpi.completada .accent,.kpi.completada .bar > div{background:var(--green)}
+  .kpi.encurso .accent,.kpi.encurso .bar > div{background:var(--amber)}
+  .kpi.noiniciada .accent,.kpi.noiniciada .bar > div{background:var(--red)}
+  .kpi.cumplimiento .bar > div{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+  .kpi .tag{position:absolute;top:14px;right:14px;font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em}
+  .kpi.cumplimiento{background:linear-gradient(135deg,#0F1E3D,#152957);color:#fff;border-color:transparent}
+  .kpi.cumplimiento .label,.kpi.cumplimiento .meta,.kpi.cumplimiento .tag{color:#9fb1d6}
+  .kpi.cumplimiento .bar{background:rgba(255,255,255,.12)}
+
+  /* ---------- panels ---------- */
+  .grid-3{display:grid;grid-template-columns:1.05fr 1.45fr 1.05fr;gap:12px;margin-bottom:12px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .grid-1{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px 16px;box-shadow:var(--shadow);min-width:0}
+  .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .panel-title{font-size:13px;font-weight:700;letter-spacing:-0.005em}
+  .panel-sub{font-size:11px;color:var(--ink-3);margin-top:2px}
+  .panel-actions{display:flex;gap:6px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#fff}
+  .seg button{border:0;background:transparent;padding:5px 10px;font-size:11px;color:var(--ink-3);cursor:pointer;font-weight:600}
+  .seg button.active{background:var(--brand);color:#fff}
+  .chart-wrap{position:relative;width:100%}
+
+  /* status chips */
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:11px;color:var(--ink-2)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+  /* heatmap */
+  .heatmap{display:grid;grid-template-columns:160px repeat(5,1fr) 90px;gap:4px;margin-top:6px;font-size:11px}
+  .heatmap .hcell{padding:8px 6px;border-radius:6px;text-align:center;color:#0B1320;font-weight:600;position:relative}
+  .heatmap .hhead{color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;font-size:10px;background:transparent;font-weight:600;padding-bottom:2px}
+  .heatmap .hname{text-align:left;color:var(--ink);font-weight:600;padding-left:4px;display:flex;align-items:center}
+  .heatmap .htotal{background:#0F1E3D;color:#fff}
+  .heatmap .hcell small{display:block;font-size:9px;color:var(--ink-3);font-weight:500;margin-top:1px}
+  .heatmap .htotal small{color:#9fb1d6}
+
+  /* table */
+  .tbl-wrap{margin-top:6px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .tbl-controls{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#FAFBFD;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+  .tbl-controls .search{position:relative}
+  .tbl-controls input{border:1px solid var(--line);background:#fff;padding:5px 10px 5px 26px;border-radius:6px;font-size:12px;width:220px;font-family:inherit}
+  .tbl-controls input:focus{outline:none;border-color:var(--accent)}
+  .tbl-controls .icon-search{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+  .tbl{width:100%;border-collapse:collapse;font-size:12px}
+  .tbl th{text-align:left;background:#FAFBFD;color:var(--ink-3);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;cursor:pointer;user-select:none}
+  .tbl th:hover{color:var(--ink)}
+  .tbl th .sortdir{opacity:.5;margin-left:3px;font-size:10px}
+  .tbl td{padding:9px 10px;border-bottom:1px solid var(--line-2);color:var(--ink);vertical-align:top}
+  .tbl tr:hover td{background:#FBFCFE}
+  .tbl tr:last-child td{border-bottom:0}
+  .status-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+  .status-chip i{width:6px;height:6px;border-radius:50%}
+  .status-Completada{background:#e6f4ec;color:#136a3a}
+  .status-Completada i{background:var(--green)}
+  .status-Encurso{background:#fdf1de;color:#8a5212}
+  .status-Encurso i{background:var(--amber)}
+  .status-Noiniciada{background:#fbe6ea;color:#8b1f31}
+  .status-Noiniciada i{background:var(--red)}
+  .area-tag{display:inline-block;font-size:10.5px;color:var(--ink-3);background:#F1F3F8;padding:2px 7px;border-radius:4px;white-space:nowrap}
+  .pager{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#FAFBFD;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+  .pager .pages{display:flex;gap:4px}
+  .pager button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:6px;font-size:11px;color:var(--ink-2);cursor:pointer}
+  .pager button:disabled{opacity:.4;cursor:not-allowed}
+  .pager button.curr{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+  /* insights */
+  .insight{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#FBFCFE;margin-bottom:8px}
+  .insight .ico{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-size:13px;flex:0 0 26px;font-weight:700}
+  .insight .ico.good{background:#e6f4ec;color:#136a3a}
+  .insight .ico.warn{background:#fdf1de;color:#8a5212}
+  .insight .ico.bad{background:#fbe6ea;color:#8b1f31}
+  .insight .ico.info{background:#e8f0fb;color:#1a4a92}
+  .insight h4{margin:0 0 2px;font-size:12.5px;font-weight:700}
+  .insight p{margin:0;color:var(--ink-2);font-size:12px;line-height:1.5}
+  .insight strong{color:var(--ink)}
+
+  /* responsable cards (compact) */
+  .resps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .resp{background:#FBFCFE;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .resp .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .resp .avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:11px;letter-spacing:.02em}
+  .resp .name{font-weight:700;font-size:12.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .resp .ratio{font-size:11px;color:var(--ink-3)}
+  .resp .ratio strong{color:var(--ink);font-size:13px;font-weight:700}
+  .resp .stack{display:flex;height:6px;border-radius:4px;overflow:hidden;background:var(--line-2);margin:6px 0 6px}
+  .resp .stack > i{height:100%}
+  .resp .legends{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3)}
+  .resp .legends span{display:inline-flex;align-items:center;gap:3px}
+  .resp .legends span i{width:6px;height:6px;border-radius:50%}
+
+  /* small */
+  .source-note{margin-top:18px;text-align:center;color:var(--ink-3);font-size:11px}
+  .source-note code{font-family:'JetBrains Mono',monospace;background:#fff;border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="nav">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      <div>
+        <div class="brand-name">Auditoría 2026</div>
+        <div class="brand-sub">Cronograma · Mensual</div>
+      </div>
+    </div>
+    <div>
+      <div class="nav-section">Vistas</div>
+      <div class="nav-item active"><span class="dot"></span> Dashboard Ejecutivo</div>
+      <div class="nav-item"><span class="dot"></span> Cronograma Mensual</div>
+      <div class="nav-item"><span class="dot"></span> Auditores</div>
+      <div class="nav-item"><span class="dot"></span> Áreas / Gerencias</div>
+      <div class="nav-item"><span class="dot"></span> Trazabilidad</div>
+    </div>
+    <div>
+      <div class="nav-section">Reportes</div>
+      <div class="nav-item"><span class="dot"></span> Cumplimiento</div>
+      <div class="nav-item"><span class="dot"></span> Pendientes críticos</div>
+      <div class="nav-item"><span class="dot"></span> Exportar PDF / XLSX</div>
+    </div>
+    <div class="nav-foot">
+      Fuente · <code class="mono">Cronograma de Actividades Auditoria 2026.xlsx</code><br>
+      Hoja: <strong style="color:#cdd5e6">Mensual</strong>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <div>
+        <div class="crumb">Mensual / Dashboard Ejecutivo</div>
+        <h1>Cumplimiento del Plan de Auditoría · 2026</h1>
+        <div class="sub">Vista ejecutiva sobre 191 actividades planificadas · datos derivados directamente del XLSX fuente.</div>
+      </div>
+      <div class="top-actions">
+        <span class="pill"><span class="pulse"></span> Sincronizado con XLSX</span>
+        <button class="btn">⤓ Exportar</button>
+        <button class="btn primary">Actualizar datos</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filters">
+      <div class="filter">
+        <label>Período</label>
+        <select id="f-periodo">
+          <option value="ene-may">Enero – Mayo 2026 (YTD)</option>
+          <option value="all">Año completo 2026</option>
+          <option value="ene">Enero 2026</option>
+          <option value="feb">Febrero 2026</option>
+          <option value="mar">Marzo 2026</option>
+          <option value="abr">Abril 2026</option>
+          <option value="may">Mayo 2026</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label>Auditor</label>
+        <select id="f-auditor"><option value="">Todos los auditores</option></select>
+      </div>
+      <div class="filter">
+        <label>Estado de cumplimiento</label>
+        <select id="f-estado">
+          <option value="">Todos los estados</option>
+          <option value="Completada">Completada</option>
+          <option value="En curso">En curso</option>
+          <option value="No iniciada">No iniciada</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label>Área / Gerencia</label>
+        <select id="f-area"><option value="">Todas las áreas</option></select>
+      </div>
+      <div class="filter">
+        <label>Tipo de actividad</label>
+        <select id="f-tipo">
+          <option value="">Todos los tipos</option>
+          <option value="visita">Visitas en campo</option>
+          <option value="informe">Elaboración de informes</option>
+          <option value="inventario">Inventarios</option>
+          <option value="circular">Circularizaciones</option>
+          <option value="capacit">Capacitaciones</option>
+          <option value="conciliacion">Conciliaciones</option>
+        </select>
+      </div>
+      <div class="filter reset-wrap">
+        <button class="reset" id="f-reset">Limpiar filtros</button>
+      </div>
+    </div>
+    <div class="active-filters" id="active-filters"></div>
+
+    <!-- KPIs -->
+    <div class="kpis" id="kpis"></div>
+
+    <!-- Charts row 1 -->
+    <div class="grid-3">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Distribución de estados</div>
+            <div class="panel-sub">Sobre la selección actual</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:230px"><canvas id="ch-donut"></canvas></div>
+        <div class="legend" id="legend-donut"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Tendencia mensual · Enero → Mayo</div>
+            <div class="panel-sub">Actividades por estado en cada mes del YTD</div>
+          </div>
+          <div class="panel-actions">
+            <div class="seg" id="trend-mode">
+              <button data-mode="stack" class="active">Apiladas</button>
+              <button data-mode="line">Tendencia</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:230px"><canvas id="ch-trend"></canvas></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Cumplimiento por auditor</div>
+            <div class="panel-sub">% de actividades completadas / asignadas</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:230px"><canvas id="ch-resp"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Heatmap + comparativo -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Heatmap · carga de trabajo (Auditor × Mes)</div>
+            <div class="panel-sub">Intensidad = volumen total de tareas asignadas</div>
+          </div>
+          <div class="panel-actions">
+            <div class="seg" id="heat-mode">
+              <button data-mode="total" class="active">Total</button>
+              <button data-mode="completada">Completadas</button>
+              <button data-mode="pendientes">Pendientes</button>
+            </div>
+          </div>
+        </div>
+        <div id="heatmap" class="heatmap"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Comparativo mensual · % cumplimiento</div>
+            <div class="panel-sub">Cumplimiento vs. promedio YTD (línea de referencia)</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px"><canvas id="ch-compl"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Resp cards -->
+    <div class="grid-1">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Indicadores individuales por auditor</div>
+            <div class="panel-sub">Distribución de estados en la selección activa</div>
+          </div>
+        </div>
+        <div class="resps" id="resps"></div>
+      </div>
+    </div>
+
+    <!-- Insights -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Análisis ejecutivo · Enero – Mayo 2026</div>
+            <div class="panel-sub">Insights generados sobre los datos fuente</div>
+          </div>
+        </div>
+        <div id="insights"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Distribución por Área / Gerencia</div>
+            <div class="panel-sub">Top 8 áreas por volumen de actividades</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="ch-area"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="grid-1">
+      <div class="panel" style="padding-bottom:0">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Trazabilidad · detalle de actividades</div>
+            <div class="panel-sub">Tabla viva sobre la selección actual · ordenable, paginada y trazable al XLSX</div>
+          </div>
+          <div class="panel-actions">
+            <span class="pill mono" id="tbl-count">0 registros</span>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <div class="tbl-controls">
+            <div class="search">
+              <span class="icon-search">🔍</span>
+              <input id="tbl-search" placeholder="Buscar por actividad, área, auditor…">
+            </div>
+            <div class="mono" id="tbl-sub">—</div>
+          </div>
+          <div style="max-height:420px;overflow:auto">
+            <table class="tbl" id="tbl">
+              <thead>
+                <tr>
+                  <th data-k="n">N°<span class="sortdir"></span></th>
+                  <th data-k="mes">Mes<span class="sortdir"></span></th>
+                  <th data-k="area">Área / Gerencia<span class="sortdir"></span></th>
+                  <th data-k="actividad" style="min-width:260px">Concepto · Actividad<span class="sortdir"></span></th>
+                  <th data-k="responsable">Auditor responsable<span class="sortdir"></span></th>
+                  <th data-k="inicio">Inicio<span class="sortdir"></span></th>
+                  <th data-k="limite">Límite<span class="sortdir"></span></th>
+                  <th data-k="estatus">Estado<span class="sortdir"></span></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="pager" id="pager"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source-note">
+      Datos cargados desde <code>Cronograma de Actividades Auditoria 2026.xlsx</code> · hoja <code>Mensual</code> · 191 registros · trazabilidad 1:1 con el archivo fuente.
+    </div>
+  </main>
+</div>
+
+<script>
+/* ===========================================================
+   Dashboard Ejecutivo · Mensual · Auditoría 2026
+   Pure data is in window.TASKS (loaded from data.js, derived
+   1:1 from the XLSX). No simulated values anywhere.
+   =========================================================== */
+
+const TASKS = window.TASKS || [];
+const MONTH_ORDER = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const MONTH_SHORT = {Enero:'Ene',Febrero:'Feb',Marzo:'Mar',Abril:'Abr',Mayo:'May',Junio:'Jun',Julio:'Jul',Agosto:'Ago',Septiembre:'Sep',Octubre:'Oct',Noviembre:'Nov',Diciembre:'Dic'};
+const PERIOD_MAP = {
+  'ene-may': ['Enero','Febrero','Marzo','Abril','Mayo'],
+  'all': MONTH_ORDER,
+  'ene':['Enero'],'feb':['Febrero'],'mar':['Marzo'],'abr':['Abril'],'may':['Mayo']
+};
+
+const C = {
+  Completada: '#1F8A4C',
+  'En curso': '#E08A1A',
+  'No iniciada': '#C5364B',
+  brand: '#0F1E3D',
+  accent: '#0E7C86',
+  accent2:'#0FB5AE',
+  slate:'#8693AC',
+  line:'#E5E8EF',
+  ink:'#0B1320',
+  ink3:'#6B7793'
+};
+const TYPE_MATCHERS = {
+  visita: /visit/i,
+  informe: /informe|elaborac/i,
+  inventario: /inventar/i,
+  circular: /circulariz|circular/i,
+  capacit: /capacit/i,
+  conciliacion: /concili/i
+};
+const RESP_COLORS = {
+  'Michael Duran':'#2A6FDB',
+  'Kerling Hernandez':'#7A3FD4',
+  'Alexander Tellez':'#0E7C86',
+  'Hilary Basto':'#C24A8C',
+  'Jaider Gonzales':'#D97757',
+  'Ivan Bonilla':'#1F8A4C',
+  'Auditoría':'#8693AC'
+};
+
+Chart.defaults.font.family = "'Manrope', sans-serif";
+Chart.defaults.font.size = 11.5;
+Chart.defaults.color = C.ink3;
+Chart.defaults.borderColor = C.line;
+
+/* ---------- state ---------- */
+const state = {
+  periodo: 'ene-may',
+  auditor: '',
+  estado: '',
+  area: '',
+  tipo: '',
+  search: '',
+  trendMode: 'stack',
+  heatMode: 'total',
+  sortKey: 'n',
+  sortDir: 1,
+  page: 1,
+  pageSize: 12
+};
+
+/* ---------- populate dynamic filter options ---------- */
+function uniq(arr){return [...new Set(arr)].filter(Boolean).sort();}
+function populateFilters(){
+  const auditores = uniq(TASKS.map(t=>t.responsable));
+  const areas = uniq(TASKS.map(t=>t.area)).filter(a=>a.length>1);
+  const $a = document.getElementById('f-auditor');
+  auditores.forEach(a=>{const o=document.createElement('option');o.value=a;o.textContent=a;$a.appendChild(o);});
+  const $ar = document.getElementById('f-area');
+  areas.forEach(a=>{const o=document.createElement('option');o.value=a;o.textContent=a;$ar.appendChild(o);});
+}
+
+/* ---------- filter pipeline ---------- */
+function applyFilters(tasks){
+  const months = PERIOD_MAP[state.periodo] || PERIOD_MAP['ene-may'];
+  return tasks.filter(t=>{
+    if(!months.includes(t.mes)) return false;
+    if(state.auditor && t.responsable!==state.auditor) return false;
+    if(state.estado && t.estatus!==state.estado) return false;
+    if(state.area && t.area!==state.area) return false;
+    if(state.tipo && !TYPE_MATCHERS[state.tipo].test(t.actividad)) return false;
+    if(state.search){
+      const q = state.search.toLowerCase();
+      if(!(t.actividad.toLowerCase().includes(q) || t.area.toLowerCase().includes(q) || t.responsable.toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
+}
+
+/* ---------- KPI ---------- */
+function renderKPIs(data){
+  const total = data.length;
+  const c = data.filter(t=>t.estatus==='Completada').length;
+  const e = data.filter(t=>t.estatus==='En curso').length;
+  const n = data.filter(t=>t.estatus==='No iniciada').length;
+  const pct = total ? Math.round(c/total*1000)/10 : 0;
+  const months = PERIOD_MAP[state.periodo].filter(m=>data.some(t=>t.mes===m));
+  const periodLbl = months.length===1 ? months[0] : `${months.length} meses`;
+
+  // executed = completada + en curso (some progress)
+  const exec = c + e;
+  const execPct = total ? Math.round(exec/total*100) : 0;
+
+  const html = `
+    <div class="kpi total">
+      <div class="tag">${periodLbl}</div>
+      <div class="label">Tareas planificadas</div>
+      <div class="value">${total}</div>
+      <div class="bar"><div style="width:100%"></div></div>
+      <div class="meta"><span>Universo de la selección</span><span class="mono">100%</span></div>
+    </div>
+    <div class="kpi completada">
+      <div class="label">Completadas</div>
+      <div class="value">${c} <span class="unit">de ${total}</span></div>
+      <div class="bar"><div style="width:${total?c/total*100:0}%"></div></div>
+      <div class="meta"><span>Estado: cerrado</span><span class="mono">${total?(c/total*100).toFixed(1):0}%</span></div>
+    </div>
+    <div class="kpi encurso">
+      <div class="label">En curso</div>
+      <div class="value">${e} <span class="unit">de ${total}</span></div>
+      <div class="bar"><div style="width:${total?e/total*100:0}%"></div></div>
+      <div class="meta"><span>Trabajo en ejecución</span><span class="mono">${total?(e/total*100).toFixed(1):0}%</span></div>
+    </div>
+    <div class="kpi noiniciada">
+      <div class="label">No iniciadas</div>
+      <div class="value">${n} <span class="unit">de ${total}</span></div>
+      <div class="bar"><div style="width:${total?n/total*100:0}%"></div></div>
+      <div class="meta"><span>Riesgo de incumplimiento</span><span class="mono">${total?(n/total*100).toFixed(1):0}%</span></div>
+    </div>
+    <div class="kpi cumplimiento">
+      <div class="tag">% CUMPLIMIENTO</div>
+      <div class="label">Cumplimiento global</div>
+      <div class="value mono">${pct}<span class="unit" style="color:#9fb1d6">%</span></div>
+      <div class="bar"><div style="width:${pct}%"></div></div>
+      <div class="meta"><span>Avance: ${execPct}%</span><span class="mono">${c}/${total}</span></div>
+    </div>
+  `;
+  document.getElementById('kpis').innerHTML = html;
+}
+
+/* ---------- Donut ---------- */
+let chDonut;
+function renderDonut(data){
+  const counts = {
+    'Completada': data.filter(t=>t.estatus==='Completada').length,
+    'En curso':   data.filter(t=>t.estatus==='En curso').length,
+    'No iniciada':data.filter(t=>t.estatus==='No iniciada').length
+  };
+  const total = data.length || 1;
+  const ctx = document.getElementById('ch-donut');
+  if(chDonut) chDonut.destroy();
+  chDonut = new Chart(ctx,{
+    type:'doughnut',
+    data:{
+      labels:Object.keys(counts),
+      datasets:[{
+        data:Object.values(counts),
+        backgroundColor:[C.Completada,C['En curso'],C['No iniciada']],
+        borderWidth:0,
+        spacing:2,
+        hoverOffset:4
+      }]
+    },
+    options:{
+      cutout:'68%',
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(it)=>`${it.label}: ${it.raw} (${(it.raw/total*100).toFixed(1)}%)`}}
+      }
+    },
+    plugins:[{
+      id:'centerText',
+      afterDraw(chart){
+        const {ctx,chartArea:{left,right,top,bottom}} = chart;
+        const cx=(left+right)/2, cy=(top+bottom)/2;
+        ctx.save();
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillStyle=C.ink;
+        ctx.font='700 26px "JetBrains Mono"';
+        const pct = data.length?Math.round(counts['Completada']/data.length*1000)/10:0;
+        ctx.fillText(pct+'%',cx,cy-6);
+        ctx.fillStyle=C.ink3;
+        ctx.font='600 10px Manrope';
+        ctx.fillText('CUMPLIMIENTO',cx,cy+14);
+        ctx.restore();
+      }
+    }]
+  });
+
+  const lg = document.getElementById('legend-donut');
+  lg.innerHTML = ['Completada','En curso','No iniciada'].map(k=>{
+    const v=counts[k];
+    return `<span><i style="background:${C[k]}"></i>${k} · <b class="mono">${v}</b> (${(v/total*100).toFixed(1)}%)</span>`;
+  }).join('');
+}
+
+/* ---------- Trend (stacked / line) ---------- */
+let chTrend;
+function renderTrend(data){
+  const months = PERIOD_MAP[state.periodo];
+  const labels = months.map(m=>MONTH_SHORT[m]||m);
+  const byM = Object.fromEntries(months.map(m=>[m,{Completada:0,'En curso':0,'No iniciada':0}]));
+  data.forEach(t=>{ if(byM[t.mes]) byM[t.mes][t.estatus]++; });
+  const ds = (label,color,key)=>({
+    label, backgroundColor:color, borderColor:color,
+    data:months.map(m=>byM[m][key]),
+    borderWidth: state.trendMode==='line'?2:0,
+    fill: state.trendMode==='line'?false:true,
+    tension:.35, pointRadius: state.trendMode==='line'?3:0, pointBackgroundColor:color
+  });
+  const datasets = [
+    ds('Completada',C.Completada,'Completada'),
+    ds('En curso',C['En curso'],'En curso'),
+    ds('No iniciada',C['No iniciada'],'No iniciada'),
+  ];
+  const ctx = document.getElementById('ch-trend');
+  if(chTrend) chTrend.destroy();
+  chTrend = new Chart(ctx,{
+    type: state.trendMode==='line'?'line':'bar',
+    data:{labels,datasets},
+    options:{
+      maintainAspectRatio:false,
+      responsive:true,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14}},
+        tooltip:{
+          callbacks:{
+            footer:(items)=>{
+              const sum=items.reduce((a,b)=>a+b.parsed.y,0);
+              return 'Total: '+sum;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{grid:{display:false},stacked:state.trendMode==='stack'},
+        y:{beginAtZero:true,grid:{color:C.line},stacked:state.trendMode==='stack'}
+      }
+    }
+  });
+}
+
+/* ---------- Cumplimiento por auditor (horizontal bar) ---------- */
+let chResp;
+function renderResp(data){
+  const byR = {};
+  data.forEach(t=>{
+    if(!byR[t.responsable]) byR[t.responsable] = {Completada:0,'En curso':0,'No iniciada':0,total:0};
+    byR[t.responsable][t.estatus]++;
+    byR[t.responsable].total++;
+  });
+  const names = Object.keys(byR).sort((a,b)=>(byR[b].Completada/byR[b].total)-(byR[a].Completada/byR[a].total));
+  const pct = names.map(n=>+(byR[n].Completada/byR[n].total*100).toFixed(1));
+  const tot = names.map(n=>byR[n].total);
+  const ctx = document.getElementById('ch-resp');
+  if(chResp) chResp.destroy();
+  chResp = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:names,
+      datasets:[{
+        label:'% Cumplimiento',
+        data:pct,
+        backgroundColor:names.map(n=>RESP_COLORS[n]||C.accent),
+        borderRadius:4,
+        barPercentage:.7,
+        categoryPercentage:.85
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          label:(it)=>`${it.raw}% — ${byR[it.label].Completada}/${byR[it.label].total} tareas`
+        }}
+      },
+      scales:{
+        x:{beginAtZero:true,max:100,grid:{color:C.line},ticks:{callback:(v)=>v+'%'}},
+        y:{grid:{display:false}}
+      }
+    },
+    plugins:[{
+      id:'labels',
+      afterDatasetsDraw(chart){
+        const {ctx} = chart;
+        chart.data.datasets[0].data.forEach((v,i)=>{
+          const bar = chart.getDatasetMeta(0).data[i];
+          ctx.save();
+          ctx.fillStyle = C.ink;
+          ctx.font='700 11px "JetBrains Mono"';
+          ctx.textBaseline='middle';
+          ctx.fillText(v+'%', bar.x+6, bar.y);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+/* ---------- Heatmap ---------- */
+function renderHeatmap(data){
+  const months = PERIOD_MAP['ene-may']; // always Jan-May for heatmap context
+  const auditores = uniq(TASKS.map(t=>t.responsable));
+  // compute matrix based on heatMode
+  const matrix = {};
+  auditores.forEach(a=>matrix[a] = Object.fromEntries(months.map(m=>[m,0])));
+  data.forEach(t=>{
+    if(!matrix[t.responsable]||!months.includes(t.mes)) return;
+    if(state.heatMode==='total') matrix[t.responsable][t.mes]++;
+    else if(state.heatMode==='completada' && t.estatus==='Completada') matrix[t.responsable][t.mes]++;
+    else if(state.heatMode==='pendientes' && t.estatus!=='Completada') matrix[t.responsable][t.mes]++;
+  });
+  let max=1;
+  auditores.forEach(a=>months.forEach(m=>{if(matrix[a][m]>max) max=matrix[a][m]}));
+
+  const heat = document.getElementById('heatmap');
+  let html = '<div class="hcell hhead"></div>';
+  months.forEach(m=>html += `<div class="hcell hhead">${MONTH_SHORT[m]}</div>`);
+  html += '<div class="hcell hhead">Total</div>';
+
+  const totals = {};
+  auditores.forEach(a=>{
+    const aColor = RESP_COLORS[a]||'#8693AC';
+    const initials = a.split(' ').map(s=>s[0]).slice(0,2).join('');
+    html += `<div class="hcell hname"><span style="width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:10px;font-weight:700;margin-right:8px;background:${aColor}">${initials}</span>${a}</div>`;
+    let total=0;
+    months.forEach(m=>{
+      const v = matrix[a][m];
+      total += v;
+      // color scale: based on mode
+      const t = max ? v/max : 0;
+      const baseHue = state.heatMode==='pendientes' ? '352, 60%' : state.heatMode==='completada' ? '143, 60%' : '186, 50%';
+      const bg = v===0 ? '#F4F6FA' : `hsla(${baseHue}, ${65 - t*30}%, ${1 - t*.85})`;
+      // Fixed: alpha-based scale using rgba conversion is messy with hsla. Use rgb with alpha overlay:
+      const colors = {
+        total:`rgba(14,124,134,${0.08+t*0.9})`,
+        completada:`rgba(31,138,76,${0.08+t*0.9})`,
+        pendientes:`rgba(197,54,75,${0.08+t*0.9})`
+      };
+      const textColor = t>0.55 ? '#fff' : '#0B1320';
+      html += `<div class="hcell" style="background:${colors[state.heatMode]};color:${textColor}">${v||'·'}${v?`<small style="color:${t>0.55?'rgba(255,255,255,.7)':''}">tareas</small>`:''}</div>`;
+    });
+    totals[a]=total;
+    html += `<div class="hcell htotal">${total}<small>YTD</small></div>`;
+  });
+  heat.innerHTML = html;
+}
+
+/* ---------- Cumplimiento mensual % ---------- */
+let chCompl;
+function renderCompl(data){
+  const months = PERIOD_MAP[state.periodo];
+  const labels = months.map(m=>MONTH_SHORT[m]||m);
+  const pcts = months.map(m=>{
+    const sub = data.filter(t=>t.mes===m);
+    if(!sub.length) return null;
+    return +(sub.filter(t=>t.estatus==='Completada').length/sub.length*100).toFixed(1);
+  });
+  const avg = (()=>{
+    const sub = data;
+    if(!sub.length) return 0;
+    return +(sub.filter(t=>t.estatus==='Completada').length/sub.length*100).toFixed(1);
+  })();
+  const ctx = document.getElementById('ch-compl');
+  if(chCompl) chCompl.destroy();
+  chCompl = new Chart(ctx,{
+    data:{
+      labels,
+      datasets:[
+        {
+          type:'bar',
+          label:'% cumplimiento mensual',
+          data:pcts,
+          backgroundColor:pcts.map(p=>p===null?'#E5E8EF':p>=avg?'#0E7C86':'#E08A1A'),
+          borderRadius:6,
+          barPercentage:.55
+        },
+        {
+          type:'line',
+          label:`Promedio YTD · ${avg}%`,
+          data:labels.map(_=>avg),
+          borderColor:C.brand,
+          borderWidth:2,
+          borderDash:[6,4],
+          pointRadius:0,
+          tension:0
+        }
+      ]
+    },
+    options:{
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14}},
+        tooltip:{callbacks:{label:(it)=>it.dataset.label+': '+it.raw+'%'}}
+      },
+      scales:{
+        x:{grid:{display:false}},
+        y:{beginAtZero:true,max:100,grid:{color:C.line},ticks:{callback:(v)=>v+'%'}}
+      }
+    },
+    plugins:[{
+      id:'pctLabels',
+      afterDatasetsDraw(chart){
+        const ds = chart.getDatasetMeta(0).data;
+        const {ctx} = chart;
+        ds.forEach((bar,i)=>{
+          const v = chart.data.datasets[0].data[i];
+          if(v==null) return;
+          ctx.save();
+          ctx.fillStyle = C.ink;
+          ctx.font='700 11px "JetBrains Mono"';
+          ctx.textAlign='center';
+          ctx.fillText(v+'%', bar.x, bar.y-6);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+/* ---------- Resp individual cards ---------- */
+function renderRespCards(data){
+  const byR = {};
+  data.forEach(t=>{
+    if(!byR[t.responsable]) byR[t.responsable] = {Completada:0,'En curso':0,'No iniciada':0,total:0};
+    byR[t.responsable][t.estatus]++;
+    byR[t.responsable].total++;
+  });
+  const names = Object.keys(byR).sort((a,b)=>byR[b].total-byR[a].total);
+  const html = names.map(n=>{
+    const r = byR[n];
+    const pct = (r.Completada/r.total*100).toFixed(0);
+    const initials = n.split(' ').map(s=>s[0]).slice(0,2).join('');
+    const color = RESP_COLORS[n] || C.slate;
+    const w1 = r.Completada/r.total*100;
+    const w2 = r['En curso']/r.total*100;
+    const w3 = r['No iniciada']/r.total*100;
+    return `
+      <div class="resp">
+        <div class="top">
+          <div class="avatar" style="background:${color}">${initials}</div>
+          <div class="name">${n}</div>
+          <div class="ratio"><strong class="mono">${pct}%</strong></div>
+        </div>
+        <div class="stack">
+          <i style="width:${w1}%;background:${C.Completada}"></i>
+          <i style="width:${w2}%;background:${C['En curso']}"></i>
+          <i style="width:${w3}%;background:${C['No iniciada']}"></i>
+        </div>
+        <div class="legends">
+          <span><i style="background:${C.Completada}"></i>${r.Completada} compl</span>
+          <span><i style="background:${C['En curso']}"></i>${r['En curso']} curso</span>
+          <span><i style="background:${C['No iniciada']}"></i>${r['No iniciada']} pend</span>
+          <span class="mono">${r.total} ttl</span>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('resps').innerHTML = html || '<div style="color:#6B7793;font-size:12px;padding:14px">Sin datos para los filtros activos.</div>';
+}
+
+/* ---------- Insights ---------- */
+function renderInsights(data){
+  const out = [];
+  const total = data.length;
+  const c = data.filter(t=>t.estatus==='Completada').length;
+  const e = data.filter(t=>t.estatus==='En curso').length;
+  const n = data.filter(t=>t.estatus==='No iniciada').length;
+  const pct = total ? (c/total*100) : 0;
+
+  // 1. global headline
+  out.push({type: pct>=70?'good':pct>=50?'info':'warn',
+    title:`Cumplimiento global del ${pct.toFixed(1)}% sobre ${total} actividades en la selección`,
+    body: `Cerradas <strong>${c}</strong>, en ejecución <strong>${e}</strong>, sin iniciar <strong>${n}</strong>. La brecha de cumplimiento equivale a <strong>${total-c}</strong> actividades pendientes de cierre.`});
+
+  // 2. best month / worst month
+  const months = PERIOD_MAP[state.periodo];
+  const monthPct = months.map(m=>{
+    const sub = data.filter(t=>t.mes===m);
+    return {m, total:sub.length, pct: sub.length ? sub.filter(t=>t.estatus==='Completada').length/sub.length*100 : null};
+  }).filter(x=>x.total>0);
+  if(monthPct.length>=2){
+    const best = monthPct.slice().sort((a,b)=>b.pct-a.pct)[0];
+    const worst = monthPct.slice().sort((a,b)=>a.pct-b.pct)[0];
+    out.push({type:'info',
+      title:`${best.m} es el mes con mayor cumplimiento (${best.pct.toFixed(0)}%); ${worst.m} es el más crítico (${worst.pct.toFixed(0)}%)`,
+      body: `Sobre ${best.total} actividades en ${best.m} y ${worst.total} en ${worst.m}. La diferencia entre ambos meses es de <strong>${(best.pct-worst.pct).toFixed(0)} puntos porcentuales</strong>.`});
+  }
+
+  // 3. mayo riesgo
+  const may = data.filter(t=>t.mes==='Mayo');
+  if(may.length){
+    const mayNI = may.filter(t=>t.estatus==='No iniciada').length;
+    const mayPct = mayNI/may.length*100;
+    if(mayPct >= 30){
+      out.push({type:'bad',
+        title:`Mayo concentra el ${mayPct.toFixed(0)}% de tareas no iniciadas (${mayNI} de ${may.length})`,
+        body:`Es la mayor concentración de pendientes del YTD. Requiere reasignación o re-priorización inmediata para no comprometer el cierre del semestre.`});
+    }
+  }
+
+  // 4. mejor / peor auditor
+  const byR={}; data.forEach(t=>{(byR[t.responsable] ||= {c:0,t:0});byR[t.responsable].t++; if(t.estatus==='Completada') byR[t.responsable].c++;});
+  const arr = Object.entries(byR).filter(([_,v])=>v.t>=5).map(([k,v])=>({k,pct:v.c/v.t*100, ...v}));
+  if(arr.length>=2){
+    arr.sort((a,b)=>b.pct-a.pct);
+    const top = arr[0], bot = arr[arr.length-1];
+    out.push({type:'good',
+      title:`${top.k} lidera el cumplimiento individual con ${top.pct.toFixed(0)}%`,
+      body:`Cerró <strong>${top.c}</strong> de <strong>${top.t}</strong> actividades asignadas en la selección actual.`});
+    if(bot.pct < 50){
+      out.push({type:'warn',
+        title:`${bot.k} muestra cumplimiento bajo: ${bot.pct.toFixed(0)}%`,
+        body:`Tiene <strong>${bot.t-bot.c}</strong> actividades pendientes de cierre sobre ${bot.t} asignadas. Considerar redistribución de carga o seguimiento puntual.`});
+    }
+  }
+
+  // 5. top área pendiente
+  const byArea = {};
+  data.forEach(t=>{ if(!t.area) return; (byArea[t.area] ||= {t:0,p:0}); byArea[t.area].t++; if(t.estatus!=='Completada') byArea[t.area].p++; });
+  const areaArr = Object.entries(byArea).map(([k,v])=>({k,...v})).sort((a,b)=>b.p-a.p);
+  if(areaArr.length){
+    const top = areaArr[0];
+    out.push({type:'info',
+      title:`${top.k} es el área con mayor backlog: ${top.p} actividades pendientes`,
+      body:`Sobre ${top.t} actividades programadas en esta área, ${top.p} aún no han sido cerradas.`});
+  }
+
+  const iconMap = {good:'✓',warn:'!',bad:'×',info:'i'};
+  document.getElementById('insights').innerHTML = out.map(i=>`
+    <div class="insight">
+      <div class="ico ${i.type}">${iconMap[i.type]}</div>
+      <div><h4>${i.title}</h4><p>${i.body}</p></div>
+    </div>`).join('');
+}
+
+/* ---------- Area chart ---------- */
+let chArea;
+function renderArea(data){
+  const by = {};
+  data.forEach(t=>{ if(!t.area) return; (by[t.area] ||= {C:0,E:0,N:0,t:0}); by[t.area].t++;
+    if(t.estatus==='Completada') by[t.area].C++; else if(t.estatus==='En curso') by[t.area].E++; else by[t.area].N++;});
+  const top = Object.entries(by).sort((a,b)=>b[1].t-a[1].t).slice(0,8);
+  const labels = top.map(x=>x[0]);
+  const ctx = document.getElementById('ch-area');
+  if(chArea) chArea.destroy();
+  chArea = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Completada',data:top.map(x=>x[1].C),backgroundColor:C.Completada,stack:'s',borderRadius:3},
+        {label:'En curso',data:top.map(x=>x[1].E),backgroundColor:C['En curso'],stack:'s',borderRadius:3},
+        {label:'No iniciada',data:top.map(x=>x[1].N),backgroundColor:C['No iniciada'],stack:'s',borderRadius:3},
+      ]
+    },
+    options:{
+      indexAxis:'y',
+      maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14}}},
+      scales:{
+        x:{stacked:true,grid:{color:C.line},beginAtZero:true},
+        y:{stacked:true,grid:{display:false}}
+      }
+    }
+  });
+}
+
+/* ---------- Table ---------- */
+function renderTable(data){
+  let sorted = data.slice().sort((a,b)=>{
+    const k = state.sortKey;
+    let A=a[k], B=b[k];
+    if(A==null) A=''; if(B==null) B='';
+    if(typeof A==='number' && typeof B==='number') return (A-B)*state.sortDir;
+    return String(A).localeCompare(String(B),'es')*state.sortDir;
+  });
+  const total = sorted.length;
+  document.getElementById('tbl-count').textContent = `${total} registros`;
+  document.getElementById('tbl-sub').textContent = `${total} resultados · página ${state.page} de ${Math.max(1,Math.ceil(total/state.pageSize))}`;
+  // pagination slice
+  const pages = Math.max(1, Math.ceil(total/state.pageSize));
+  if(state.page > pages) state.page = pages;
+  const start = (state.page-1)*state.pageSize;
+  const slice = sorted.slice(start, start+state.pageSize);
+  const fmt = (d)=> d ? d.slice(0,10) : '—';
+  const tbody = document.querySelector('#tbl tbody');
+  tbody.innerHTML = slice.length ? slice.map(t=>`
+    <tr>
+      <td class="mono">${t.n}</td>
+      <td>${t.mes}</td>
+      <td><span class="area-tag">${t.area || '—'}</span></td>
+      <td>${t.actividad || '<span style="color:#94A3B8">— sin descripción —</span>'}</td>
+      <td>${t.responsable}</td>
+      <td class="mono">${fmt(t.inicio)}</td>
+      <td class="mono">${fmt(t.limite)}</td>
+      <td><span class="status-chip status-${t.estatus.replace(' ','')}"><i></i>${t.estatus}</span></td>
+    </tr>
+  `).join('') : `<tr><td colspan="8" style="text-align:center;padding:30px;color:#6B7793">Sin actividades que coincidan con los filtros activos.</td></tr>`;
+
+  // header sort indicators
+  document.querySelectorAll('#tbl th').forEach(th=>{
+    const k = th.dataset.k;
+    th.querySelector('.sortdir').textContent = k===state.sortKey ? (state.sortDir>0?'▲':'▼') : '';
+  });
+
+  // pager
+  const pager = document.getElementById('pager');
+  let pgHtml = `<div>Mostrando <span class="mono">${slice.length ? start+1 : 0}–${start+slice.length}</span> de <span class="mono">${total}</span></div><div class="pages">`;
+  pgHtml += `<button ${state.page===1?'disabled':''} data-pg="prev">← Anterior</button>`;
+  // show up to 6 page buttons centered around current
+  const maxBtns = 6;
+  let s = Math.max(1, state.page - Math.floor(maxBtns/2));
+  let e = Math.min(pages, s + maxBtns - 1);
+  if(e - s + 1 < maxBtns) s = Math.max(1, e - maxBtns + 1);
+  for(let p=s; p<=e; p++){
+    pgHtml += `<button class="${p===state.page?'curr':''}" data-pg="${p}">${p}</button>`;
+  }
+  pgHtml += `<button ${state.page===pages?'disabled':''} data-pg="next">Siguiente →</button>`;
+  pgHtml += `</div>`;
+  pager.innerHTML = pgHtml;
+  pager.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const v = b.dataset.pg;
+      if(v==='prev') state.page = Math.max(1,state.page-1);
+      else if(v==='next') state.page = Math.min(pages,state.page+1);
+      else state.page = +v;
+      renderTable(data);
+    });
+  });
+}
+
+/* ---------- Active filter chips ---------- */
+function renderActiveChips(){
+  const wrap = document.getElementById('active-filters');
+  const chips = [];
+  const periodLabels = {'ene-may':'Enero–Mayo 2026 (YTD)','all':'Año completo','ene':'Enero','feb':'Febrero','mar':'Marzo','abr':'Abril','may':'Mayo'};
+  if(state.periodo!=='ene-may') chips.push({k:'periodo', l:`Período: ${periodLabels[state.periodo]}`});
+  if(state.auditor) chips.push({k:'auditor', l:`Auditor: ${state.auditor}`});
+  if(state.estado) chips.push({k:'estado', l:`Estado: ${state.estado}`});
+  if(state.area) chips.push({k:'area', l:`Área: ${state.area}`});
+  if(state.tipo){const tlabel={visita:'Visitas',informe:'Informes',inventario:'Inventarios',circular:'Circularizaciones',capacit:'Capacitaciones',conciliacion:'Conciliaciones'}[state.tipo]; chips.push({k:'tipo', l:`Tipo: ${tlabel}`});}
+  if(state.search) chips.push({k:'search', l:`Búsqueda: "${state.search}"`});
+  wrap.innerHTML = chips.map(c=>`<span class="active-chip">${c.l}<button data-k="${c.k}">×</button></span>`).join('');
+  wrap.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const k=b.dataset.k;
+      if(k==='periodo'){state.periodo='ene-may';document.getElementById('f-periodo').value='ene-may';}
+      else if(k==='search'){state.search='';document.getElementById('tbl-search').value='';}
+      else { state[k]=''; document.getElementById(`f-${k}`).value=''; }
+      renderAll();
+    });
+  });
+}
+
+/* ---------- master render ---------- */
+function renderAll(){
+  const data = applyFilters(TASKS);
+  renderActiveChips();
+  renderKPIs(data);
+  renderDonut(data);
+  renderTrend(data);
+  renderResp(data);
+  renderHeatmap(data);
+  renderCompl(data);
+  renderRespCards(data);
+  renderInsights(data);
+  renderArea(data);
+  renderTable(data);
+}
+
+/* ---------- wire ---------- */
+function wire(){
+  populateFilters();
+  ['periodo','auditor','estado','area','tipo'].forEach(k=>{
+    document.getElementById('f-'+k).addEventListener('change',(e)=>{
+      state[k]=e.target.value; state.page=1; renderAll();
+    });
+  });
+  document.getElementById('f-reset').addEventListener('click',()=>{
+    state.periodo='ene-may';state.auditor='';state.estado='';state.area='';state.tipo='';state.search='';state.page=1;
+    document.getElementById('f-periodo').value='ene-may';
+    ['auditor','estado','area','tipo'].forEach(k=>document.getElementById('f-'+k).value='');
+    document.getElementById('tbl-search').value='';
+    renderAll();
+  });
+  document.getElementById('trend-mode').addEventListener('click',(e)=>{
+    const b = e.target.closest('button'); if(!b) return;
+    document.querySelectorAll('#trend-mode button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    state.trendMode = b.dataset.mode;
+    renderTrend(applyFilters(TASKS));
+  });
+  document.getElementById('heat-mode').addEventListener('click',(e)=>{
+    const b = e.target.closest('button'); if(!b) return;
+    document.querySelectorAll('#heat-mode button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    state.heatMode = b.dataset.mode;
+    renderHeatmap(applyFilters(TASKS));
+  });
+  document.getElementById('tbl-search').addEventListener('input',(e)=>{
+    state.search = e.target.value.trim(); state.page=1; renderAll();
+  });
+  document.querySelectorAll('#tbl th').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k = th.dataset.k;
+      if(state.sortKey===k) state.sortDir *= -1;
+      else { state.sortKey=k; state.sortDir=1; }
+      renderTable(applyFilters(TASKS));
+    });
+  });
+}
+
+wire();
+renderAll();
+
+</script>
+</body>
+</html>
