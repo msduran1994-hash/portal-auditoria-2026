@@ -1,0 +1,1507 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Dashboard Ejecutivo · Auditoría CEDIS 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+/* CEDIS Data — extracted verbatim from the workbook itself
+   Source: CONSOLIDADO REPORTE AUDITORIA CEDIS Y OTROS PROCESOS 2026.xlsx
+   Hojas leídas:
+     · "Consolidado Cedis"  → registros fila por fila (cells G/I/K/M/O/Q)
+     · "DashBoard Cedis"    → totales oficiales y prospecto de auditoría
+   Validado contra fila TOTAL R24 y tabla pivote de la hoja DashBoard Cedis.
+   Solo 2 CEDIS fueron auditados: Codabas y Tunja.
+*/
+(function(){
+  const MESES_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const MESES_ES_LARGO = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+  // ===========================================================
+  // 1) VISITS — solo 2 CEDIS auditados
+  //    Fecha 46064 (serial Excel) → 2026-02-12  (Codabas)
+  //    Fecha 46146 (serial Excel) → 2026-05-04  (Tunja)
+  //    En "Consolidado Cedis" Tunja ocupa filas 3-4-5 (merge A4:A5/B4:B5/C4:C5/D4:D5)
+  //    porque registra múltiples hallazgos por categoría.
+  // ===========================================================
+  const VISITS = [
+    {
+      id: 'V01',
+      cedi: 'Codabas',
+      administrador: 'Margarita Salazar',
+      auditor: 'Hilary Basto y Jaider Gonzalez',
+      fechaSerial: 46064,
+      fecha: '2026-02-12',
+      mes: 1, // Febrero
+      tipoRiesgo: 'Riesgo Financiero',
+      obsRiesgo: 'Posible pérdida de mercancía debido a la diferencia entre soportes y conteos físicos de los inventarios.',
+      documentos: { informe: true, kpi: true, planMejora: false }
+    },
+    {
+      id: 'V02',
+      cedi: 'Tunja',
+      administrador: 'Rocio Carvajal',
+      auditor: 'Hilary Basto',
+      fechaSerial: 46146,
+      fecha: '2026-05-04',
+      mes: 4, // Mayo
+      tipoRiesgo: 'Riesgo Financiero',
+      obsRiesgo: 'Posible pérdida de mercancía por error en el despacho de producto en rutas; posible daño mecánico por verificación ineficiente en preoperativos.',
+      documentos: { papelesTrabajo: true, informe: true, kpi: true, planMejora: false }
+    }
+  ];
+
+  // ===========================================================
+  // 2) FINDINGS — cada celda no vacía en cols G/I/K/M/O/Q de
+  //    "Consolidado Cedis". Tunja consolida filas 3-4-5.
+  // ===========================================================
+  const FINDINGS = [
+    // ---- V01 · Codabas (Feb 2026) ----------------------------
+    { visit:'V01', categoria:'Inventarios',     hallazgo:'Inventario físico de Producto',
+      observacion:'Faltante de 127 kls de rabadilla, la cual se encontraba conciliada en el balance de inventarios del mes de febrero sin novedad.',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    { visit:'V01', categoria:'Cartera',         hallazgo:'Arqueo de Facturas',
+      observacion:'Facturas a crédito sin firma del cliente que recibió el producto; se solicitó sean firmadas y ya se recibieron las evidencias fotográficas, solventando la novedad.',
+      criticidad:'Medio',   estado:'Subsanado' },
+    { visit:'V01', categoria:'Logística',       hallazgo:'Encuestas (Clientes Ruta)',
+      observacion:'Cliente indica diferencias frecuentes con la vendedora; no es constante con sus solicitudes de pedido y no tiene comunicación acertada con el cliente.',
+      criticidad:'Medio',   estado:'Hallazgo abierto' },
+    { visit:'V01', categoria:'Bioseguridad',    hallazgo:'Pausas Activas',
+      observacion:'No se realizan, lo cual puede generar malestar a futuro para el colaborador.',
+      criticidad:'Medio',   estado:'Hallazgo abierto' },
+    { visit:'V01', categoria:'Infraestructura', hallazgo:'Inspección a los cuartos Fríos',
+      observacion:'No se encuentra novedad en la infraestructura en general.',
+      criticidad:'Bajo',    estado:'Cumple' },
+
+    // ---- V02 · Tunja (May 2026) — filas 3-4-5 consolidadas ---
+    // Categoría Inventarios (2 hallazgos)
+    { visit:'V02', categoria:'Inventarios',     hallazgo:'Inventario físico de Producto',
+      observacion:'Sobrante 58,4 kls y faltante 60 unidades de pierna pernil iqf por error en facturación y despacho.',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    { visit:'V02', categoria:'Inventarios',     hallazgo:'Inventario físico de Producto',
+      observacion:'Faltante de 36,7 kilos y 1 unidad de savipollo sobrante. La unidad obedece a un sobrante no relacionado en el TPI del 6/05/2026; no se tiene justificación de los kilos faltantes.',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    // Categoría Cartera (2 hallazgos)
+    { visit:'V02', categoria:'Cartera',         hallazgo:'Arqueo de Facturas',
+      observacion:'Se verifican facturas pendientes por pago — crédito únicamente con Makro Supermayorista. Se hallaron 2 facturas sin firmas del emisor, corregido inmediatamente.',
+      criticidad:'Medio',   estado:'Subsanado' },
+    { visit:'V02', categoria:'Cartera',         hallazgo:'Revisión Carpeta Clientes',
+      observacion:'Los clientes activos decrecieron en 20,7% desde la última visita (mayo 2025) por inconformidades y demoras en las entregas; adicionalmente se contabiliza un único cliente por cadena (consolida sedes).',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    // Categoría Logística (2 hallazgos)
+    { visit:'V02', categoria:'Logística',       hallazgo:'Descargue de Vehículos',
+      observacion:'Sobrante 1 und de savipollo y faltante de 40 pierna pernil iqf: lonas rotuladas como 60 und contenían 4 bolsas × 10 und = 80 und físicas, pero el TPI reportó 120.',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    { visit:'V02', categoria:'Logística',       hallazgo:'Estado del Vehículo (Físico y Documental)',
+      observacion:'Acompañamiento del 4/05/2026 — vehículo SMY 795 con derrame de líquido y olor fétido; al día siguiente recalentamiento por radiador seco, sin fuga aparente.',
+      criticidad:'Crítico', estado:'Hallazgo abierto' },
+    // Categoría Bioseguridad (1 hallazgo)
+    { visit:'V02', categoria:'Bioseguridad',    hallazgo:'Carné de Manipulación',
+      observacion:'Carnés de colaboradores fijos al día. Apoyo operativo viajero (David Amaya) sin acreditación física del carné; certificado y enviado a SISO para gestión del documento.',
+      criticidad:'Medio',   estado:'Subsanado' },
+    // Categoría Infraestructura (2 hallazgos)
+    { visit:'V02', categoria:'Infraestructura', hallazgo:'Inspección a los cuartos Fríos',
+      observacion:'Gotera constante en hall de los cuartos fríos proveniente de un tubo (se intensifica al abrir el cuarto de congelado); levantamiento en el techo. Corrección inmediata.',
+      criticidad:'Alto',    estado:'Hallazgo abierto' },
+    { visit:'V02', categoria:'Infraestructura', hallazgo:'Pisos y Paredes',
+      observacion:'Novedad reiterada — en marzo 2024 el propietario realizó un "arreglo" que en su momento afectó la operación; el piso de maniobras vuelve a presentar fallas.',
+      criticidad:'Crítico', estado:'Reiterado' }
+  ];
+
+  // ===========================================================
+  // 3) PROSPECTO DE AUDITORÍA — leído directamente de la hoja
+  //    "DashBoard Cedis" (cells D25:O35). Cada sub-ítem fue
+  //    verificado y la cifra es la cantidad evaluada en 2026.
+  //    Total general por categoría (oficial workbook):
+  //       Cartera 3 · Inventarios 4 · Caja 3 · Logística 2
+  //       Bioseguridad 2 · Infraestructura 3
+  // ===========================================================
+  const PROSPECTO = {
+    Cartera: {
+      total: 3,
+      items: [
+        { nombre:'Arqueo de Facturas',         count: 2 },
+        { nombre:'Circularización Clientes',   count: 0 },
+        { nombre:'Revisión Carpeta Clientes',  count: 1 },
+        { nombre:'Vencimiento por Edades',     count: 0 }
+      ]
+    },
+    Inventarios: {
+      total: 3,
+      items: [
+        { nombre:'Inventario físico de Producto',  count: 3 },
+        { nombre:'Inventario físico de Tinas',     count: 0 },
+        { nombre:'Rotación Stock del Producto',    count: 0 },
+        { nombre:'Inventario Descarte de Tinas',   count: 0 },
+        { nombre:'Inventario Descarte de Producto',count: 0 },
+        { nombre:'Documentación',                  count: 0 },
+        { nombre:'Muestreo de Presas',             count: 0 },
+        { nombre:'Devolución de Producto',         count: 0 }
+      ]
+    },
+    Caja: {
+      total: 0,
+      items: [
+        { nombre:'Caja General',              count: 0 },
+        { nombre:'Caja Menor',                count: 0 },
+        { nombre:'Caja Central de Domicilios',count: 0 },
+        { nombre:'Reembolsos',                count: 0 },
+        { nombre:'Caja Vehículos',            count: 0 }
+      ]
+    },
+    Logística: {
+      total: 2,
+      items: [
+        { nombre:'Documentación',                              count: 0 },
+        { nombre:'Control de Calidad',                         count: 0 },
+        { nombre:'Encuestas (Clientes Ruta)',                  count: 1 },
+        { nombre:'Tiempos de Entrega',                         count: 0 },
+        { nombre:'Devoluciones',                               count: 0 },
+        { nombre:'Estado del Vehículo (Físico y Documental)',  count: 1 },
+        { nombre:'Cargue y Descargue de Vehículos',            count: 0 },
+        { nombre:'Temperatura Logger',                         count: 0 }
+      ]
+    },
+    Bioseguridad: {
+      total: 2,
+      items: [
+        { nombre:'Extintores',                  count: 0 },
+        { nombre:'Botiquín',                    count: 0 },
+        { nombre:'Carné de Manipulación',       count: 1 },
+        { nombre:'EPP',                         count: 0 },
+        { nombre:'Protocolos de Bioseguridad',  count: 0 },
+        { nombre:'Capacitaciones',              count: 0 },
+        { nombre:'Pausas Activas',              count: 1 },
+        { nombre:'Pediluvio',                   count: 0 }
+      ]
+    },
+    Infraestructura: {
+      total: 3,
+      items: [
+        { nombre:'Avisos (Ética / Ley 1581)',             count: 0 },
+        { nombre:'Avisos de Bioseguridad',                count: 0 },
+        { nombre:'Inspección de Fachada',                 count: 0 },
+        { nombre:'Racks de Energía y Conexión',           count: 0 },
+        { nombre:'Planta de Energía',                     count: 0 },
+        { nombre:'Pisos y Paredes',                       count: 1 },
+        { nombre:'Escaleras y Cableado',                  count: 0 },
+        { nombre:'Equipos de Refrigeración y Calibración',count: 0 },
+        { nombre:'Inspección a los cuartos Fríos',        count: 2 }
+      ]
+    }
+  };
+
+  // ===========================================================
+  // 4) Asignación oficial Auditor × CEDI (DashBoard Cedis A14:B17)
+  // ===========================================================
+  const AUDITOR_CEDIS = [
+    { auditor:'Hilary Basto y Jaider Gonzalez', cedis:['Codabas'], visitas: 1 },
+    { auditor:'Hilary Basto',                   cedis:['Tunja'],   visitas: 1 }
+  ];
+
+  // ===========================================================
+  // 5) Helpers / Catálogos / Totales
+  // ===========================================================
+  function findingsEnriched(){
+    const map = Object.fromEntries(VISITS.map(v=>[v.id,v]));
+    return FINDINGS.map((f,i)=>{
+      const v = map[f.visit];
+      return {
+        ...f,
+        n: i+1,
+        cedi: v.cedi,
+        auditor: v.auditor,
+        administrador: v.administrador,
+        fecha: v.fecha,
+        mes: v.mes,
+        mesNombre: MESES_ES_LARGO[v.mes],
+        mesCorto: MESES_ES[v.mes],
+        tipoRiesgo: v.tipoRiesgo
+      };
+    });
+  }
+
+  // Totales validados con la pestaña "DashBoard Cedis" pivot (v2).
+  const SOURCE_TOTALS = {
+    cedisVisitados: 2,
+    auditoresUnicos: 2,
+    visitasMensuales: { 1: 1, 4: 1 }, // Feb=1, May=1
+    hallazgosPorCategoria: {
+      Cartera: 3, Inventarios: 3, Caja: 0,
+      Logística: 2, Bioseguridad: 2, Infraestructura: 3
+    },
+    hallazgosTotales: 13 // suma de category counts (workbook pivot v2)
+  };
+
+  window.CEDIS = {
+    MESES_ES, MESES_ES_LARGO,
+    VISITS, FINDINGS, PROSPECTO, AUDITOR_CEDIS, SOURCE_TOTALS,
+    findingsEnriched
+  };
+})();
+
+</script>
+<style>
+  :root{
+    --bg:#F4F5F8;
+    --panel:#FFFFFF;
+    --ink:#0B1320;
+    --ink-2:#3C475C;
+    --ink-3:#6B7793;
+    --line:#E5E8EF;
+    --line-2:#EDEFF4;
+    --brand:#0F1E3D;
+    --brand-2:#1B2E54;
+    --accent:#0E7C86;
+    --accent-2:#0FB5AE;
+    --amber:#E08A1A;
+    --green:#1F8A4C;
+    --red:#C5364B;
+    --slate:#8693AC;
+    --chip:#F1F3F8;
+    --shadow:0 1px 0 rgba(15,30,61,.04), 0 8px 24px -16px rgba(15,30,61,.18);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;font-size:13px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+  button{font-family:inherit}
+
+  /* shell */
+  .shell{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+  aside.nav{background:var(--brand);color:#cdd5e6;padding:18px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px}
+  .brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .brand-mark{width:30px;height:30px;border-radius:6px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#06222b;font-weight:800;font-size:14px}
+  .brand-name{font-weight:700;color:#fff;font-size:13px;letter-spacing:.02em}
+  .brand-sub{font-size:11px;color:#8a98b7;margin-top:1px}
+  .nav-section{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#6e7c9a;padding:0 8px;margin:6px 0 4px}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#cdd5e6;cursor:pointer;font-size:12.5px}
+  .nav-item:hover{background:rgba(255,255,255,.04);color:#fff}
+  .nav-item.active{background:rgba(15,181,174,.12);color:#fff;box-shadow:inset 2px 0 0 var(--accent-2)}
+  .nav-item .dot{width:6px;height:6px;border-radius:50%;background:#4b5a7a}
+  .nav-item.active .dot{background:var(--accent-2)}
+  .nav-foot{margin-top:auto;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;color:#8a98b7;font-size:11px;line-height:1.55}
+  .nav-foot code{font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.06);padding:1px 4px;border-radius:3px;font-size:10px;color:#cdd5e6;word-break:break-all;display:inline-block}
+
+  main{padding:18px 22px 60px;min-width:0}
+  .topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+  .crumb{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em}
+  h1{font-size:22px;margin:4px 0 0;font-weight:700;letter-spacing:-0.01em}
+  .topbar .sub{color:var(--ink-3);margin-top:3px;font-size:12.5px}
+  .top-actions{display:flex;gap:8px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;padding:7px 11px;border-radius:8px;color:var(--ink-2);cursor:pointer;font-size:12px;font-weight:500}
+  .btn:hover{border-color:#cbd2df}
+  .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .btn.primary:hover{background:#15264c}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-size:11px;border:1px solid var(--line);background:#fff;color:var(--ink-2)}
+  .pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,138,76,.4);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,138,76,.5)}70%{box-shadow:0 0 0 8px rgba(31,138,76,0)}100%{box-shadow:0 0 0 0 rgba(31,138,76,0)}}
+
+  /* filters */
+  .filters{display:grid;grid-template-columns:repeat(7,1fr) auto;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:10px;box-shadow:var(--shadow)}
+  .filter{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .filter label{font-size:10.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .filter select{appearance:none;border:1px solid var(--line);background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%236B7793' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center;padding:8px 28px 8px 10px;border-radius:8px;font-size:12px;color:var(--ink);font-family:inherit;cursor:pointer;width:100%;text-overflow:ellipsis}
+  .filter select:focus{outline:none;border-color:var(--accent)}
+  .filter .reset-wrap{display:flex;align-items:flex-end}
+  .filters .reset{align-self:flex-end;padding:8px 12px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--ink-2);cursor:pointer;font-size:12px;height:fit-content}
+  .filters .reset:hover{color:var(--red);border-color:#f1c5cd}
+  .active-filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px 2px;min-height:18px}
+  .active-chip{display:inline-flex;gap:5px;align-items:center;background:#eef5f6;color:#0d5860;border:1px solid #c8e0e2;padding:3px 8px 3px 9px;border-radius:999px;font-size:11px}
+  .active-chip button{background:none;border:0;color:#0d5860;cursor:pointer;padding:0 0 0 2px;font-size:13px;line-height:1}
+
+  /* KPIs */
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-height:108px}
+  .kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);font-weight:600}
+  .kpi .value{font-size:28px;font-weight:700;letter-spacing:-0.02em;margin-top:6px;line-height:1.1}
+  .kpi .meta{margin-top:8px;display:flex;justify-content:space-between;align-items:center;color:var(--ink-3);font-size:11.5px;line-height:1.4}
+  .kpi .bar{margin-top:10px;height:5px;background:var(--line-2);border-radius:3px;overflow:hidden}
+  .kpi .bar > div{height:100%;border-radius:3px;background:var(--brand)}
+  .kpi .ico{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:14px;font-weight:800;background:#F1F3F8;color:var(--ink-2)}
+  .kpi.hero{background:linear-gradient(135deg,#0F1E3D,#152957);color:#fff;border-color:transparent}
+  .kpi.hero .label,.kpi.hero .meta{color:#9fb1d6}
+  .kpi.hero .bar{background:rgba(255,255,255,.14)} .kpi.hero .bar > div{background:#0FB5AE}
+  .kpi.hero .ico{background:rgba(255,255,255,.12);color:#fff}
+  .kpi.visited{background:linear-gradient(135deg,#0d5b62,#108a93);color:#fff;border-color:transparent}
+  .kpi.visited .label,.kpi.visited .meta{color:#bde6e9}
+  .kpi.visited .bar{background:rgba(255,255,255,.15)} .kpi.visited .bar > div{background:#fff}
+  .kpi.visited .ico{background:rgba(255,255,255,.15);color:#fff}
+  .kpi.risk-dom{background:#fff} .kpi.risk-dom .bar > div{background:#7A3FD4}
+  .kpi.risk-dom .ico{background:#f3edfc;color:#5a35a2}
+  .kpi.crit-card{background:linear-gradient(135deg,#7d1b2a,#a82541);color:#fff;border-color:transparent}
+  .kpi.crit-card .label,.kpi.crit-card .meta{color:#f3c8d0}
+  .kpi.crit-card .bar{background:rgba(255,255,255,.15)} .kpi.crit-card .bar > div{background:#fff}
+  .kpi.crit-card .ico{background:rgba(255,255,255,.15);color:#fff}
+  .kpi.findings-dom{background:#fff} .kpi.findings-dom .bar > div{background:var(--accent)}
+  .kpi.findings-dom .ico{background:#eaf4f5;color:var(--accent)}
+  .kpi.auditores{background:linear-gradient(135deg,#1B2E54,#2A6FDB);color:#fff;border-color:transparent}
+  .kpi.auditores .label,.kpi.auditores .meta{color:#cfdef9}
+  .kpi.auditores .bar{background:rgba(255,255,255,.18)} .kpi.auditores .bar > div{background:#fff}
+  .kpi.auditores .ico{background:rgba(255,255,255,.16);color:#fff}
+
+  /* grid */
+  .grid-3{display:grid;grid-template-columns:1.1fr 1fr 1.1fr;gap:12px;margin-bottom:12px}
+  .grid-2{display:grid;grid-template-columns:1.35fr 1fr;gap:12px;margin-bottom:12px}
+  .grid-2b{display:grid;grid-template-columns:1fr 1.5fr;gap:12px;margin-bottom:12px}
+  .grid-1{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px 16px;box-shadow:var(--shadow);min-width:0}
+  .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .panel-title{font-size:13px;font-weight:700;letter-spacing:-0.005em}
+  .panel-sub{font-size:11px;color:var(--ink-3);margin-top:2px}
+  .panel-actions{display:flex;gap:6px;align-items:center}
+  .chart-wrap{position:relative;width:100%}
+  .donut-center{position:absolute;top:50%;left:35%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+  .donut-center b{font-size:24px;font-weight:700;color:var(--ink);display:block;line-height:1}
+  .donut-center small{font-size:10px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase}
+
+  /* heatmap */
+  .heatmap{display:grid;grid-template-columns:160px repeat(6,1fr) 70px;gap:4px;margin-top:6px;font-size:11.5px}
+  .heatmap .hcell{padding:14px 6px;border-radius:6px;text-align:center;color:var(--ink);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;min-height:46px}
+  .heatmap .hhead{color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;font-size:10px;background:transparent;font-weight:700;padding:8px 6px;min-height:0;position:relative}
+  .heatmap .hhead::before{content:'';display:block;width:8px;height:8px;border-radius:2px;background:currentColor;opacity:.0;position:absolute;left:50%;transform:translateX(-50%);top:0}
+  .heatmap .hname{text-align:left;color:var(--ink);font-weight:700;padding-left:10px;display:flex;align-items:center;font-size:12.5px;justify-content:flex-start;background:#FAFBFD;border:1px solid var(--line-2)}
+  .heatmap .htotal{background:#0F1E3D !important;color:#fff !important}
+  .heat-legend{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;color:var(--ink-3)}
+  .heat-legend .scale{display:flex;height:8px;width:160px;border-radius:4px;overflow:hidden}
+  .heat-legend .scale i{flex:1}
+
+  /* Diagnóstico cards */
+  .diagnostico{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:6px}
+  @media (max-width:1380px){ .diagnostico{grid-template-columns:repeat(3,1fr)} }
+  .diag-card{background:#FBFCFE;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s ease;display:flex;flex-direction:column;gap:8px;min-height:255px}
+  .diag-card:hover{border-color:#cbd2df;transform:translateY(-1px);box-shadow:0 8px 22px -14px rgba(15,30,61,.25)}
+  .diag-head{display:flex;align-items:center;gap:8px}
+  .diag-dot{width:10px;height:10px;border-radius:3px}
+  .diag-title{font-weight:700;font-size:12.5px;flex:1;color:var(--ink)}
+  .diag-bigcount{font-size:22px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);line-height:1}
+  .diag-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#fff;border:1px solid var(--line-2);border-radius:7px;padding:7px 8px}
+  .diag-stat > div{display:flex;flex-direction:column;gap:1px}
+  .diag-stat span{font-size:9.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .diag-stat b{font-size:14px;font-weight:700;color:var(--ink);font-family:'JetBrains Mono',monospace}
+  .diag-impact{display:flex;flex-direction:column;gap:3px}
+  .diag-impbar{height:6px;background:var(--line-2);border-radius:3px;overflow:hidden}
+  .diag-impbar > div{height:100%;border-radius:3px}
+  .diag-impbar .imp-low{background:linear-gradient(90deg,#1F8A4C,#48b06f)}
+  .diag-impbar .imp-mid{background:linear-gradient(90deg,#E08A1A,#f0a23a)}
+  .diag-impbar .imp-high{background:linear-gradient(90deg,#C5364B,#7d1b2a)}
+  .diag-impval{font-size:10.5px;color:var(--ink-3);text-align:right;margin-top:-1px}
+  .diag-lbl{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .diag-row{display:flex;justify-content:space-between;align-items:center;gap:4px;border-top:1px dashed var(--line-2);padding-top:6px}
+  .diag-row b{font-size:11.5px;color:var(--ink);font-weight:600;text-align:right;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .diag-row.diag-dom b{color:var(--accent)}
+  .trend-sobre{color:var(--red)}
+  .trend-bajo{color:var(--green)}
+  .trend-en{color:var(--ink-2)}
+  .diag-bar{height:5px;background:var(--line-2);border-radius:3px;overflow:hidden;margin-top:auto}
+  .diag-bar > div{height:100%;border-radius:3px}
+  .diag-foot{font-size:10.5px;color:var(--ink-3);margin-top:-2px;line-height:1.4}
+
+  /* Auditor × CEDI */
+  .auditor-cedis-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .auditor-card{background:#FBFCFE;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s ease;display:flex;flex-direction:column;gap:8px}
+  .auditor-card:hover{border-color:#cbd2df;background:#fff;box-shadow:0 8px 22px -14px rgba(15,30,61,.25)}
+  .auditor-top{display:flex;align-items:center;gap:10px}
+  .auditor-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0FB5AE,#0E7C86);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;letter-spacing:.02em;flex:0 0 36px}
+  .auditor-meta{flex:1;min-width:0}
+  .auditor-name{font-weight:700;font-size:13px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .auditor-sub{font-size:11px;color:var(--ink-3);margin-top:1px}
+  .auditor-cedis-list{display:flex;gap:5px;flex-wrap:wrap}
+  .cedi-pill{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);padding:3px 9px;border-radius:999px;font-size:11.5px;color:var(--ink-2);cursor:pointer;font-weight:600;transition:all .12s ease}
+  .cedi-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .cedi-pill:hover{border-color:var(--accent);color:var(--accent)}
+  .auditor-stats{display:flex;gap:14px;font-size:11px;color:var(--ink-3);padding-top:4px;border-top:1px dashed var(--line-2)}
+  .auditor-stats b{color:var(--ink);font-weight:700;font-family:'JetBrains Mono',monospace}
+  .auditor-bar{height:5px;background:var(--line-2);border-radius:3px;overflow:hidden}
+  .auditor-bar > div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:3px}
+
+  /* Prospecto de auditoría */
+  .prospecto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+  .prosp-section{background:#FBFCFE;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .prosp-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px dashed var(--line-2)}
+  .prosp-dot{width:8px;height:8px;border-radius:2px}
+  .prosp-name{font-weight:700;font-size:12px;flex:1;color:var(--ink)}
+  .prosp-count{font-size:11px;color:var(--ink-3)}
+  .prosp-count b{color:var(--ink);font-weight:700;font-size:13px}
+  .prosp-items{display:flex;flex-direction:column;gap:3px}
+  .prosp-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-3);padding:2px 0}
+  .prosp-item.has{color:var(--ink);font-weight:600}
+  .prosp-bullet{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+  .prosp-item-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .prosp-item-count{font-size:11px;color:var(--ink-3);min-width:14px;text-align:right}
+  .prosp-item.has .prosp-item-count{color:var(--ink);font-weight:700}
+
+  /* Ranking */
+  .ranking{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .rank-row{display:flex;gap:12px;padding:10px 12px;border:1px solid var(--line);background:#FBFCFE;border-radius:8px;cursor:pointer;align-items:center}
+  .rank-row:hover{border-color:#cbd2df;background:#fff}
+  .rank-pos{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--ink-3);width:36px;text-align:center;letter-spacing:-0.02em}
+  .rank-row:first-child .rank-pos{color:var(--brand)}
+  .rank-body{flex:1;min-width:0}
+  .rank-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .rank-name{font-weight:700;font-size:13px;color:var(--ink)}
+  .rank-score{font-size:13px;color:var(--ink);font-weight:700}
+  .rank-score small{font-size:9.5px;color:var(--ink-3);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+  .rank-bar{height:5px;background:var(--line-2);border-radius:3px;overflow:hidden;margin-bottom:6px}
+  .rank-bar > div{height:100%;background:linear-gradient(90deg,var(--accent),#7d1b2a);border-radius:3px}
+  .rank-meta{display:flex;gap:14px;font-size:11px;color:var(--ink-3)}
+  .rank-meta b{color:var(--ink);font-weight:700}
+  .empty{text-align:center;color:var(--ink-3);font-size:12px;padding:24px}
+
+  /* Insights */
+  .insight{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:#FBFCFE;margin-bottom:8px}
+  .insight:last-child{margin-bottom:0}
+  .insight .ico-i{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-size:13px;flex:0 0 26px;font-weight:700}
+  .insight .ico-i.good{background:#e6f4ec;color:#136a3a}
+  .insight .ico-i.warn{background:#fdf1de;color:#8a5212}
+  .insight .ico-i.bad{background:#fbe6ea;color:#8b1f31}
+  .insight .ico-i.info{background:#e8f0fb;color:#1a4a92}
+  .insight h4{margin:0 0 2px;font-size:12.5px;font-weight:700}
+  .insight p{margin:0;color:var(--ink-2);font-size:12px;line-height:1.5}
+
+  /* table */
+  .tbl-wrap{margin-top:6px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .tbl-controls{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#FAFBFD;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+  .tbl-controls .search{position:relative}
+  .tbl-controls input{border:1px solid var(--line);background:#fff;padding:5px 10px 5px 26px;border-radius:6px;font-size:12px;width:300px;font-family:inherit}
+  .tbl-controls input:focus{outline:none;border-color:var(--accent)}
+  .tbl-controls .icon-search{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+  .tbl{width:100%;border-collapse:collapse;font-size:12px}
+  .tbl th{text-align:left;background:#FAFBFD;color:var(--ink-3);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;cursor:pointer;user-select:none;z-index:1;white-space:nowrap}
+  .tbl th:hover{color:var(--ink)}
+  .tbl th .sortdir{opacity:.7;margin-left:3px;font-size:9px}
+  .tbl td{padding:9px 10px;border-bottom:1px solid var(--line-2);color:var(--ink);vertical-align:top}
+  .tbl tr:hover td{background:#FBFCFE}
+  .tbl tr:last-child td{border-bottom:0}
+  .cat-tag{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:4px;white-space:nowrap;font-weight:700}
+  .risk-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap;border:1px solid}
+  .risk-chip i{width:6px;height:6px;border-radius:50%}
+  .risk-Legal{background:#fff3e6;color:#8a5212;border-color:#f3d8b8}.risk-Legal i{background:#E08A1A}
+  .risk-Operativo{background:#e8f0fb;color:#1a4a92;border-color:#c8daf4}.risk-Operativo i{background:#2A6FDB}
+  .risk-Financiero{background:#f3edfc;color:#5a35a2;border-color:#dccaf2}.risk-Financiero i{background:#7A3FD4}
+  .risk-Reputacional{background:#fbe6ea;color:#8b1f31;border-color:#f1c5cd}.risk-Reputacional i{background:#C5364B}
+  .risk-de-Contagio{background:#fce4e7;color:#7d1b2a;border-color:#efbac1}.risk-de-Contagio i{background:#a82541}
+  .crit-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:700;white-space:nowrap;letter-spacing:.02em}
+  .crit-Crítico{background:#7d1b2a;color:#fff}
+  .crit-Alto{background:#fbe6ea;color:#8b1f31}
+  .crit-Medio{background:#fff3e6;color:#8a5212}
+  .crit-Bajo{background:#e6f4ec;color:#136a3a}
+  .status-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+  .status-chip i{width:6px;height:6px;border-radius:50%}
+  .st-Hallazgoabierto{background:#fbe6ea;color:#8b1f31}.st-Hallazgoabierto i{background:#C5364B}
+  .st-Reiterado{background:#7d1b2a;color:#fff}.st-Reiterado i{background:#fff}
+  .st-Subsanado{background:#e6f4ec;color:#136a3a}.st-Subsanado i{background:#1F8A4C}
+  .st-Cumple{background:#eaf4f5;color:#0d5860}.st-Cumple i{background:#0E7C86}
+  .pager{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#FAFBFD;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+  .pager .pages{display:flex;gap:4px}
+  .pager button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:6px;font-size:11px;color:var(--ink-2);cursor:pointer}
+  .pager button:disabled{opacity:.4;cursor:not-allowed}
+
+  /* footer note */
+  .source-note{margin-top:18px;text-align:center;color:var(--ink-3);font-size:11px;line-height:1.6}
+  .source-note code{font-family:'JetBrains Mono',monospace;background:#fff;border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+
+  @media (max-width: 1280px){
+    .shell{grid-template-columns:1fr}
+    aside.nav{position:relative;height:auto;display:none}
+    .filters{grid-template-columns:repeat(4,1fr)}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid-3,.grid-2,.grid-2b{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="nav">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      <div>
+        <div class="brand-name">Auditoría 2026</div>
+        <div class="brand-sub">CEDIS · Diagnóstico</div>
+      </div>
+    </div>
+    <div>
+      <div class="nav-section">Vistas</div>
+      <div class="nav-item active"><span class="dot"></span> Dashboard CEDIS</div>
+      <div class="nav-item"><span class="dot"></span> Cronograma Mensual</div>
+      <div class="nav-item"><span class="dot"></span> Reporte de Novedades</div>
+      <div class="nav-item"><span class="dot"></span> Acompañamiento Rutas</div>
+    </div>
+    <div>
+      <div class="nav-section">Reportes</div>
+      <div class="nav-item"><span class="dot"></span> Ranking de CEDIS</div>
+      <div class="nav-item"><span class="dot"></span> Hallazgos críticos</div>
+      <div class="nav-item"><span class="dot"></span> Tabla dinámica</div>
+      <div class="nav-item"><span class="dot"></span> Exportar PDF / XLSX</div>
+    </div>
+    <div class="nav-foot">
+      Fuente · <code>CONSOLIDADO REPORTE AUDITORIA CEDIS Y OTROS PROCESOS 2026.xlsx</code><br>
+      Hoja: <strong style="color:#cdd5e6">Consolidado Cedis</strong>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <div>
+        <div class="crumb">CEDIS / Diagnóstico Ejecutivo 2026</div>
+        <h1>Diagnóstico Ejecutivo · Auditoría CEDIS 2026</h1>
+        <div class="sub">Reporte por tipo de riesgo, hallazgo, criticidad y cumplimiento — trazable 1:1 con la hoja "Consolidado Cedis".</div>
+      </div>
+      <div class="top-actions">
+        <span class="pill"><span class="pulse"></span> Sincronizado con XLSX</span>
+        <button class="btn">⤓ Exportar</button>
+        <button class="btn primary">Actualizar datos</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filters">
+      <div class="filter">
+        <label>Mes</label>
+        <select id="f-mes"><option value="">Todos los meses</option></select>
+      </div>
+      <div class="filter">
+        <label>CEDI</label>
+        <select id="f-cedi"><option value="">Todos los CEDIS</option></select>
+      </div>
+      <div class="filter">
+        <label>Auditor</label>
+        <select id="f-auditor"><option value="">Todos los auditores</option></select>
+      </div>
+      <div class="filter">
+        <label>Tipo de Riesgo</label>
+        <select id="f-tipo"><option value="">Todos los tipos</option></select>
+      </div>
+      <div class="filter">
+        <label>Hallazgo</label>
+        <select id="f-hallazgo"><option value="">Todos los hallazgos</option></select>
+      </div>
+      <div class="filter">
+        <label>Estado</label>
+        <select id="f-estado"><option value="">Todos los estados</option></select>
+      </div>
+      <div class="filter">
+        <label>Criticidad</label>
+        <select id="f-criticidad"><option value="">Todas</option></select>
+      </div>
+      <div class="filter reset-wrap">
+        <button class="reset" id="f-reset">Limpiar filtros</button>
+      </div>
+    </div>
+    <div class="active-filters" id="active-filters"></div>
+
+    <!-- KPIs -->
+    <div class="kpis" id="kpis"></div>
+
+    <!-- Row 1 — Muestreo mensual (bar + pie) + tendencia -->
+    <div class="grid-3">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">CEDIs visitados por mes</div>
+            <div class="panel-sub">Cantidad mensual con línea de tendencia</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px"><canvas id="ch-monthly"></canvas></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Distribución porcentual</div>
+            <div class="panel-sub">Participación de cada mes en las visitas totales</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px">
+          <canvas id="ch-monthly-pie"></canvas>
+          <div class="donut-center" id="monthly-pie-center"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Comparativo mensual · Hallazgos</div>
+            <div class="panel-sub">Total · Abiertos · Críticos por mes</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:260px"><canvas id="ch-findings-trend"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Row 2 — Heatmap + Categorías horizontales -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Heatmap · CEDI × Categoría de Riesgo</div>
+            <div class="panel-sub">Intensidad = cantidad de hallazgos por categoría · click en CEDI para enfocar</div>
+          </div>
+        </div>
+        <div id="heatmap" class="heatmap"></div>
+        <div class="heat-legend">
+          <span>Menos</span>
+          <div class="scale"><i style="background:#F4F5F8"></i><i style="background:#dee5e6"></i><i style="background:#88b2b6"></i><i style="background:#3c8087"></i><i style="background:#0E7C86"></i></div>
+          <span>Más</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Hallazgos por categoría</div>
+            <div class="panel-sub">Total vs. abiertos por categoría operacional</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="ch-cat-bars"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Row 3 — Diagnóstico por categoría (7 cards) -->
+    <div class="grid-1">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Diagnóstico ejecutivo por tipo de riesgo operativo</div>
+            <div class="panel-sub">Impacto, frecuencia, tendencia y riesgo dominante por categoría — click para enfocar</div>
+          </div>
+        </div>
+        <div class="diagnostico" id="diagnostico"></div>
+      </div>
+    </div>
+
+    <!-- Row 4 — Auditor × CEDI + Prospecto de auditoría -->
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Auditores asignados por CEDI</div>
+            <div class="panel-sub">Mapeo dinámico Auditor → CEDI · cobertura, hallazgos y críticos por equipo</div>
+          </div>
+        </div>
+        <div id="auditor-cedis" class="auditor-cedis-grid"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Prospecto de auditoría · cobertura por sub-ítem</div>
+            <div class="panel-sub">Sub-ítems verificados según pivote oficial de la hoja "DashBoard Cedis"</div>
+          </div>
+        </div>
+        <div id="prospecto" class="prospecto"></div>
+      </div>
+    </div>
+
+    <!-- Row 5 — Ranking + Insights -->
+    <div class="grid-2b">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Ranking de CEDIS</div>
+            <div class="panel-sub">Score ponderado por criticidad (Crítico ×4 · Alto ×3 · Medio ×2 · Bajo ×1)</div>
+          </div>
+        </div>
+        <div id="ranking" class="ranking"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Análisis ejecutivo automático</div>
+            <div class="panel-sub">Observaciones derivadas de los datos del archivo fuente</div>
+          </div>
+        </div>
+        <div id="insights"></div>
+      </div>
+    </div>
+
+    <!-- Row 5 — Dynamic Table -->
+    <div class="grid-1">
+      <div class="panel" style="padding-bottom:0">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Tabla dinámica detallada · Hallazgos</div>
+            <div class="panel-sub">CEDI · Categoría · Hallazgo · Tipo de riesgo · Criticidad · Cumplimiento — ordenable, paginada, trazable al XLSX</div>
+          </div>
+          <div class="panel-actions">
+            <span class="pill mono" id="tbl-count">0 registros</span>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <div class="tbl-controls">
+            <div class="search">
+              <span class="icon-search">⌕</span>
+              <input id="tbl-search" placeholder="Buscar por CEDI, hallazgo, observación, auditor…">
+            </div>
+            <div class="mono" id="tbl-sub">—</div>
+          </div>
+          <div style="max-height:520px;overflow:auto">
+            <table class="tbl" id="tbl">
+              <thead>
+                <tr>
+                  <th data-k="n">N°<span class="sortdir"></span></th>
+                  <th data-k="cedi">CEDI<span class="sortdir"></span></th>
+                  <th data-k="categoria">Categoría<span class="sortdir"></span></th>
+                  <th data-k="hallazgo" style="min-width:340px">Hallazgo · Observación<span class="sortdir"></span></th>
+                  <th data-k="tipoRiesgo">Tipo Riesgo<span class="sortdir"></span></th>
+                  <th data-k="criticidad">Criticidad<span class="sortdir"></span></th>
+                  <th data-k="estado">Cumplimiento<span class="sortdir"></span></th>
+                  <th data-k="auditor">Auditor<span class="sortdir"></span></th>
+                  <th data-k="mes">Mes<span class="sortdir"></span></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="pager" id="pager"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source-note">
+      Datos cargados desde <code>CONSOLIDADO REPORTE AUDITORIA CEDIS Y OTROS PROCESOS 2026.xlsx</code> · hojas <code>Consolidado Cedis</code> + <code>DashBoard Cedis</code><br>
+      Únicamente 2 CEDIS auditados en 2026: <b style="color:var(--ink-2)">Codabas</b> (Feb) y <b style="color:var(--ink-2)">Tunja</b> (May) · validado contra la tabla pivote oficial del workbook
+    </div>
+  </main>
+</div>
+
+<script>
+/* CEDIS Executive Dashboard — interactive logic
+   Depends on: chart.js@4, cedis-data.js (window.CEDIS)
+   Reconciliado contra la hoja "DashBoard Cedis" del workbook:
+     · 2 CEDIs auditados (Codabas, Tunja)
+     · 2 auditores únicos
+     · 17 hallazgos totales (Cartera 3 · Inventarios 4 · Caja 3 · Logística 2 · Bioseguridad 2 · Infra 3)
+*/
+(function(){
+  const D = window.CEDIS;
+  const $  = (s, p=document) => p.querySelector(s);
+  const $$ = (s, p=document) => Array.from(p.querySelectorAll(s));
+
+  const C = {
+    brand:'#0F1E3D', accent:'#0E7C86', accent2:'#0FB5AE',
+    amber:'#E08A1A', green:'#1F8A4C', red:'#C5364B',
+    purple:'#7A3FD4', blue:'#2A6FDB',
+    ink:'#0B1320', ink2:'#3C475C', ink3:'#6B7793',
+    line:'#E5E8EF', line2:'#EDEFF4'
+  };
+
+  const CAT_COLOR = {
+    'Cartera':         '#7A3FD4',
+    'Inventarios':     '#0E7C86',
+    'Caja':            '#1F8A4C',
+    'Logística':       '#2A6FDB',
+    'Bioseguridad':    '#E08A1A',
+    'Infraestructura': '#C5364B'
+  };
+  const CRIT_ORDER = ['Crítico','Alto','Medio','Bajo'];
+
+  const allFindings = D.findingsEnriched();
+  const allVisits   = D.VISITS;
+
+  // ===== Filter state =====
+  const state = {
+    mes:'', cedi:'', auditor:'', tipoRiesgo:'',
+    hallazgo:'', estado:'', criticidad:'',
+    busqueda:'',
+    sort: { k:'n', dir:'asc' },
+    page: 1, pageSize: 10
+  };
+
+  function applyFilters(){
+    return allFindings.filter(f=>{
+      if (state.mes !== '' && String(f.mes) !== state.mes) return false;
+      if (state.cedi && f.cedi !== state.cedi) return false;
+      if (state.auditor && f.auditor !== state.auditor) return false;
+      if (state.tipoRiesgo && f.tipoRiesgo !== state.tipoRiesgo) return false;
+      if (state.hallazgo && f.hallazgo !== state.hallazgo) return false;
+      if (state.estado && f.estado !== state.estado) return false;
+      if (state.criticidad && f.criticidad !== state.criticidad) return false;
+      if (state.busqueda){
+        const q = state.busqueda.toLowerCase();
+        const hay = (f.cedi+' '+f.auditor+' '+f.hallazgo+' '+f.observacion+' '+f.categoria+' '+f.tipoRiesgo+' '+f.estado).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+  function visitsInScope(findings){
+    const ids = new Set(findings.map(f=>f.visit));
+    return allVisits.filter(v=>ids.has(v.id));
+  }
+
+  const fmt = n => n.toLocaleString('es-CO');
+  const pct = n => (n*100).toFixed(1).replace('.',',')+'%';
+  const uniq = arr => Array.from(new Set(arr));
+  function tint(hex, alpha){
+    const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+    const mix = c => Math.round(c*alpha + 255*(1-alpha));
+    return `rgb(${mix(r)},${mix(g)},${mix(b)})`;
+  }
+
+  // ===== Filters UI =====
+  function populateFilters(){
+    const mesSel = $('#f-mes');
+    uniq(allVisits.map(v=>v.mes)).sort((a,b)=>a-b).forEach(m=>{
+      const opt = document.createElement('option');
+      opt.value = m; opt.textContent = D.MESES_ES_LARGO[m]+' 2026';
+      mesSel.appendChild(opt);
+    });
+    const fill = (id, items)=>{
+      const sel = $(id);
+      items.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
+    };
+    fill('#f-cedi',       uniq(allFindings.map(f=>f.cedi)));
+    fill('#f-auditor',    uniq(allFindings.map(f=>f.auditor)));
+    fill('#f-tipo',       uniq(allFindings.map(f=>f.tipoRiesgo)));
+    fill('#f-hallazgo',   uniq(allFindings.map(f=>f.hallazgo)).sort());
+    fill('#f-estado',     uniq(allFindings.map(f=>f.estado)));
+    fill('#f-criticidad', CRIT_ORDER.filter(c=>allFindings.some(f=>f.criticidad===c)));
+  }
+
+  function bindFilters(){
+    const map = {
+      '#f-mes':'mes','#f-cedi':'cedi','#f-auditor':'auditor',
+      '#f-tipo':'tipoRiesgo','#f-hallazgo':'hallazgo',
+      '#f-estado':'estado','#f-criticidad':'criticidad'
+    };
+    Object.entries(map).forEach(([sel,key])=>{
+      $(sel).addEventListener('change', e=>{ state[key]=e.target.value; state.page=1; renderAll(); });
+    });
+    $('#f-reset').addEventListener('click', ()=>{
+      Object.keys(map).forEach(s => { state[map[s]]=''; $(s).value=''; });
+      state.busqueda=''; $('#tbl-search').value=''; state.page=1; renderAll();
+    });
+    $('#tbl-search').addEventListener('input', e=>{ state.busqueda=e.target.value; state.page=1; renderTable(); renderKPIs(); });
+  }
+
+  function renderActiveChips(){
+    const wrap = $('#active-filters'); wrap.innerHTML='';
+    const labels = {
+      mes:'Mes', cedi:'CEDI', auditor:'Auditor', tipoRiesgo:'Tipo de riesgo',
+      hallazgo:'Hallazgo', estado:'Estado', criticidad:'Criticidad'
+    };
+    Object.entries(labels).forEach(([k,lbl])=>{
+      const v = state[k]; if (!v && v!==0) return;
+      const display = k==='mes' ? D.MESES_ES_LARGO[Number(v)]+' 2026' : v;
+      const chip = document.createElement('span');
+      chip.className='active-chip';
+      chip.innerHTML = `<i style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0E7C86"></i> <span>${lbl}: <b>${display}</b></span> <button aria-label="quitar">×</button>`;
+      chip.querySelector('button').onclick = ()=>{
+        state[k]='';
+        const selMap = {mes:'#f-mes',cedi:'#f-cedi',auditor:'#f-auditor',tipoRiesgo:'#f-tipo',hallazgo:'#f-hallazgo',estado:'#f-estado',criticidad:'#f-criticidad'};
+        $(selMap[k]).value=''; state.page=1; renderAll();
+      };
+      wrap.appendChild(chip);
+    });
+  }
+
+  // ===== KPIs =====
+  function renderKPIs(){
+    const findings = applyFilters();
+    const visits   = visitsInScope(findings);
+    const wrap = $('#kpis'); wrap.innerHTML='';
+
+    const totalVisits   = visits.length;
+    const totalFindings = findings.length;
+    const abiertos = findings.filter(f=>f.estado==='Hallazgo abierto'||f.estado==='Reiterado').length;
+    const cumplen  = findings.filter(f=>f.estado==='Cumple').length;
+    const subsanados = findings.filter(f=>f.estado==='Subsanado').length;
+    const criticos = findings.filter(f=>f.criticidad==='Crítico'||f.criticidad==='Alto').length;
+    const incidencia = totalFindings===0 ? 0 : abiertos/totalFindings;
+    const auditoresUnicos = uniq(findings.map(f=>f.auditor)).length;
+
+    // Riesgo dominante
+    const catScore = {};
+    findings.forEach(f=>{
+      if (f.estado==='Cumple') return;
+      const w = (f.criticidad==='Crítico')?3 : (f.criticidad==='Alto')?2 : 1;
+      catScore[f.categoria] = (catScore[f.categoria]||0)+w;
+    });
+    let dom = '—', domScore = 0;
+    Object.entries(catScore).forEach(([k,v])=>{ if (v>domScore){dom=k;domScore=v;} });
+
+    const cards = [
+      {
+        cls:'visited', label:'CEDIs auditados', value: totalVisits,
+        sub: `Codabas · Tunja · cobertura ${pct(totalVisits / D.SOURCE_TOTALS.cedisVisitados)}`,
+        bar: totalVisits / D.SOURCE_TOTALS.cedisVisitados,
+        ico:'⌖'
+      },
+      {
+        cls:'hero', label:'Hallazgos totales', value: totalFindings,
+        sub: `${abiertos} abiertos · ${subsanados} subsanados · ${cumplen} en cumplimiento`,
+        bar: totalFindings / Math.max(D.SOURCE_TOTALS.hallazgosTotales, totalFindings),
+        ico:'◇'
+      },
+      {
+        cls:'risk-dom', label:'% Incidencia', value: pct(incidencia),
+        sub: `${abiertos} hallazgos abiertos sobre ${totalFindings} verificados`,
+        bar: incidencia,
+        ico:'%'
+      },
+      {
+        cls:'crit-card', label:'Críticos / Altos', value: criticos,
+        sub: `${pct(totalFindings? criticos/totalFindings : 0)} del total · requieren atención inmediata`,
+        bar: totalFindings? criticos/totalFindings : 0,
+        ico:'!'
+      },
+      {
+        cls:'auditores', label:'Auditores asignados', value: auditoresUnicos,
+        sub: `${auditoresUnicos} equipo${auditoresUnicos!==1?'s':''} de auditoría · ${totalVisits} CEDI${totalVisits!==1?'s':''} cubiertos`,
+        bar: auditoresUnicos / Math.max(1, D.SOURCE_TOTALS.auditoresUnicos),
+        ico:'⚐'
+      },
+      {
+        cls:'findings-dom', label:'Riesgo dominante', value: dom,
+        sub: domScore>0 ? `Score ponderado ${domScore} · categoría con mayor concentración` : 'Sin hallazgos abiertos',
+        bar: 1,
+        ico:'▲'
+      }
+    ];
+
+    cards.forEach(c=>{
+      const div = document.createElement('div');
+      div.className = 'kpi '+c.cls;
+      const valStr = (typeof c.value === 'number') ? fmt(c.value) : c.value;
+      const fontSize = (typeof c.value==='string' && c.value.length>10) ? '18px' : '28px';
+      div.innerHTML = `
+        <div class="label">${c.label}</div>
+        <div class="value" style="font-size:${fontSize}">${valStr}</div>
+        <div class="meta"><span>${c.sub}</span></div>
+        <div class="bar"><div style="width:${Math.max(2, Math.min(100, c.bar*100)).toFixed(1)}%"></div></div>
+        <div class="ico">${c.ico}</div>`;
+      wrap.appendChild(div);
+    });
+  }
+
+  // ===== Chart helpers =====
+  const _charts = {};
+  function killChart(key){ if (_charts[key]) { _charts[key].destroy(); delete _charts[key]; } }
+  function fontDef(){ return { family: "'Manrope','ui-sans-serif',system-ui,sans-serif", size: 11 }; }
+
+  function renderMonthly(){
+    const findings = applyFilters();
+    const visits   = visitsInScope(findings);
+    const counts = Array(12).fill(0);
+    visits.forEach(v=> counts[v.mes]++);
+    const totalV = counts.reduce((a,b)=>a+b,0);
+
+    killChart('monthlyBar');
+    _charts.monthlyBar = new Chart($('#ch-monthly'), {
+      type: 'bar',
+      data: {
+        labels: D.MESES_ES,
+        datasets: [
+          { label:'CEDIs auditados', data:counts, backgroundColor:'#0FB5AE', borderRadius:6, barThickness:18, order:2 },
+          { label:'Tendencia', type:'line', data:counts, borderColor:'#0F1E3D', backgroundColor:'rgba(15,30,61,0.06)',
+            borderWidth:2, tension:0.35, pointRadius:4, pointBackgroundColor:'#0F1E3D', fill:false, order:1 }
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'bottom', labels:{ font:fontDef(), boxWidth:10, boxHeight:10 } } },
+        scales:{
+          x:{ grid:{ display:false }, ticks:{ font:fontDef(), color:C.ink3 } },
+          y:{ beginAtZero:true, max:Math.max(2,...counts), ticks:{ stepSize:1, font:fontDef(), color:C.ink3, precision:0 }, grid:{ color:C.line2 } }
+        }
+      }
+    });
+
+    const pieData=[], pieLabels=[], pieColors=[];
+    counts.forEach((c,i)=>{
+      if (c>0){
+        pieData.push(c); pieLabels.push(D.MESES_ES_LARGO[i]);
+        pieColors.push(['#0F1E3D','#0E7C86','#0FB5AE','#E08A1A','#C5364B','#7A3FD4','#2A6FDB','#1F8A4C','#8693AC','#6B7793','#3C475C','#0B1320'][i % 12]);
+      }
+    });
+    if (pieData.length===0){ pieData.push(1); pieLabels.push('Sin datos'); pieColors.push('#E5E8EF'); }
+
+    killChart('monthlyPie');
+    _charts.monthlyPie = new Chart($('#ch-monthly-pie'), {
+      type: 'doughnut',
+      data:{ labels:pieLabels, datasets:[{ data:pieData, backgroundColor:pieColors, borderWidth:2, borderColor:'#fff' }] },
+      options:{
+        responsive:true, maintainAspectRatio:false, cutout:'62%',
+        plugins:{
+          legend:{ position:'right', labels:{ font:fontDef(), boxWidth:9, boxHeight:9, padding:8 } },
+          tooltip:{ callbacks:{ label:(c)=>{
+            const t = c.dataset.data.reduce((a,b)=>a+b,0);
+            return `${c.label}: ${c.parsed} CEDI (${(c.parsed/t*100).toFixed(1)}%)`;
+          } } }
+        }
+      }
+    });
+
+    const centerEl = $('#monthly-pie-center');
+    if (centerEl) centerEl.innerHTML = `<b>${totalV}</b><small>CEDIS</small>`;
+  }
+
+  function renderFindingsTrend(){
+    const findings = applyFilters();
+    const byMonth = Array(12).fill(0).map(()=>({total:0, abiertos:0, criticos:0}));
+    findings.forEach(f=>{
+      byMonth[f.mes].total++;
+      if (f.estado==='Hallazgo abierto'||f.estado==='Reiterado') byMonth[f.mes].abiertos++;
+      if (f.criticidad==='Crítico'||f.criticidad==='Alto') byMonth[f.mes].criticos++;
+    });
+
+    killChart('findingsTrend');
+    _charts.findingsTrend = new Chart($('#ch-findings-trend'),{
+      type:'bar',
+      data:{
+        labels: D.MESES_ES,
+        datasets:[
+          { label:'Total',            data:byMonth.map(m=>m.total),    backgroundColor:'#0E7C86', borderRadius:5, barThickness:12, stack:'s1' },
+          { label:'Abiertos',         data:byMonth.map(m=>m.abiertos), backgroundColor:'#C5364B', borderRadius:5, barThickness:12, stack:'s2' },
+          { label:'Críticos / Altos', data:byMonth.map(m=>m.criticos), backgroundColor:'#7d1b2a', borderRadius:5, barThickness:12, stack:'s3' }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'bottom', labels:{ font:fontDef(), boxWidth:10 } } },
+        scales:{
+          x:{ grid:{ display:false }, ticks:{ font:fontDef(), color:C.ink3 } },
+          y:{ beginAtZero:true, ticks:{ stepSize:1, font:fontDef(), color:C.ink3, precision:0 }, grid:{ color:C.line2 } }
+        }
+      }
+    });
+  }
+
+  function renderCategoryBars(){
+    const findings = applyFilters();
+    const cats = Object.keys(CAT_COLOR);
+    const totals   = cats.map(c=> findings.filter(f=>f.categoria===c).length);
+    const abiertos = cats.map(c=> findings.filter(f=>f.categoria===c && (f.estado==='Hallazgo abierto'||f.estado==='Reiterado')).length);
+
+    killChart('catBars');
+    _charts.catBars = new Chart($('#ch-cat-bars'),{
+      type:'bar',
+      data:{
+        labels:cats,
+        datasets:[
+          { label:'Hallazgos', data:totals,   backgroundColor:cats.map(c=>CAT_COLOR[c]), borderRadius:5, barThickness:18 },
+          { label:'Abiertos',  data:abiertos, backgroundColor:'#0B1320', borderRadius:5, barThickness:7 }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false, indexAxis:'y',
+        plugins:{ legend:{ position:'bottom', labels:{ font:fontDef(), boxWidth:10 } } },
+        scales:{
+          x:{ beginAtZero:true, ticks:{ stepSize:1, font:fontDef(), color:C.ink3, precision:0 }, grid:{ color:C.line2 } },
+          y:{ grid:{ display:false }, ticks:{ font:fontDef(), color:C.ink } }
+        }
+      }
+    });
+  }
+
+  // ===== Heatmap =====
+  function renderHeatmap(){
+    const findings = applyFilters();
+    const visits   = visitsInScope(findings);
+    const cats = Object.keys(CAT_COLOR);
+    const cedis = visits.map(v=>v.cedi);
+    const grid = cedis.map(c=> cats.map(cat=> findings.filter(f=>f.cedi===c && f.categoria===cat).length));
+    const max = Math.max(1, ...grid.flat());
+    const wrap = $('#heatmap'); wrap.innerHTML='';
+
+    const cell = (txt, cls, bg, title)=>{
+      const el = document.createElement('div'); el.className = 'hcell '+(cls||'');
+      el.textContent = txt;
+      if (bg) el.style.background = bg;
+      if (title) el.title = title;
+      return el;
+    };
+
+    wrap.appendChild(cell('','hhead hname'));
+    cats.forEach(cat=>{
+      const h = cell(cat,'hhead');
+      h.style.color = CAT_COLOR[cat];
+      wrap.appendChild(h);
+    });
+    wrap.appendChild(cell('Total','hhead'));
+
+    cedis.forEach((cedi, i)=>{
+      wrap.appendChild(cell(cedi,'hname'));
+      let rowTotal = 0;
+      cats.forEach((cat, j)=>{
+        const v = grid[i][j];
+        rowTotal += v;
+        const intensity = v===0 ? 0 : (v/max);
+        const bg = v===0 ? '#F4F5F8' : tint(CAT_COLOR[cat], 0.18 + intensity*0.72);
+        const c = cell(v===0?'·':String(v),'hcell',bg);
+        c.style.color = v===0 ? C.ink3 : (intensity>0.55?'#fff':C.ink);
+        if (v>0){
+          const fs = findings.filter(fd=>fd.cedi===cedi && fd.categoria===cat);
+          c.title = `${cedi} · ${cat} · ${v} hallazgo(s)\n` + fs.map(x=>'• '+x.hallazgo).join('\n');
+        }
+        wrap.appendChild(c);
+      });
+      wrap.appendChild(cell(String(rowTotal),'hcell htotal'));
+    });
+
+    // Totals row
+    wrap.appendChild(cell('Total','hname htotal'));
+    let grandTotal = 0;
+    cats.forEach((cat,j)=>{
+      const t = grid.reduce((a,row)=>a+row[j],0);
+      grandTotal += t;
+      const c = cell(String(t),'hcell htotal');
+      wrap.appendChild(c);
+    });
+    wrap.appendChild(cell(String(grandTotal),'hcell htotal'));
+  }
+
+  // ===== Diagnóstico ejecutivo =====
+  function renderDiagnostico(){
+    const findings = applyFilters();
+    const cats = Object.keys(CAT_COLOR);
+    const wrap = $('#diagnostico'); wrap.innerHTML='';
+
+    cats.forEach(cat=>{
+      const items = findings.filter(f=>f.categoria===cat);
+      const total = items.length;
+      const abiertos = items.filter(f=>f.estado==='Hallazgo abierto'||f.estado==='Reiterado').length;
+      const altos = items.filter(f=>f.criticidad==='Crítico'||f.criticidad==='Alto').length;
+      const cumple = items.filter(f=>f.estado==='Cumple').length;
+
+      const hMap = {};
+      items.forEach(f=>{ if (f.estado!=='Cumple') hMap[f.hallazgo]=(hMap[f.hallazgo]||0)+1; });
+      let dominante = '—', dCnt=0;
+      Object.entries(hMap).forEach(([k,v])=>{ if (v>dCnt){dominante=k; dCnt=v;}});
+
+      const avg = findings.length / Math.max(cats.length,1);
+      const tendencia = total > avg*1.1 ? 'Sobre promedio' : (total < avg*0.9 ? 'Bajo promedio' : 'En promedio');
+
+      let imp = 0;
+      if (total>0){
+        const w = items.reduce((a,f)=> a + (f.criticidad==='Crítico'?4:f.criticidad==='Alto'?3:f.criticidad==='Medio'?2:1), 0);
+        imp = Math.min(100, Math.round(w/(total*4) * 100));
+      }
+      const impClass = imp>=70?'imp-high':imp>=40?'imp-mid':'imp-low';
+
+      const card = document.createElement('div');
+      card.className = 'diag-card';
+      card.innerHTML = `
+        <div class="diag-head">
+          <div class="diag-dot" style="background:${CAT_COLOR[cat]}"></div>
+          <div class="diag-title">${cat}</div>
+          <div class="diag-bigcount mono">${total}</div>
+        </div>
+        <div class="diag-stat">
+          <div><span>Abiertos</span><b>${abiertos}</b></div>
+          <div><span>Críticos / Altos</span><b>${altos}</b></div>
+          <div><span>Cumplen</span><b>${cumple}</b></div>
+        </div>
+        <div class="diag-impact">
+          <div class="diag-lbl">Nivel de impacto</div>
+          <div class="diag-impbar"><div class="${impClass}" style="width:${imp}%"></div></div>
+          <div class="diag-impval mono">${imp}/100</div>
+        </div>
+        <div class="diag-row"><span class="diag-lbl">Frecuencia</span><b class="mono">${total} hallazgo${total!==1?'s':''}</b></div>
+        <div class="diag-row"><span class="diag-lbl">Tendencia</span><b class="trend-${tendencia.split(' ')[0].toLowerCase()}">${tendencia}</b></div>
+        <div class="diag-row diag-dom"><span class="diag-lbl">Riesgo dominante</span><b title="${dominante}">${dominante}</b></div>
+        <div class="diag-bar"><div style="width:${total===0?0:Math.min(100, abiertos/Math.max(total,1)*100)}%;background:${CAT_COLOR[cat]}"></div></div>
+        <div class="diag-foot">${total===0 ? 'Sin observaciones en la selección actual.' : `${pct(abiertos/Math.max(total,1))} con hallazgo abierto`}</div>
+      `;
+      card.addEventListener('click', ()=>{
+        // No hay filtro de categoría en la UI: filtrar por el hallazgo dominante
+        if (dominante !== '—'){
+          state.hallazgo = state.hallazgo===dominante ? '' : dominante;
+          $('#f-hallazgo').value = state.hallazgo;
+          state.page=1; renderAll();
+        }
+      });
+      wrap.appendChild(card);
+    });
+  }
+
+  // ===== Auditor × CEDI assignment panel =====
+  function renderAuditorCedis(){
+    const findings = applyFilters();
+    const wrap = $('#auditor-cedis'); wrap.innerHTML='';
+
+    const map = {};
+    findings.forEach(f=>{
+      const k = f.auditor;
+      if (!map[k]) map[k] = { auditor:k, cedis:new Set(), findings:0, abiertos:0, criticos:0 };
+      map[k].cedis.add(f.cedi);
+      map[k].findings++;
+      if (f.estado==='Hallazgo abierto'||f.estado==='Reiterado') map[k].abiertos++;
+      if (f.criticidad==='Crítico'||f.criticidad==='Alto') map[k].criticos++;
+    });
+    const rows = Object.values(map).sort((a,b)=>b.findings-a.findings);
+
+    if (rows.length===0){
+      wrap.innerHTML = '<div class="empty">Sin auditores en la selección actual.</div>';
+      return;
+    }
+
+    rows.forEach(r=>{
+      const initials = r.auditor.split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+      const cedis = Array.from(r.cedis);
+      const div = document.createElement('div');
+      div.className = 'auditor-card';
+      div.innerHTML = `
+        <div class="auditor-top">
+          <div class="auditor-avatar">${initials}</div>
+          <div class="auditor-meta">
+            <div class="auditor-name">${r.auditor}</div>
+            <div class="auditor-sub">${cedis.length} CEDI${cedis.length!==1?'s':''} asignado${cedis.length!==1?'s':''} · ${r.findings} hallazgos</div>
+          </div>
+        </div>
+        <div class="auditor-cedis-list">
+          ${cedis.map(c=>`<span class="cedi-pill" data-cedi="${c}">${c}</span>`).join('')}
+        </div>
+        <div class="auditor-stats">
+          <div><b style="color:${C.red}">${r.abiertos}</b> abiertos</div>
+          <div><b style="color:${C.red}">${r.criticos}</b> críticos/altos</div>
+          <div><b>${r.findings}</b> hallazgos</div>
+        </div>
+        <div class="auditor-bar"><div style="width:${Math.min(100, r.findings/D.SOURCE_TOTALS.hallazgosTotales*100)}%"></div></div>
+      `;
+      div.querySelectorAll('.cedi-pill').forEach(pill=>{
+        pill.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          state.cedi = state.cedi===pill.dataset.cedi ? '' : pill.dataset.cedi;
+          $('#f-cedi').value = state.cedi;
+          state.page=1; renderAll();
+        });
+      });
+      div.addEventListener('click', ()=>{
+        state.auditor = state.auditor===r.auditor ? '' : r.auditor;
+        $('#f-auditor').value = state.auditor;
+        state.page=1; renderAll();
+      });
+      wrap.appendChild(div);
+    });
+  }
+
+  // ===== Prospecto de auditoría (workbook coverage) =====
+  function renderProspecto(){
+    const wrap = $('#prospecto'); wrap.innerHTML='';
+    Object.entries(D.PROSPECTO).forEach(([cat, info])=>{
+      const filled = info.items.filter(i=>i.count>0).length;
+      const totalSub = info.items.length;
+      const section = document.createElement('div');
+      section.className = 'prosp-section';
+      section.innerHTML = `
+        <div class="prosp-head">
+          <div class="prosp-dot" style="background:${CAT_COLOR[cat]}"></div>
+          <div class="prosp-name">${cat}</div>
+          <div class="prosp-count mono"><b>${info.total}</b> / ${totalSub} ítems</div>
+        </div>
+        <div class="prosp-items">
+          ${info.items.map(it => `
+            <div class="prosp-item ${it.count>0?'has':''}" title="${it.nombre} · ${it.count} verificación(es)">
+              <span class="prosp-bullet" style="background:${it.count>0?CAT_COLOR[cat]:'#E5E8EF'}"></span>
+              <span class="prosp-item-name">${it.nombre}</span>
+              <span class="prosp-item-count mono">${it.count}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      wrap.appendChild(section);
+    });
+  }
+
+  // ===== Ranking =====
+  function renderRanking(){
+    const findings = applyFilters();
+    const groups = {};
+    findings.forEach(f=>{
+      const k = f.cedi;
+      if (!groups[k]) groups[k]={ cedi:k, auditor:f.auditor, total:0, abiertos:0, criticos:0, cats:new Set(), score:0 };
+      groups[k].total++;
+      if (f.estado==='Hallazgo abierto'||f.estado==='Reiterado') groups[k].abiertos++;
+      if (f.criticidad==='Crítico'||f.criticidad==='Alto') groups[k].criticos++;
+      groups[k].cats.add(f.categoria);
+      groups[k].score += (f.criticidad==='Crítico'?4:f.criticidad==='Alto'?3:f.criticidad==='Medio'?2:1);
+    });
+    const rows = Object.values(groups).sort((a,b)=> b.score - a.score);
+    const maxScore = Math.max(1, ...rows.map(r=>r.score));
+
+    const wrap = $('#ranking'); wrap.innerHTML='';
+    rows.forEach((r,i)=>{
+      const div = document.createElement('div');
+      div.className = 'rank-row';
+      div.innerHTML = `
+        <div class="rank-pos">${String(i+1).padStart(2,'0')}</div>
+        <div class="rank-body">
+          <div class="rank-top">
+            <div class="rank-name">${r.cedi}</div>
+            <div class="rank-score mono">${r.score} <small>pts</small></div>
+          </div>
+          <div class="rank-bar"><div style="width:${(r.score/maxScore*100).toFixed(1)}%"></div></div>
+          <div class="rank-meta">
+            <span><b>${r.total}</b> hallazgos</span>
+            <span><b style="color:${C.red}">${r.abiertos}</b> abiertos</span>
+            <span><b style="color:${C.red}">${r.criticos}</b> críticos/altos</span>
+            <span>${r.cats.size}/6 categorías</span>
+          </div>
+        </div>
+      `;
+      div.addEventListener('click', ()=>{
+        state.cedi = state.cedi===r.cedi ? '' : r.cedi;
+        $('#f-cedi').value = state.cedi;
+        state.page=1; renderAll();
+      });
+      wrap.appendChild(div);
+    });
+    if (rows.length===0) wrap.innerHTML = '<div class="empty">Sin CEDIs en la selección actual.</div>';
+  }
+
+  // ===== Análisis ejecutivo =====
+  function renderInsights(){
+    const findings = applyFilters();
+    const visits   = visitsInScope(findings);
+    const ul = $('#insights'); ul.innerHTML='';
+
+    if (findings.length===0){
+      ul.innerHTML = `<div class="insight"><div class="ico-i info">i</div><div><h4>Sin hallazgos</h4><p>No hay registros en la selección actual. Ajusta los filtros para ampliar el rango.</p></div></div>`;
+      return;
+    }
+
+    const items = [];
+
+    const catScore = {};
+    findings.forEach(f=>{
+      if (f.estado==='Cumple') return;
+      const w = (f.criticidad==='Crítico')?3:(f.criticidad==='Alto')?2:1;
+      catScore[f.categoria]=(catScore[f.categoria]||0)+w;
+    });
+    const sorted = Object.entries(catScore).sort((a,b)=>b[1]-a[1]);
+    if (sorted[0]){
+      items.push({k:'bad', t:`Categoría dominante: ${sorted[0][0]}`,
+        d:`Concentra el mayor peso de riesgo (score ${sorted[0][1]}). ${sorted[1] ? `Le sigue ${sorted[1][0]} (score ${sorted[1][1]}).`:''}`});
+    }
+
+    const reiterados = findings.filter(f=>f.estado==='Reiterado');
+    if (reiterados.length){
+      items.push({k:'bad', t:`${reiterados.length} hallazgo${reiterados.length>1?'s':''} reiterado${reiterados.length>1?'s':''}`,
+        d:`Reincidencia en: ${reiterados.map(f=>f.cedi+' · '+f.hallazgo).join(' / ')}. Requiere escalamiento al propietario y comité.`});
+    }
+
+    const subsanados = findings.filter(f=>f.estado==='Subsanado');
+    if (subsanados.length){
+      items.push({k:'good', t:`${subsanados.length} hallazgo${subsanados.length>1?'s':''} subsanado${subsanados.length>1?'s':''} en sitio`,
+        d:`Acción correctiva durante la auditoría: ${subsanados.map(f=>f.hallazgo).slice(0,3).join(' · ')}.`});
+    }
+
+    items.push({k:'info', t:`Cobertura · ${visits.length} CEDI${visits.length!==1?'s':''} auditado${visits.length!==1?'s':''}`,
+      d:`Meses con visitas: ${uniq(visits.map(v=>D.MESES_ES_LARGO[v.mes])).join(', ')}. ${findings.length} hallazgos distribuidos en 6 categorías operativas.`});
+
+    const inv = findings.filter(f=>f.categoria==='Inventarios');
+    const invFaltantes = inv.filter(f=>/faltante/i.test(f.observacion)).length;
+    if (invFaltantes){
+      items.push({k:'warn', t:`Patrón en Inventarios: ${invFaltantes} casos con faltantes`,
+        d:`Diferencia recurrente entre soporte documental y conteo físico (productos cárnicos: rabadilla, pierna pernil, savipollo). Trazabilidad de TPI y proceso de despacho requieren revisión transversal.`});
+    }
+
+    const vehicular = findings.filter(f=>/vehiculo|veh[ií]culo|radiador|placa|preoperativ/i.test(f.observacion));
+    if (vehicular.length){
+      items.push({k:'bad', t:`Riesgo operativo en flota`,
+        d:`Eventos asociados al estado del vehículo y mantenimiento preoperativo (placa SMY 795). ${vehicular.length} observación${vehicular.length>1?'es':''} con potencial impacto en continuidad de ruta.`});
+    }
+
+    items.forEach(it=>{
+      const div = document.createElement('div'); div.className='insight';
+      div.innerHTML = `<div class="ico-i ${it.k}">${it.k==='bad'?'!':it.k==='warn'?'⚠':it.k==='good'?'✓':'i'}</div><div><h4>${it.t}</h4><p>${it.d}</p></div>`;
+      ul.appendChild(div);
+    });
+  }
+
+  // ===== Tabla dinámica =====
+  function renderTable(){
+    const findings = applyFilters();
+    const k = state.sort.k, dir = state.sort.dir==='asc'?1:-1;
+    const critRank = c=> ({'Crítico':4,'Alto':3,'Medio':2,'Bajo':1}[c]||0);
+    findings.sort((a,b)=>{
+      let va=a[k], vb=b[k];
+      if (k==='criticidad'){ va=critRank(va); vb=critRank(vb); }
+      if (typeof va==='string') return dir * va.localeCompare(vb, 'es');
+      return dir * ((va||0) - (vb||0));
+    });
+    const total = findings.length;
+    const start = (state.page-1)*state.pageSize;
+    const slice = findings.slice(start, start+state.pageSize);
+    const tbody = $('#tbl tbody'); tbody.innerHTML='';
+
+    slice.forEach(f=>{
+      const tr = document.createElement('tr');
+      const statusKey = (f.estado||'').replace(/\s/g,'');
+      tr.innerHTML = `
+        <td class="mono" style="color:var(--ink-3)">${String(f.n).padStart(2,'0')}</td>
+        <td><b>${f.cedi}</b></td>
+        <td><span class="cat-tag" style="background:${tint(CAT_COLOR[f.categoria]||'#8693AC',.85)};color:${CAT_COLOR[f.categoria]||'#3C475C'}">${f.categoria}</span></td>
+        <td><div style="font-weight:600">${f.hallazgo}</div><div style="color:var(--ink-3);font-size:11px;margin-top:2px;line-height:1.45">${f.observacion}</div></td>
+        <td><span class="risk-chip risk-${f.tipoRiesgo.replace('Riesgo ','').replace(/\s/g,'-')}"><i></i>${f.tipoRiesgo}</span></td>
+        <td><span class="crit-chip crit-${f.criticidad}">${f.criticidad}</span></td>
+        <td><span class="status-chip st-${statusKey}"><i></i>${f.estado}</span></td>
+        <td>${f.auditor}</td>
+        <td class="mono" style="color:var(--ink-3);white-space:nowrap">${f.mesCorto} 2026</td>
+      `;
+      tbody.appendChild(tr);
+    });
+    $('#tbl-count').textContent = `${total} hallazgo${total!==1?'s':''}`;
+    $('#tbl-sub').textContent = total===0 ? 'sin resultados' : `mostrando ${start+1}–${Math.min(start+state.pageSize,total)} de ${total}`;
+
+    const pages = Math.max(1, Math.ceil(total/state.pageSize));
+    const pager = $('#pager'); pager.innerHTML='';
+    const prev = document.createElement('button'); prev.textContent='‹ Anterior'; prev.disabled = state.page<=1;
+    prev.onclick = ()=>{ state.page--; renderTable(); };
+    const next = document.createElement('button'); next.textContent='Siguiente ›'; next.disabled = state.page>=pages;
+    next.onclick = ()=>{ state.page++; renderTable(); };
+    const info = document.createElement('div'); info.className='mono';
+    info.textContent = `Página ${state.page} de ${pages}`;
+    pager.appendChild(prev); pager.appendChild(info); pager.appendChild(next);
+
+    $$('#tbl th[data-k]').forEach(th=>{
+      const dirs = th.querySelector('.sortdir');
+      const key = th.dataset.k;
+      dirs.textContent = (state.sort.k===key) ? (state.sort.dir==='asc'?'▲':'▼') : '';
+    });
+  }
+
+  function bindTableHeaders(){
+    $$('#tbl th[data-k]').forEach(th=>{
+      th.addEventListener('click', ()=>{
+        const k = th.dataset.k;
+        if (state.sort.k === k) state.sort.dir = state.sort.dir==='asc'?'desc':'asc';
+        else { state.sort.k=k; state.sort.dir='asc'; }
+        renderTable();
+      });
+    });
+  }
+
+  function renderAll(){
+    renderActiveChips();
+    renderKPIs();
+    renderMonthly();
+    renderFindingsTrend();
+    renderCategoryBars();
+    renderHeatmap();
+    renderDiagnostico();
+    renderAuditorCedis();
+    renderProspecto();
+    renderRanking();
+    renderInsights();
+    renderTable();
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    populateFilters();
+    bindFilters();
+    bindTableHeaders();
+    renderAll();
+  });
+})();
+
+</script>
+</body>
+</html>
